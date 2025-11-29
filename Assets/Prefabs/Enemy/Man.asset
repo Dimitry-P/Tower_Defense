@@ -20,3 +20,4 @@ MonoBehaviour:
   hp: 9
   score: 9
   radius: 0.5
+  damage: 1

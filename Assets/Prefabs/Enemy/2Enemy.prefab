@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3169883392141543866}
@@ -75,15 +75,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e757e8d9cc848d54f8ae5e8b4e23b7df, type: 3}
-  m_Color: {r: 0.8867924, g: 0.10457456, b: 0.10457456, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.23, y: 0.23}
+  m_Size: {x: 7.28, y: 10.89}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &3754301032846226767
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 246302504743059213}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6337f5addd375894794e7e023439dd7c, type: 2}
+  m_Controller: {fileID: 9100000, guid: d0b193a44be58314488cdc559175d348, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -180,12 +180,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 1.16
 --- !u!1 &8808806478472295478
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,10 +264,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Nickname: 
   m_Indestructible: 0
-  m_HitPoints: 2
+  m_HitPoints: 1
   m_EventOnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4410295530882854954}
+        m_TargetAssemblyTypeName: TowerDefense.Enemy, Assembly-CSharp
+        m_MethodName: GivePlayerGold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_ExplosionPrefab: {fileID: 0}
   m_TeamId: 0
   m_ScoreValue: 1
@@ -296,6 +308,21 @@ MonoBehaviour:
   m_FindNewTargetTime: 0
   m_ShootDelay: 0
   m_EvadeRayLength: 0
+  OnEndPath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4410295530882854954}
+        m_TargetAssemblyTypeName: TowerDefense.Enemy, Assembly-CSharp
+        m_MethodName: DamagePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4410295530882854954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,3 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a91eb9e6332f0f428392c0bfee3c571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_damage: 1
+  m_gold: 1
+  enemyName: 

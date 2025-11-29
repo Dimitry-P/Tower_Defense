@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TowerDefense;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SpaceShooter
 {
@@ -11,17 +14,22 @@ namespace SpaceShooter
     {
 
         [SerializeField] private int m_NumLives;
+        public int NumLives {  get { return m_NumLives; }}
         [SerializeField] private SpaceShip m_Ship;
         public SpaceShip ActiveShip => m_Ship;
 
         [SerializeField] private SpaceShip m_PlayerShipPrefab;
+      
 
         //[SerializeField] private CameraController m_CameraController;
         //[SerializeField] private MovementController m_MovementController;
 
         private void Start()
         {
-            m_Ship.EventOnDeath.AddListener(OnShipDeath);
+            if (m_Ship)
+            {
+                m_Ship.EventOnDeath.AddListener(OnShipDeath);
+            }
         }
 
         private void OnShipDeath()
@@ -62,7 +70,24 @@ namespace SpaceShooter
         {
             Score += num;
         }
-
+        int smallEnemyCounter = 0;
+        int middleEnemyCounter = 0;
+        int bossEnemyCounter = 0;
+        protected void TakeDamage(int m_damage, string enemyName)
+        {
+            m_NumLives -= m_damage;
+            //if(m_NumLives <= 0)
+            //{
+            // LevelSequenceController.Instance.FinishCurrentLevel(false);
+            //LevelSequenceController.Instance.RestartLevel();
+           
+            //}
+            if (enemyName == "small") smallEnemyCounter++;
+            if (enemyName == "middle") middleEnemyCounter++;
+            if (enemyName == "boss") bossEnemyCounter++;
+            Debug.Log(enemyName);
+            if (smallEnemyCounter >= 3 && middleEnemyCounter >= 1 || bossEnemyCounter >= 1) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         #endregion
     }
 }

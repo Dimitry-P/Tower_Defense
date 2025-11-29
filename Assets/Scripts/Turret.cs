@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TowerDefense;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -35,6 +36,8 @@ namespace SpaceShooter
         /// Кешированная ссылка на родительский шип.
         /// </summary>
         private SpaceShip m_Ship;
+
+        [SerializeField] private TowerAsset[] m_TowerAssets;
 
         #region Unity events
 
@@ -77,10 +80,11 @@ namespace SpaceShooter
                 if (!m_Ship.DrawAmmo(m_TurretProperties.AmmoUsage))
                     return;
             }
-           
 
+            
             // инстанцируем прожектайл который уже сам полетит.
             var projectile = Instantiate(m_TurretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+           
             projectile.transform.position = transform.position;
             projectile.transform.up = transform.up;
 

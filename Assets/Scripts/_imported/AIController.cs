@@ -194,7 +194,7 @@ namespace SpaceShooter
                     else
                     {
                         // если мы не в зоне патруля то едем до нее.
-                        m_MovePosition = m_PatrolPoint.transform.position;
+                        m_MovePosition = m_PatrolPoint.transform.position;   
                     }
                 }
 

@@ -3,7 +3,6 @@ using TowerDefense;
 
 namespace SpaceShooter
 {
-
     public abstract class Spawner : MonoBehaviour
     {
         protected abstract GameObject GenerateSpawnedEntity();

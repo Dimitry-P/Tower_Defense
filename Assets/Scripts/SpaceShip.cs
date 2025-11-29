@@ -204,6 +204,7 @@ namespace SpaceShooter
             base.Use(asset);
         }
 
+       
         //#endregion
 
         //public void AssignWeapon(TurretProperties props)

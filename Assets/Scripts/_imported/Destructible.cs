@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TowerDefense;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SpaceShooter
 {
@@ -38,7 +41,7 @@ namespace SpaceShooter
         {
             m_CurrentHitPoints = m_HitPoints;
         }
-
+       
         #region Безтеговая коллекция скриптов на сцене
 
         private static HashSet<Destructible> m_AllDestructibles;
@@ -75,7 +78,7 @@ namespace SpaceShooter
 
             m_CurrentHitPoints -= damage;
 
-            if (m_CurrentHitPoints < 0)
+            if (m_CurrentHitPoints <= 0)
                 OnDeath();
         }
 
@@ -89,6 +92,9 @@ namespace SpaceShooter
         /// <summary>
         /// Перепоределяемое событие уничтожения объекта, когда хит поинты ниже нуля.
         /// </summary>
+        /// 
+        
+
         protected virtual void OnDeath()
         {
             if(m_ExplosionPrefab != null)
@@ -97,7 +103,15 @@ namespace SpaceShooter
                 explosion.transform.position = transform.position;
             }
 
-            Destroy(gameObject);
+            var enemyName = gameObject.GetComponent<Enemy>();
+            string nm = enemyName.enemyName;
+            if (nm == "boss")
+            {
+                Debug.Log("You are the winner");
+                Time.timeScale = 0f;
+            } 
+           
+                Destroy(gameObject);
 
             m_EventOnDeath?.Invoke();
         }
@@ -139,7 +153,6 @@ namespace SpaceShooter
         {
             m_HitPoints = asset.hp;
             m_ScoreValue = asset.score;
-           
         }
     }
 }

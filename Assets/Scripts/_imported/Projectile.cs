@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TowerDefense;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -97,6 +99,17 @@ namespace SpaceShooter
         public void SetTarget(Destructible target)
         {
 
+        }
+
+        internal object GetChild(int v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Use(TowerAsset towerAsset)
+        {
+            var e = transform.Find("Sprite").GetComponent<SpriteRenderer>();
+            e.sprite = towerAsset.sprite;
         }
     }
 }
