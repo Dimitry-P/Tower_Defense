@@ -1879,6 +1879,34 @@ PrefabInstance:
       propertyPath: buildSite
       value: 
       objectReference: {fileID: 1319837078}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_projectile
+      value: 
+      objectReference: {fileID: 11400000, guid: 34fc968a74643104b8315c399de03258, type: 2}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectileAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 34fc968a74643104b8315c399de03258, type: 2}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_turretProperties
+      value: 
+      objectReference: {fileID: 11400000, guid: b118b5ad91954c240b897e75140a5ae4, type: 2}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectileAssets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectilePrefab.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectileAssets.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 34fc968a74643104b8315c399de03258, type: 2}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectilePrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 2734410851814856183, guid: 65492a30e385fbb4c9db1767b9dfb96f, type: 3}
     - target: {fileID: 1496663648462193241, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: m_Name
       value: Ice_Tower
@@ -3144,6 +3172,30 @@ PrefabInstance:
       propertyPath: buildSite
       value: 
       objectReference: {fileID: 594691445}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: turretProperties
+      value: 
+      objectReference: {fileID: 11400000, guid: c9f25faaf5d027f4fba1c6f5066bd386, type: 2}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectileAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ca081511de148544fbf8c0a954c86b43, type: 2}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectileAssets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectilePrefab.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectileAssets.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: ca081511de148544fbf8c0a954c86b43, type: 2}
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ProjectilePrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 2734410851814856183, guid: 65492a30e385fbb4c9db1767b9dfb96f, type: 3}
     - target: {fileID: 1496663648462193241, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: m_Name
       value: DPS_Tower

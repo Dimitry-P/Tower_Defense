@@ -1,7 +1,12 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using SpaceShooter;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace SpaceShooter
 {
@@ -21,6 +26,9 @@ namespace SpaceShooter
         /// Текущие патроны в турели.
         /// </summary>
         [SerializeField] private TurretProperties m_TurretProperties;
+      
+
+
 
         /// <summary>
         /// Таймер повторного выстрела.
@@ -37,7 +45,6 @@ namespace SpaceShooter
         /// </summary>
         private SpaceShip m_Ship;
 
-        [SerializeField] private TowerAsset[] m_TowerAssets;
 
         #region Unity events
 
@@ -58,6 +65,9 @@ namespace SpaceShooter
 
         #region Public API
 
+      
+       
+         
         /// <summary>
         /// Метод стрельбы турелью. 
         /// </summary>
@@ -76,15 +86,26 @@ namespace SpaceShooter
                 if (!m_Ship.DrawEnergy(m_TurretProperties.EnergyUsage))
                     return;
 
-                // кушаем патроны
+                // кушаем патроны 
                 if (!m_Ship.DrawAmmo(m_TurretProperties.AmmoUsage))
                     return;
             }
 
-            
+           
+
+
             // инстанцируем прожектайл который уже сам полетит.
             var projectile = Instantiate(m_TurretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
-           
+            projectile.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = m_TurretProperties.ProjectileSprite;
+            var p = projectile.GetComponent<Projectile>();
+            p.m_Velocity = m_TurretProperties.ProjectileSpeed;
+
+            p.m_Damage = m_TurretProperties.Damage;
+            projectile.m_Lifetime = 5f;
+
+
+
+
             projectile.transform.position = transform.position;
             projectile.transform.up = transform.up;
 
@@ -97,6 +118,14 @@ namespace SpaceShooter
                 // SFX на домашку
             }
         }
+
+      
+        public void AssignLoadout2(TurretProperties turretProperties)
+        {
+            m_TurretProperties = turretProperties;
+        }
+
+
 
         /// <summary>
         /// Установка свойств турели. Будет использовано в дальнейшем для паверапки.
@@ -112,6 +141,12 @@ namespace SpaceShooter
         }
 
 
+
         #endregion
     }
 }
+
+
+
+   
+

@@ -55,6 +55,7 @@ MonoBehaviour:
   m_text: {fileID: 1806675140944380414}
   m_button: {fileID: 3798102029512734460}
   buildSite: {fileID: 0}
+  m_projectile: {fileID: 0}
 --- !u!1 &2419651238575190631
 GameObject:
   m_ObjectHideFlags: 0

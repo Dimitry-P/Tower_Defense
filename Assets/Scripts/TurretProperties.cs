@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TowerDefense;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -52,5 +53,15 @@ namespace SpaceShooter
         /// </summary>
         [SerializeField] private AudioClip m_LaunchSFX;
         public AudioClip LaunchSFX => m_LaunchSFX;
+
+        [SerializeField] private Sprite m_projectileSprite;
+
+        public Sprite ProjectileSprite => m_projectileSprite;
+
+        [SerializeField] private float m_projectileSpeed;
+        public float ProjectileSpeed => m_projectileSpeed;
+
+        [SerializeField] private int m_damage;
+        public int Damage => m_damage;
     }
 }

@@ -2,6 +2,7 @@ using SpaceShooter;
 using System;
 using UnityEngine;
 using UnityEngine.U2D;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TowerDefense
 {
@@ -14,6 +15,8 @@ namespace TowerDefense
                 return Player.Instance as TDPlayer;
             }
         }
+
+      
 
       
 
@@ -59,11 +62,16 @@ namespace TowerDefense
 
         // TODO: верим в то что золота на постройку достаточно
         [SerializeField] private Tower m_towerPrefab;
+
         public void TryBuild(TowerAsset towerAsset, Transform buildSite)
         {
             ChangeGold(-towerAsset.goldCost);
             var tower = Instantiate(m_towerPrefab, buildSite.position, Quaternion.identity);
             tower.GetComponentInChildren<SpriteRenderer>().sprite = towerAsset.sprite;
+            foreach (var turret in tower.GetComponentsInChildren<Turret>())
+            {
+                turret.AssignLoadout2(towerAsset.turretProperties);
+            }
             Destroy(buildSite.gameObject);
         }
     }

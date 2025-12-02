@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -14,17 +15,17 @@ namespace SpaceShooter
         /// <summary>
         /// Линейная скорость полета снаряда.
         /// </summary>
-        [SerializeField] private float m_Velocity;
+        public float m_Velocity;
 
         /// <summary>
         /// Время жизни снаряда.
         /// </summary>
-        [SerializeField] private float m_Lifetime;
+        public float m_Lifetime;
 
         /// <summary>
         /// Повреждения наносимые снарядом.
         /// </summary>
-        [SerializeField] private int m_Damage;
+        public int m_Damage;
 
         /// <summary>
         /// Эффект попадания от что то твердое. 
@@ -106,11 +107,23 @@ namespace SpaceShooter
             throw new NotImplementedException();
         }
 
-        public void Use(TowerAsset towerAsset)
-        {
-            var e = transform.Find("Sprite").GetComponent<SpriteRenderer>();
-            e.sprite = towerAsset.sprite;
-        }
+        //public void Use(ProjectileAsset projectileAsset)
+        //{
+        //    var e = GetComponentInChildren<SpriteRenderer>();
+
+        //    if (e == null)
+        //    {
+        //        Debug.LogError("Projectile: SpriteRenderer not found!");
+        //        return;
+        //    }
+
+        //    //e.sprite = projectileAsset.sprite;
+        //    //Debug.Log("Projectile instantiated: " + projectile.name);
+        //    Debug.Log("SpriteRenderer: " + e);
+        //    m_Damage = projectileAsset.damage;
+        //    m_Velocity = projectileAsset.velocity;
+        //    m_Lifetime = projectileAsset.lifetime;
+        //}
     }
 }
 

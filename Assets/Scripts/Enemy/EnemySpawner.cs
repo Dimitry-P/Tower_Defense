@@ -1,4 +1,5 @@
-﻿using TowerDefense;
+﻿using SpaceShooter;
+using TowerDefense;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace SpaceShooter
         [SerializeField] private Path m_path;
         [SerializeField] private EnemyAsset[] m_EnemyAssets;
 
+
         protected override GameObject GenerateSpawnedEntity()
         {
             var e = Instantiate(m_EnemyPrefab);
@@ -19,3 +21,6 @@ namespace SpaceShooter
         }
     }
 }
+
+
+
