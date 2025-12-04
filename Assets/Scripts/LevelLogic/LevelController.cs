@@ -1,17 +1,17 @@
-﻿using System.Collections;
+﻿using SpaceShooter;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using System;
 
 namespace TowerDefense
 {
     public class LevelController : SingletonBase<LevelController>
     {
         private const string MainMenuSceneName = "main_menu";
-
 
         //У LevelController будет 2 события, что уровень завершён.
         public event UnityAction LevelPassed;

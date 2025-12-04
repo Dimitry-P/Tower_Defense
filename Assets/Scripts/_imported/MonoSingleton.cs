@@ -38,7 +38,10 @@ namespace SpaceShooter
             if (m_DoNotDestroyOnLoad)
                 DontDestroyOnLoad(gameObject);
         }
-
+        public static void ResetInstance()
+        {
+            Instance = null;
+        }
         #endregion
     }
 

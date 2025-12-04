@@ -13,7 +13,7 @@ namespace TowerDefense
     [RequireComponent(typeof(TDController))]
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] private int m_damage = 1;
+        [SerializeField] private int m_damage;
         [SerializeField] private int m_gold = 1;
         public string enemyName;
        

@@ -40,6 +40,8 @@ namespace SpaceShooter
                 Respawn();
             else
                 LevelSequenceController.Instance.FinishCurrentLevel(false);
+                GameReset.ResetStatics();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
 
         private void Respawn()
@@ -86,7 +88,11 @@ namespace SpaceShooter
             if (enemyName == "middle") middleEnemyCounter++;
             if (enemyName == "boss") bossEnemyCounter++;
             Debug.Log(enemyName);
-            if (smallEnemyCounter >= 3 && middleEnemyCounter >= 1 || bossEnemyCounter >= 1) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (smallEnemyCounter >= 3 && middleEnemyCounter >= 1 || bossEnemyCounter >= 1)
+            {
+                GameReset.ResetStatics();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            }
         }
         #endregion
     }

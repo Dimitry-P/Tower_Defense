@@ -7,15 +7,10 @@ namespace TowerDefense
 {
     public class LevelBoundaryLimiter : MonoBehaviour
     {
-
         /// <summary>
         /// Ограничитель позиции. Работает в связке со скриптом LevelBoundary если таковой имеется на сцене
         /// </summary>
         /// 
-
-
-
-
         private void Update()
         {
             if (LevelBoundary.Instance == null) return;
@@ -27,12 +22,10 @@ namespace TowerDefense
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             float length = transform.GetChild(0).GetComponent<SpriteRenderer>().bounds.size.y;
 
-
-
             if (
-                     Mathf.Abs(transform.position.x) > (size.x / 2f - length/2f) ||
-                     transform.position.y > (size.y / 2f - length / 2f) ||
-                     transform.position.y < (-size.y + 398f + length / 2f)
+                    Mathf.Abs(transform.position.x) > (size.x / 2f - length/2f) ||
+                    transform.position.y > (size.y / 2f - length / 2f) ||
+                    transform.position.y < (-size.y + 398f + length / 2f)
                  )
             {
                 if (LevelBoundary.Instance.LimitMode == LevelBoundary.Mode.Limit)

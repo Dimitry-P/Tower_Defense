@@ -1,6 +1,7 @@
 using SpaceShooter;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using static UnityEngine.GraphicsBuffer;
 
@@ -16,9 +17,17 @@ namespace TowerDefense
             }
         }
 
-      
 
-      
+        public static void Reset()
+        {
+            MonoSingleton<LevelController>.ResetInstance();
+            MonoSingleton<LevelSequenceController>.ResetInstance();
+            MonoSingleton<GameUI>.ResetInstance();
+            MonoSingleton<LevelResultController>.ResetInstance();
+            OnGoldUpdate = null;
+            OnLifeUpdate = null;
+        }
+
 
         private static event Action<int> OnGoldUpdate;
         public static void GoldUpdateSubscribe(Action<int> act)

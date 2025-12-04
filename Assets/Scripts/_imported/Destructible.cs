@@ -108,7 +108,6 @@ namespace SpaceShooter
             if (nm == "boss")
             {
                 Debug.Log("You are the winner");
-                Time.timeScale = 0f;
             } 
            
                 Destroy(gameObject);
