@@ -12,7 +12,6 @@ namespace SpaceShooter
     /// </summary>
     public class Player : MonoSingleton<Player>
     {
-
         [SerializeField] private int m_NumLives;
         public int NumLives {  get { return m_NumLives; }}
         [SerializeField] private SpaceShip m_Ship;
@@ -20,7 +19,6 @@ namespace SpaceShooter
 
         [SerializeField] private SpaceShip m_PlayerShipPrefab;
       
-
         //[SerializeField] private CameraController m_CameraController;
         //[SerializeField] private MovementController m_MovementController;
 
@@ -56,7 +54,6 @@ namespace SpaceShooter
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
         }
             
-
         #region Score (current level only)
 
         public int Score { get; private set; }
@@ -82,7 +79,6 @@ namespace SpaceShooter
             //{
             // LevelSequenceController.Instance.FinishCurrentLevel(false);
             //LevelSequenceController.Instance.RestartLevel();
-           
             //}
             if (enemyName == "small") smallEnemyCounter++;
             if (enemyName == "middle") middleEnemyCounter++;

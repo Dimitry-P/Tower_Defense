@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
+using UnityEngine.XR;
 using static UnityEngine.GraphicsBuffer;
 
 namespace TowerDefense
@@ -21,6 +22,7 @@ namespace TowerDefense
         public static void Reset()
         {
             MonoSingleton<LevelController>.ResetInstance();
+            MonoSingleton<TDPlayer>.ResetInstance();
             MonoSingleton<LevelSequenceController>.ResetInstance();
             MonoSingleton<GameUI>.ResetInstance();
             MonoSingleton<LevelResultController>.ResetInstance();
@@ -43,6 +45,13 @@ namespace TowerDefense
         
 
         private static event Action<int> OnLifeUpdate;
+
+        private void OnDisable()
+        {
+            OnLifeUpdate = null;
+        }
+
+
         public static void LifeUpdateSubscribe(Action<int> act)
         {
             OnLifeUpdate += act;

@@ -87,7 +87,6 @@ namespace SpaceShooter
         private void Start()
         {
             m_SpaceShip = GetComponent<SpaceShip>();
-
             InitActionTimers();
         }
 
