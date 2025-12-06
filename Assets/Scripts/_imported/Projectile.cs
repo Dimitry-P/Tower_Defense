@@ -47,8 +47,7 @@ namespace SpaceShooter
             if (hit)
             {
                 var destructible = hit.collider.transform.root.GetComponent<Destructible>();
-
-                if(destructible != null && destructible != m_Parent)
+                if (destructible != null && destructible != m_Parent)
                 {
                     destructible.ApplyDamage(m_Damage);
 

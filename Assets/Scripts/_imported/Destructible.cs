@@ -37,9 +37,12 @@ namespace SpaceShooter
 
         #region Unity events
 
+        public VariousTowerMechanics variousTowerMechanics;
+
         protected virtual void Start()
         {
             m_CurrentHitPoints = m_HitPoints;
+           
         }
        
         #region Безтеговая коллекция скриптов на сцене
@@ -66,6 +69,9 @@ namespace SpaceShooter
         #endregion
 
         #region Public API
+
+        public event Action EnemyHasDied;
+        public bool isDead = false;
 
         /// <summary>
         /// Применение дамага к объекту.

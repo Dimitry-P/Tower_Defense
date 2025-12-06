@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 3562732940259882522}
   - component: {fileID: 2985568735566343919}
   - component: {fileID: 7227898263401265305}
+  - component: {fileID: -3509722178308567666}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -177,7 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032b5d117f917694d892358315fc223a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Radius: 4
+  target: {fileID: 0}
+  variousTowerMechanics: {fileID: 0}
 --- !u!50 &7227898263401265305
 Rigidbody2D:
   serializedVersion: 4
@@ -205,3 +207,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-3509722178308567666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4808089356810644540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a79553bba58e44495c7bf7d7eda395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}

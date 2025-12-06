@@ -11,6 +11,8 @@ namespace TowerDefense
         public Sprite sprite;
         public Sprite GUISprite;
         public TurretProperties turretProperties;
+        public float radius;
+        public string nameOfTheTower;
     }
 }
 

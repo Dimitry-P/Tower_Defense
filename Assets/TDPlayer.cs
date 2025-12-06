@@ -18,7 +18,6 @@ namespace TowerDefense
             }
         }
 
-
         public static void Reset()
         {
             MonoSingleton<LevelController>.ResetInstance();
@@ -29,7 +28,6 @@ namespace TowerDefense
             OnGoldUpdate = null;
             OnLifeUpdate = null;
         }
-
 
         private static event Action<int> OnGoldUpdate;
         public static void GoldUpdateSubscribe(Action<int> act)
@@ -43,14 +41,7 @@ namespace TowerDefense
             OnGoldUpdate -= act;
         }
         
-
         private static event Action<int> OnLifeUpdate;
-
-        private void OnDisable()
-        {
-            OnLifeUpdate = null;
-        }
-
 
         public static void LifeUpdateSubscribe(Action<int> act)
         {
@@ -80,12 +71,23 @@ namespace TowerDefense
 
         // TODO: верим в то что золота на постройку достаточно
         [SerializeField] private Tower m_towerPrefab;
+        private string towerName;
+        private Tower tower;
+
+       
+           
+        
 
         public void TryBuild(TowerAsset towerAsset, Transform buildSite)
         {
             ChangeGold(-towerAsset.goldCost);
             var tower = Instantiate(m_towerPrefab, buildSite.position, Quaternion.identity);
             tower.GetComponentInChildren<SpriteRenderer>().sprite = towerAsset.sprite;
+            tower.Radius = towerAsset.radius;
+            towerName = towerAsset.nameOfTheTower;
+            VariousTowerMechanics m_TowerMechanics = tower.GetComponent<VariousTowerMechanics>();
+            if (m_TowerMechanics != null)
+                m_TowerMechanics.ApplyTowersMechanics(tower, towerName);
             foreach (var turret in tower.GetComponentsInChildren<Turret>())
             {
                 turret.AssignLoadout2(towerAsset.turretProperties);

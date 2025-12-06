@@ -18,7 +18,8 @@ namespace SpaceShooter
         public SpaceShip ActiveShip => m_Ship;
 
         [SerializeField] private SpaceShip m_PlayerShipPrefab;
-      
+        private VariousTowerMechanics m_TowerMechanics;
+
         //[SerializeField] private CameraController m_CameraController;
         //[SerializeField] private MovementController m_MovementController;
 
@@ -28,6 +29,7 @@ namespace SpaceShooter
             {
                 m_Ship.EventOnDeath.AddListener(OnShipDeath);
             }
+            m_TowerMechanics = GetComponent<VariousTowerMechanics>();
         }
 
         private void OnShipDeath()
@@ -84,7 +86,7 @@ namespace SpaceShooter
             if (enemyName == "middle") middleEnemyCounter++;
             if (enemyName == "boss") bossEnemyCounter++;
             Debug.Log(enemyName);
-            if (smallEnemyCounter >= 3 && middleEnemyCounter >= 1 || bossEnemyCounter >= 1)
+            if (smallEnemyCounter >= 1 && middleEnemyCounter >= 1 || bossEnemyCounter >= 1999)
             {
                 GameReset.ResetStatics();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);

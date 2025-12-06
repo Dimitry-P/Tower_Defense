@@ -29,7 +29,7 @@ namespace TowerDefense
             }
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             switch (source)
             {
