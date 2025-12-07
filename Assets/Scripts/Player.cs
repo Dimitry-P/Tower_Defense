@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
+using Towers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -86,7 +87,7 @@ namespace SpaceShooter
             if (enemyName == "middle") middleEnemyCounter++;
             if (enemyName == "boss") bossEnemyCounter++;
             Debug.Log(enemyName);
-            if (smallEnemyCounter >= 1 && middleEnemyCounter >= 1 || bossEnemyCounter >= 1999)
+            if (smallEnemyCounter >= 1 && middleEnemyCounter >= 1 || bossEnemyCounter >= 1)
             {
                 GameReset.ResetStatics();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);

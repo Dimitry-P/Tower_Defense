@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
+using Towers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -70,7 +71,8 @@ namespace SpaceShooter
 
         #region Public API
 
-        public event Action EnemyHasDied;
+      
+       
         public bool isDead = false;
 
         /// <summary>
@@ -83,7 +85,7 @@ namespace SpaceShooter
                 return;
 
             m_CurrentHitPoints -= damage;
-
+    
             if (m_CurrentHitPoints <= 0)
                 OnDeath();
         }

@@ -1,5 +1,6 @@
 using SpaceShooter;
 using System;
+using Towers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
@@ -69,7 +70,7 @@ namespace TowerDefense
             OnLifeUpdate(Player.Instance.NumLives);
         }
 
-        // TODO: верим в то что золота на постройку достаточно
+        // TODO: пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         [SerializeField] private Tower m_towerPrefab;
         private string towerName;
         private Tower tower;
@@ -87,7 +88,10 @@ namespace TowerDefense
             towerName = towerAsset.nameOfTheTower;
             VariousTowerMechanics m_TowerMechanics = tower.GetComponent<VariousTowerMechanics>();
             if (m_TowerMechanics != null)
-                m_TowerMechanics.ApplyTowersMechanics(tower, towerName);
+            {
+                m_TowerMechanics.ApplyTowersMechanics(tower, towerName, towerAsset.Type);
+            }
+            
             foreach (var turret in tower.GetComponentsInChildren<Turret>())
             {
                 turret.AssignLoadout2(towerAsset.turretProperties);

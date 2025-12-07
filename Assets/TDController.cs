@@ -26,7 +26,7 @@ namespace TowerDefense
             }
             else
             {
-                OnEndPath.Invoke();
+                OnEndPath?.Invoke();
                 Destroy(gameObject);
             }
         }
