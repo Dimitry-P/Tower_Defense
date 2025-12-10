@@ -9,6 +9,7 @@ namespace TowerDefense
     {
         public static void ResetStatics()
         {
+            Debug.Log("ResetStatics");
             TDPlayer.Reset();
             // добавишь сюда другие менеджеры
         }

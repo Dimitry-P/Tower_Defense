@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
-using Towers;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -35,13 +34,11 @@ namespace SpaceShooter
         [SerializeField] private ImpactEffect m_ImpactEffectPrefab;
 
         private float m_Timer;
-        public VariousTowerMechanics variousTowerMechanics;
-        public event Action<Destructible> UseSpecificMechanic;
+       
 
         private void Start()
         {
-            variousTowerMechanics = GetComponent<VariousTowerMechanics>();
-            UseSpecificMechanic += variousTowerMechanics.Tower_UseSpecificMechanic;
+          
         }
 
         private void Update()
@@ -60,7 +57,6 @@ namespace SpaceShooter
                 if (destructible != null && destructible != m_Parent)
                 {
                     destructible.ApplyDamage(m_Damage);
-                    UseSpecificMechanic?.Invoke(destructible);
                     // #Score
                     // добавляем очки за уничтожение
                     if (Player.Instance != null && destructible.HitPoints < 0)

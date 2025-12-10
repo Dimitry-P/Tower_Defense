@@ -199,7 +199,6 @@ GameObject:
   - component: {fileID: 4794078798147550645}
   - component: {fileID: -1625334286290552723}
   - component: {fileID: 4410295530882854954}
-  - component: {fileID: 3524483835817218658}
   m_Layer: 0
   m_Name: 2Enemy
   m_TagString: Untagged
@@ -266,41 +265,12 @@ MonoBehaviour:
   m_Nickname: 
   m_Indestructible: 0
   m_HitPoints: 5
-  variousTowerMechanics: {fileID: 0}
-  m_PoisonIsGoingOn:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3524483835817218658}
-        m_TargetAssemblyTypeName: TowerDefense.VariousTowerMechanics, Assembly-CSharp
-        m_MethodName: EnemyIsPoisoned
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  isDead: 0
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4410295530882854954}
         m_TargetAssemblyTypeName: TowerDefense.Enemy, Assembly-CSharp
         m_MethodName: GivePlayerGold
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3524483835817218658}
-        m_TargetAssemblyTypeName: TowerDefense.VariousTowerMechanics, Assembly-CSharp
-        m_MethodName: EnemyIsDead
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -368,16 +338,3 @@ MonoBehaviour:
   m_damage: 1
   m_gold: 1
   enemyName: small
---- !u!114 &3524483835817218658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8808806478472295478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a79553bba58e44495c7bf7d7eda395, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}

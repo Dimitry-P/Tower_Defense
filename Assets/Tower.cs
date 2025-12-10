@@ -13,19 +13,17 @@ namespace TowerDefense
         public float Radius { get { return m_Radius; } set { m_Radius = value; } }
         public Destructible target = null;
        
-        public event Action<Destructible> UseSpecificMechanic;
         public VariousTowerMechanics variousTowerMechanics;
 
         private void Start()
         {
             variousTowerMechanics = GetComponent<VariousTowerMechanics>();
-            UseSpecificMechanic += variousTowerMechanics.Tower_UseSpecificMechanic;
         }
         private void Update()
         {
             if (target)
             {
-                UseSpecificMechanic?.Invoke(target);
+                variousTowerMechanics.Tower_UseSpecificMechanic(target);
             }
             else
             {

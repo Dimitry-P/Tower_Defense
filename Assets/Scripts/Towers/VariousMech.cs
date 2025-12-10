@@ -1,9 +1,11 @@
 ﻿using SpaceShooter;
+using System;
+using UnityEngine;
 
 namespace Towers
 {
-    public abstract class VariousMech
+    public abstract class VariousMech : MonoBehaviour
     {
-        public virtual void UseSpecificMechanic(Destructible destructible) { }
+        public abstract void UseSpecificMechanic(Destructible target, float towerRadius);
     }
 }

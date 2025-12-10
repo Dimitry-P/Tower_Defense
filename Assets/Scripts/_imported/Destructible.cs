@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
-using Towers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -38,7 +37,7 @@ namespace SpaceShooter
 
         #region Unity events
 
-        public VariousTowerMechanics variousTowerMechanics;
+       
 
         protected virtual void Start()
         {
@@ -73,7 +72,6 @@ namespace SpaceShooter
 
       
        
-        public bool isDead = false;
 
         /// <summary>
         /// Применение дамага к объекту.

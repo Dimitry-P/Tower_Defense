@@ -70,7 +70,7 @@ namespace TowerDefense
             OnLifeUpdate(Player.Instance.NumLives);
         }
 
-        // TODO: пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        // TODO: верим в то что золота на постройку достаточно
         [SerializeField] private Tower m_towerPrefab;
         private string towerName;
         private Tower tower;
@@ -85,13 +85,9 @@ namespace TowerDefense
             var tower = Instantiate(m_towerPrefab, buildSite.position, Quaternion.identity);
             tower.GetComponentInChildren<SpriteRenderer>().sprite = towerAsset.sprite;
             tower.Radius = towerAsset.radius;
-            towerName = towerAsset.nameOfTheTower;
             VariousTowerMechanics m_TowerMechanics = tower.GetComponent<VariousTowerMechanics>();
             if (m_TowerMechanics != null)
-            {
-                m_TowerMechanics.ApplyTowersMechanics(tower, towerName, towerAsset.Type);
-            }
-            
+                m_TowerMechanics.ApplyTowersMechanics(towerAsset.type, tower.Radius);
             foreach (var turret in tower.GetComponentsInChildren<Turret>())
             {
                 turret.AssignLoadout2(towerAsset.turretProperties);

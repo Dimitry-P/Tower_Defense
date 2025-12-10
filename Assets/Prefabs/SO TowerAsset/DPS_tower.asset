@@ -18,4 +18,3 @@ MonoBehaviour:
   turretProperties: {fileID: 11400000, guid: 141fffebb424aed43acc7929e3678dc1, type: 2}
   radius: 5
   nameOfTheTower: dps
-  Type: 2

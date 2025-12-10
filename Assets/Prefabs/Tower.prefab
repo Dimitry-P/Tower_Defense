@@ -93,7 +93,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8212569506400275677}
-  - component: {fileID: 9077687900273202887}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -116,20 +115,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3562732940259882522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9077687900273202887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4548356885103577927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b730113a5b1afa4c8e789f96a54b5c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Mode: 0
-  m_TurretProperties: {fileID: 0}
 --- !u!1 &4808089356810644540
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,9 +124,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3562732940259882522}
-  - component: {fileID: 2985568735566343919}
   - component: {fileID: 7227898263401265305}
-  - component: {fileID: -3509722178308567666}
+  - component: {fileID: -6752201648345596282}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -166,20 +150,6 @@ Transform:
   - {fileID: 8212569506400275677}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2985568735566343919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4808089356810644540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032b5d117f917694d892358315fc223a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  variousTowerMechanics: {fileID: 0}
 --- !u!50 &7227898263401265305
 Rigidbody2D:
   serializedVersion: 4
@@ -207,7 +177,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-3509722178308567666
+--- !u!114 &-6752201648345596282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,7 +186,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4808089356810644540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a79553bba58e44495c7bf7d7eda395, type: 3}
+  m_Script: {fileID: 11500000, guid: 032b5d117f917694d892358315fc223a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  variousTowerMechanics: {fileID: 0}
