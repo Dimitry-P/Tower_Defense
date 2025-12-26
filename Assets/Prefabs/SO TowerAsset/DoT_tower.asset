@@ -16,4 +16,5 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: d3a2b321ea594a748b31367e1f65e376, type: 3}
   GUISprite: {fileID: 21300000, guid: 872b686bca0b0ad47b6f21c2b8c59d22, type: 3}
   turretProperties: {fileID: 11400000, guid: b40543a6542f7fc4f892567f81e2f5b4, type: 2}
-  radius: 1
+  radius: 5
+  type: 1

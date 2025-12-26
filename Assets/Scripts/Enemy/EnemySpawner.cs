@@ -1,7 +1,9 @@
 ﻿using SpaceShooter;
+using System;
 using TowerDefense;
-using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.XR;
+using Towers.std;
 
 namespace SpaceShooter
 {
@@ -15,7 +17,7 @@ namespace SpaceShooter
         protected override GameObject GenerateSpawnedEntity()
         {
             var e = Instantiate(m_EnemyPrefab);
-            e.Use(m_EnemyAssets[Random.Range(0, m_EnemyAssets.Length)]);
+            e.Use(m_EnemyAssets[UnityEngine.Random.Range(0, m_EnemyAssets.Length)]);
             e.GetComponent<TDController>().SetPath(m_path);
             return e.gameObject;
         }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DoT
   m_EditorClassIdentifier: 
   m_Mode: 0
-  m_ProjectilePrefab: {fileID: 2734410851814856183, guid: 65492a30e385fbb4c9db1767b9dfb96f, type: 3}
+  m_ProjectilePrefab: {fileID: -8197729645847169257, guid: 65492a30e385fbb4c9db1767b9dfb96f, type: 3}
   m_RateOfFire: 1.3
   m_EnergyUsage: 3
   m_AmmoUsage: 3

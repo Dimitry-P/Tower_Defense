@@ -12,5 +12,7 @@ namespace SpaceShooter
         {
             return Instantiate(m_EntityPrefabs[Random.Range(0, m_EntityPrefabs.Length)]);
         }
+
+       
     }
 }

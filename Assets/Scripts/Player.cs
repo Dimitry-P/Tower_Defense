@@ -18,6 +18,7 @@ namespace SpaceShooter
         public SpaceShip ActiveShip => m_Ship;
 
         [SerializeField] private SpaceShip m_PlayerShipPrefab;
+        //private VariousTowerMechanics m_TowerMechanics;
 
         //[SerializeField] private CameraController m_CameraController;
         //[SerializeField] private MovementController m_MovementController;
@@ -28,6 +29,7 @@ namespace SpaceShooter
             {
                 m_Ship.EventOnDeath.AddListener(OnShipDeath);
             }
+            //m_TowerMechanics = GetComponent<VariousTowerMechanics>();
         }
 
         private void OnShipDeath()

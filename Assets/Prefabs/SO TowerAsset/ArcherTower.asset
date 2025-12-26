@@ -17,4 +17,4 @@ MonoBehaviour:
   GUISprite: {fileID: 21300000, guid: 872b686bca0b0ad47b6f21c2b8c59d22, type: 3}
   turretProperties: {fileID: 11400000, guid: aaa252309ba178d46b364aff2b474c5a, type: 2}
   radius: 5
-  nameOfTheTower: 
+  type: 3

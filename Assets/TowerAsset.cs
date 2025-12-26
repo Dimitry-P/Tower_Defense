@@ -1,7 +1,7 @@
 using SpaceShooter;
-using Towers;
 using UnityEngine;
 using UnityEngine.UI;
+using Towers;
 
 namespace TowerDefense
 {

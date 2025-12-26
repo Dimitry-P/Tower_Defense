@@ -647,11 +647,11 @@ MonoBehaviour:
   m_SpawnMode: 1
   m_NumSpawns: 1
   m_RespawnTime: 4
+  m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 1766996696}
   m_EnemyAssets:
   - {fileID: 11400000, guid: df15e975b3977e54087978ba0527f21a, type: 2}
-  hasShield: 0
 --- !u!114 &394599050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,11 +668,11 @@ MonoBehaviour:
   m_SpawnMode: 1
   m_NumSpawns: 1
   m_RespawnTime: 3
+  m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 1766996696}
   m_EnemyAssets:
   - {fileID: 11400000, guid: f7f53f9094e417140b662a87d3289390, type: 2}
-  hasShield: 1
 --- !u!1 &405756843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,7 +2311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
-  m_LevelProperties: {fileID: 0}
+  m_LevelProperties: {fileID: 11400000, guid: c9d451cce78af29409f2866ce284a559, type: 2}
   m_Condition:
   - {fileID: 433713045}
   - {fileID: 1249757032}

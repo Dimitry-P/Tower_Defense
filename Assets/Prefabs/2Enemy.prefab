@@ -264,7 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Nickname: 
   m_Indestructible: 0
-  m_HitPoints: 5
+  m_HitPoints: 1
+  isDead: 0
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls:

@@ -1113,6 +1113,7 @@ MonoBehaviour:
   m_SpawnMode: 1
   m_NumSpawns: 3
   m_RespawnTime: 10
+  m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 1999461835}
   m_EnemyAssets:
@@ -1133,6 +1134,7 @@ MonoBehaviour:
   m_SpawnMode: 1
   m_NumSpawns: 3
   m_RespawnTime: 9
+  m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 57767494}
   m_EnemyAssets:
@@ -1153,6 +1155,7 @@ MonoBehaviour:
   m_SpawnMode: 1
   m_NumSpawns: 2
   m_RespawnTime: 20
+  m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 1491491821}
   m_EnemyAssets:
@@ -1173,6 +1176,7 @@ MonoBehaviour:
   m_SpawnMode: 1
   m_NumSpawns: 2
   m_RespawnTime: 7
+  m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 1640126010}
   m_EnemyAssets:
@@ -1193,6 +1197,7 @@ MonoBehaviour:
   m_SpawnMode: 1
   m_NumSpawns: 1
   m_RespawnTime: 6
+  m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 520934930}
   m_EnemyAssets:
@@ -1213,6 +1218,7 @@ MonoBehaviour:
   m_SpawnMode: 1
   m_NumSpawns: 1
   m_RespawnTime: 10
+  m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 237091213}
   m_EnemyAssets:
@@ -1233,6 +1239,7 @@ MonoBehaviour:
   m_SpawnMode: 1
   m_NumSpawns: 5
   m_RespawnTime: 5
+  m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 459324183}
   m_EnemyAssets:
@@ -2692,7 +2699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
-  m_LevelProperties: {fileID: 0}
+  m_LevelProperties: {fileID: 11400000, guid: 91962129bea9ddf4b86716137699c999, type: 2}
   m_Condition:
   - {fileID: 638508721}
   - {fileID: 1184403423}

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
+using Towers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -37,7 +38,7 @@ namespace SpaceShooter
 
         #region Unity events
 
-       
+        //public VariousTowerMechanics variousTowerMechanics;
 
         protected virtual void Start()
         {
@@ -72,6 +73,7 @@ namespace SpaceShooter
 
       
        
+        public bool isDead = false;
 
         /// <summary>
         /// Применение дамага к объекту.
@@ -82,8 +84,12 @@ namespace SpaceShooter
             if (m_Indestructible)
                 return;
 
+            Debug.Log("было: " + m_CurrentHitPoints);
+
             m_CurrentHitPoints -= damage;
-    
+
+            Debug.Log("стало: " + m_CurrentHitPoints);
+
             if (m_CurrentHitPoints <= 0)
                 OnDeath();
         }
@@ -99,8 +105,12 @@ namespace SpaceShooter
         /// Перепоределяемое событие уничтожения объекта, когда хит поинты ниже нуля.
         /// </summary>
         /// 
-        
 
+        public void PoisonAttack()
+        {
+            
+        }
+        
         protected virtual void OnDeath()
         {
             if(m_ExplosionPrefab != null)

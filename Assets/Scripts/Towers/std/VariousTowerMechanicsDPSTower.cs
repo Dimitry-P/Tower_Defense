@@ -3,48 +3,35 @@ using System;
 using TowerDefense;
 using UnityEngine;
 using UnityEngine.XR;
+using Towers;
 
 namespace Towers.std
 {
     public class VariousTowerMechanicsDPSTower : VariousMech
     {
-        protected Turret[] turrets;
-        private bool isDead = false;
-        private void Start()
+        
+        public override void TryApplyDamage(Destructible destructible)
         {
-            turrets = GetComponentsInChildren<Turret>();
+            destructible.ApplyDamage(_ammoUs);
         }
-        public override void UseSpecificMechanic(Destructible target, float towerRadius)
+
+        public override void UseSpecificMechanic(TurretProperties turretProperties)
         {
-            target.EventOnDeath.AddListener(OnEnemyDeath);
-            
-            if (target != null)
-            {
-                if (isDead == true)
-                {
-                    isDead = false;
-                    target = null;
-                    return;
-                }
-                else
-                {
-                    Vector2 targetVector = target.transform.position - transform.position;
-                    Enemy enemy = target.GetComponent<Enemy>();
-                    Debug.Log(enemy.enemyName);
-                    if (targetVector.magnitude <= towerRadius)
-                    {
-                        foreach (var turret in turrets)
-                        {
-                            turret.transform.up = targetVector;
-                            turret.Fire();
-                        }
-                    }
-                }
-            }
+            _ammoUs = turretProperties.AmmoUsage;
+            _ammoUs *= 2;
+           
+
+
+
+
         }
-        private void OnEnemyDeath()
-        {
-            isDead = true;
-        }
+        //public override void TryApplyDamage(Destructible destructible)
+        //{
+        //    Debug.Log("???????????????????????????");
+        //    int damage = 0;
+        //    damage *= 2;
+
+        //    destructible.ApplyDamage(damage);
+        //}
     }
 }

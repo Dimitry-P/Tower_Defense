@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using SpaceShooter;
-using System;
 using Towers;
 
 namespace TowerDefense
@@ -12,25 +9,48 @@ namespace TowerDefense
         private float m_Radius;
         public float Radius { get { return m_Radius; } set { m_Radius = value; } }
         public Destructible target = null;
-       
-        public VariousTowerMechanics variousTowerMechanics;
+        public Turret[] turrets;
 
-        private void Start()
+        private void Awake()
         {
-            variousTowerMechanics = GetComponent<VariousTowerMechanics>();
+            turrets = GetComponentsInChildren<Turret>();
+            Debug.Log($"Tower found turrets: {turrets.Length}");
         }
+
+        public void InitTurretSpecificSettings(EVariousMech variousType, float towerRadius)
+        {
+           
+            foreach (var turret in turrets)
+            {
+                
+                turret.InitTurretSpecificSettings(variousType, towerRadius);
+            }
+        }
+        
         private void Update()
         {
-            if (target)
+           
+            if (target != null)
             {
-                variousTowerMechanics.Tower_UseSpecificMechanic(target);
+                
+                Vector2 targetVector = target.transform.position - transform.position;
+                Enemy enemy = target.GetComponent<Enemy>();
+                Debug.Log(enemy.enemyName);
+                if (targetVector.magnitude <= Radius)
+                {
+                    foreach (var turret in turrets)
+                    {
+                        turret.transform.up = targetVector;
+                        turret.Fire();
+                    }
+                }
             }
             else
             {
                 var enter = Physics2D.OverlapCircle(transform.position, m_Radius);
-                if (enter)
+                if (enter != null)
                 {
-                    target = enter.transform.root.GetComponent<Destructible>();
+                    target = enter.GetComponentInParent<Destructible>();
                 }
             }
         }

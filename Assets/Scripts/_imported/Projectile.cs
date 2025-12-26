@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
+using Towers;
+using Towers.std;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -34,46 +36,54 @@ namespace SpaceShooter
         [SerializeField] private ImpactEffect m_ImpactEffectPrefab;
 
         private float m_Timer;
-       
+        private EVariousMech _variousMechType; 
+        private float _towerRadius;
+        private VariousMech _variousMech;
+        //private Destructible theHitTarget;
+        //public VariousTowerMechanics variousTowerMechanics;
 
-        private void Start()
-        {
-          
-        }
+
+        //private void Start()
+        //{
+        //    variousTowerMechanics = GetComponent<VariousTowerMechanics>();
+        //}
 
         private void Update()
         {
             float stepLength = Time.deltaTime * m_Velocity;
             Vector2 step = transform.up * stepLength;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up,stepLength);
-            
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, stepLength);
+
             // не забыть выключить в свойствах проекта, вкладка Physics2D иначе не заработает
             // disable queries hit triggers
             // disable queries start in collider
             if (hit)
             {
                 var destructible = hit.collider.transform.root.GetComponent<Destructible>();
-                if (destructible != null && destructible != m_Parent)
+
+                if (destructible != null && destructible.gameObject != m_Parent.gameObject)
                 {
-                    destructible.ApplyDamage(m_Damage);
-                    // #Score
-                    // добавляем очки за уничтожение
-                    if (Player.Instance != null && destructible.HitPoints < 0)
+                    _variousMech?.TryApplyDamage(destructible);
+                    //OnProjectileLifeEnd(hit.collider, hit.point);
+                }
+
+             
+
+                // #Score
+                // добавляем очки за уничтожение
+                if (Player.Instance != null && destructible.HitPoints < 0)
                     {
                         // проверяем что прожектайл принадлежит кораблю игрока. 
                         // здесь есть нюанс - если мы выстрелим прожектайл и после умрем
                         // то новый корабль игрока будет другим, в случае если прожектайл запущенный из предыдущего шипа
                         // добьет то очков не дадут. Можно отправить пофиксить на ДЗ. (например тупо воткнув флаг что прожектайл игрока)
-                        if(m_Parent == Player.Instance.ActiveShip)
+                        if (m_Parent == Player.Instance.ActiveShip)
                         {
                             Player.Instance.AddScore(destructible.ScoreValue);
                         }
                     }
                 }
-
-                OnProjectileLifeEnd(hit.collider, hit.point);
-            }
 
             m_Timer += Time.deltaTime;
 
@@ -95,9 +105,10 @@ namespace SpaceShooter
         }
 
 
-        private Destructible m_Parent;
 
-        public void SetParentShooter(Destructible parent)
+        private SpaceShip m_Parent;
+
+        public void SetParentShooter(SpaceShip parent)
         {
             m_Parent = parent;
         }
@@ -129,6 +140,53 @@ namespace SpaceShooter
         //    m_Velocity = projectileAsset.velocity;
         //    m_Lifetime = projectileAsset.lifetime;
         //}
+
+        public void InitTurretSpecificSettings(EVariousMech variousType, float towerRadius, TurretProperties turretProperties)
+        {
+            _variousMechType = variousType;
+            _towerRadius = towerRadius;
+            CreateTowerSpecificMechanic(turretProperties);
+        }
+        
+        private void CreateTowerSpecificMechanic(TurretProperties turretProperties )
+        {
+            if (_variousMechType != EVariousMech.None && _towerRadius != 0)
+            {
+                switch (_variousMechType)
+                {
+                    case EVariousMech.DoT_Poison:
+                        //_variousMech = new VariousTowerMechanicsPoison();
+                        // VariousTowerMechanicsPoison gmObj = GetComponent<VariousTowerMechanicsPoison>();
+                        // // ��� ����� �� �������� ������ ������ RETURN
+                        // //� �� �������� ��� ����� ��������� �����������?
+                        break; 
+                    case EVariousMech.Dps:
+                        _variousMech = gameObject.AddComponent<VariousTowerMechanicsDPSTower>();
+                        //  proj.GetComponent<VariousTowerMechanicsDPSTower>().UseSpecificMechanic(turretProperties);
+                        break;
+                    //case EVariousMech.Archer:
+                    //    proj.GetComponent<VariousTowerMechanicsArcherTower>().UseSpecificMechanic(turretProperties);
+                    //    _variousMech = GetComponent<>();
+                    //    break;
+                    //case EVariousMech.AoE:
+                    //    _variousMech = GetComponent<VariousTowerMechanicsAoETower>();
+                    //    break;
+                    //case EVariousMech.Ice:
+                    //    _variousMech = GetComponent<VariousTowerMechanicsIceTower>();
+                    //    break;
+                    //case EVariousMech.Single:
+                    //    _variousMech = GetComponent<VariousTowerMechanicsSingleTower>();
+                    //    break;
+                    //case EVariousMech.SlowDown:
+                    //    _variousMech = GetComponent<VariousTowerMechanicsSlowDownTower>();
+                    //    break;
+                    //case EVariousMech.Boss:
+                    //    _variousMech = GetComponent<VariousTowerMechanicsBossTower>();
+                    //    break;
+                }
+                _variousMech?.UseSpecificMechanic(turretProperties);
+            }
+        }
     }
 }
 

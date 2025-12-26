@@ -1,11 +1,11 @@
 using SpaceShooter;
 using System;
-using Towers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using UnityEngine.XR;
 using static UnityEngine.GraphicsBuffer;
+using Towers;
 
 namespace TowerDefense
 {
@@ -70,7 +70,7 @@ namespace TowerDefense
             OnLifeUpdate(Player.Instance.NumLives);
         }
 
-        // TODO: верим в то что золота на постройку достаточно
+        // TODO: пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         [SerializeField] private Tower m_towerPrefab;
         private string towerName;
         private Tower tower;
@@ -85,12 +85,19 @@ namespace TowerDefense
             var tower = Instantiate(m_towerPrefab, buildSite.position, Quaternion.identity);
             tower.GetComponentInChildren<SpriteRenderer>().sprite = towerAsset.sprite;
             tower.Radius = towerAsset.radius;
-            VariousTowerMechanics m_TowerMechanics = tower.GetComponent<VariousTowerMechanics>();
-            if (m_TowerMechanics != null)
-                m_TowerMechanics.ApplyTowersMechanics(towerAsset.type, tower.Radius);
+            EVariousMech towerEnum = towerAsset.type;
+            var towerScript = tower.GetComponent<Tower>();
+            
+            if (towerScript != null)
+            {
+                
+                towerScript.InitTurretSpecificSettings(towerEnum, tower.Radius);
+            }
+                
+       
             foreach (var turret in tower.GetComponentsInChildren<Turret>())
             {
-                turret.AssignLoadout2(towerAsset.turretProperties);
+                turret.AssignLoadout2(towerAsset);
             }
             Destroy(buildSite.gameObject);
         }

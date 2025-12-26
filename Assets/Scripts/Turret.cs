@@ -1,9 +1,5 @@
-﻿using JetBrains.Annotations;
-using SpaceShooter;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TowerDefense;
+﻿using TowerDefense;
+using Towers;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.RuleTile.TilingRuleOutput;
@@ -26,9 +22,9 @@ namespace SpaceShooter
         /// Текущие патроны в турели.
         /// </summary>
         [SerializeField] private TurretProperties m_TurretProperties;
-      
 
-
+        private EVariousMech _variousMechType; 
+        private float _towerRadius; 
 
         /// <summary>
         /// Таймер повторного выстрела.
@@ -65,8 +61,12 @@ namespace SpaceShooter
 
         #region Public API
 
-      
-       
+        public void InitTurretSpecificSettings(EVariousMech variousType, float towerRadius)
+        {
+           
+            _variousMechType = variousType;
+            _towerRadius = towerRadius;
+        }
          
         /// <summary>
         /// Метод стрельбы турелью. 
@@ -91,19 +91,21 @@ namespace SpaceShooter
                     return;
             }
 
-           
+
 
 
             // инстанцируем прожектайл который уже сам полетит.
             var projectile = Instantiate(m_TurretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
             projectile.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = m_TurretProperties.ProjectileSprite;
-            var p = projectile.GetComponent<Projectile>();
-            p.m_Velocity = m_TurretProperties.ProjectileSpeed;
+           
+            projectile.m_Velocity = m_TurretProperties.ProjectileSpeed;
 
-            p.m_Damage = m_TurretProperties.Damage;
+           
+
+            projectile.m_Damage = m_TurretProperties.Damage;
             projectile.m_Lifetime = 5f;
 
-
+            projectile.InitTurretSpecificSettings(_variousMechType, _towerRadius, m_TurretProperties);
 
 
             projectile.transform.position = transform.position;
@@ -120,9 +122,10 @@ namespace SpaceShooter
         }
 
       
-        public void AssignLoadout2(TurretProperties turretProperties)
+        public void AssignLoadout2(TowerAsset towerAsset)
         {
-            m_TurretProperties = turretProperties;
+          
+            m_TurretProperties = towerAsset.turretProperties;
         }
 
 

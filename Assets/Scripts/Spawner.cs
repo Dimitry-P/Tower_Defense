@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using SpaceShooter;
+using System;
 using TowerDefense;
+using UnityEngine;
+using UnityEngine.XR;
 
 namespace SpaceShooter
 {
@@ -40,7 +43,7 @@ namespace SpaceShooter
         /// </summary>
         [SerializeField] private float m_RespawnTime;
 
-        private float m_Timer;
+        public float m_Timer;
 
         private void Start()
         {

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1980824027143624688}
+  - component: {fileID: 662414666618573652}
   m_Layer: 5
   m_Name: TowerBuyControl
   m_TagString: Untagged
@@ -38,6 +39,23 @@ RectTransform:
   m_AnchoredPosition: {x: -210, y: -160}
   m_SizeDelta: {x: 130.7049, y: 255.1735}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &662414666618573652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496663648462193241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ae9b70af6817d42be0b6506bcc9a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ta: {fileID: 11400000, guid: cad78f14f056bb443b7f9d32c9e6fd97, type: 2}
+  m_text: {fileID: 1806675140944380414}
+  m_button: {fileID: 3798102029512734460}
+  buildSite: {fileID: 0}
+  m_projectile: {fileID: 0}
 --- !u!1 &2419651238575190631
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +333,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 662414666618573652}
         m_TargetAssemblyTypeName: TowerDefense.TowerBuyControl, Assembly-CSharp
         m_MethodName: Buy
         m_Mode: 1
