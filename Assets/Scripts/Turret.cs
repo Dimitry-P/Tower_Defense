@@ -1,5 +1,7 @@
 ﻿using TowerDefense;
 using Towers;
+using Towers.std;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.RuleTile.TilingRuleOutput;
@@ -29,7 +31,7 @@ namespace SpaceShooter
         /// <summary>
         /// Таймер повторного выстрела.
         /// </summary>
-        private float m_RefireTimer;
+        private float m_RefireTimer = 0f;
 
         /// <summary>
         /// Стрелять можем? 
@@ -41,6 +43,7 @@ namespace SpaceShooter
         /// </summary>
         private SpaceShip m_Ship;
 
+       
 
         #region Unity events
 
@@ -67,12 +70,21 @@ namespace SpaceShooter
             _variousMechType = variousType;
             _towerRadius = towerRadius;
         }
-         
+
+        public Tower tow;
+        public void Init(Tower tower)
+        {
+            tow = tower;
+        }
+
+
+
         /// <summary>
         /// Метод стрельбы турелью. 
         /// </summary>
         public void Fire()
         {
+
             if (m_RefireTimer > 0)
                 return;
 
@@ -95,22 +107,22 @@ namespace SpaceShooter
 
 
             // инстанцируем прожектайл который уже сам полетит.
+
             var projectile = Instantiate(m_TurretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+            projectile.transform.up = transform.up;
+            projectile.Init(tow);
+
             projectile.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = m_TurretProperties.ProjectileSprite;
            
             projectile.m_Velocity = m_TurretProperties.ProjectileSpeed;
-
-           
 
             projectile.m_Damage = m_TurretProperties.Damage;
             projectile.m_Lifetime = 5f;
 
             projectile.InitTurretSpecificSettings(_variousMechType, _towerRadius, m_TurretProperties);
 
-
             projectile.transform.position = transform.position;
-            projectile.transform.up = transform.up;
-
+           
             // метод выставления данных прожектайлу о том кто стрелял для избавления от попаданий в самого себя
             projectile.SetParentShooter(m_Ship);
 

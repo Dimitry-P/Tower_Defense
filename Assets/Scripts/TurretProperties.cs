@@ -63,5 +63,7 @@ namespace SpaceShooter
 
         [SerializeField] private int m_damage;
         public int Damage => m_damage;
+
+        [SerializeField] private float m_timer;
     }
 }

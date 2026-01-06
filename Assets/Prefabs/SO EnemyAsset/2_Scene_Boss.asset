@@ -20,6 +20,6 @@ MonoBehaviour:
   moveSpeed: 0.5
   hp: 1
   score: 1
-  radius: 5
+  radius: 0.2
   damage: 1
   gold: 1

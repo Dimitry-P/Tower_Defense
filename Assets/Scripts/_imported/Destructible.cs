@@ -71,8 +71,6 @@ namespace SpaceShooter
 
         #region Public API
 
-      
-       
         public bool isDead = false;
 
         /// <summary>

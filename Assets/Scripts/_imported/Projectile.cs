@@ -48,10 +48,15 @@ namespace SpaceShooter
         //    variousTowerMechanics = GetComponent<VariousTowerMechanics>();
         //}
 
+
+       
         private void Update()
         {
+          
             float stepLength = Time.deltaTime * m_Velocity;
             Vector2 step = transform.up * stepLength;
+
+       
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, stepLength);
 
@@ -60,12 +65,23 @@ namespace SpaceShooter
             // disable queries start in collider
             if (hit)
             {
+                Debug.Log("ПУЛЯ СТОЛКНУЛАСЬ С: " + hit.collider.gameObject.name +
+          " | layer: " + hit.collider.gameObject.layer);
                 var destructible = hit.collider.transform.root.GetComponent<Destructible>();
 
                 if (destructible != null && destructible.gameObject != m_Parent.gameObject)
                 {
                     _variousMech?.TryApplyDamage(destructible);
-                    //OnProjectileLifeEnd(hit.collider, hit.point);
+                    
+
+                    int hitLayer = hit.collider.transform.root.gameObject.layer;
+
+                    if (hitLayer == LayerMask.NameToLayer("Enemy"))
+                    {
+                        OnProjectileLifeEnd(hit.collider, hit.point);
+                    }
+
+
                 }
 
              
@@ -90,7 +106,8 @@ namespace SpaceShooter
             if(m_Timer > m_Lifetime)
                 Destroy(gameObject);
 
-            transform.position += new Vector3(step.x, step.y, 0);
+            transform.position += new Vector3(step.x, step.y, 0) * 0.5f; 
+            Debug.Log(transform.position +"444444444444444444444444444444444444444444444444444444444");
         }
 
         private void OnProjectileLifeEnd(Collider2D collider, Vector2 pos)
@@ -101,7 +118,7 @@ namespace SpaceShooter
                 impact.transform.position = pos;
             }
 
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
 
 
@@ -141,6 +158,17 @@ namespace SpaceShooter
         //    m_Lifetime = projectileAsset.lifetime;
         //}
 
+
+       
+        private Tower _ownerTower;
+
+        public void Init(Tower tower)
+        {
+            _ownerTower = tower;
+        }
+
+        public Turret turret;
+
         public void InitTurretSpecificSettings(EVariousMech variousType, float towerRadius, TurretProperties turretProperties)
         {
             _variousMechType = variousType;
@@ -162,6 +190,8 @@ namespace SpaceShooter
                         break; 
                     case EVariousMech.Dps:
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsDPSTower>();
+                        
+                        
                         //  proj.GetComponent<VariousTowerMechanicsDPSTower>().UseSpecificMechanic(turretProperties);
                         break;
                     //case EVariousMech.Archer:
@@ -185,6 +215,7 @@ namespace SpaceShooter
                     //    break;
                 }
                 _variousMech?.UseSpecificMechanic(turretProperties);
+                _variousMech?.Init(_ownerTower);
             }
         }
     }

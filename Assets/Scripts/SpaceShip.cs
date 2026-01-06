@@ -90,11 +90,15 @@ namespace SpaceShooter
         /// </summary>
         private void UpdateRigidbody()
         {
+            Debug.Log(m_MaxLinearVelocity+ "00000000000000000000000000000000000000000000000000");
+            Debug.Log(m_Rigid.velocity + "1111111111111111111111111111111111111111111111111111111111");
+
             // прибавляем толкающую силу
             m_Rigid.AddForce(m_Thrust * ThrustControl * transform.up * Time.fixedDeltaTime, ForceMode2D.Force);
 
             // линейное вязкое трение -V * C
             m_Rigid.AddForce(-m_Rigid.velocity * (m_Thrust / m_MaxLinearVelocity) * Time.fixedDeltaTime, ForceMode2D.Force);
+
 
             // добавляем вращение
             m_Rigid.AddTorque(m_Mobility * TorqueControl * Time.fixedDeltaTime, ForceMode2D.Force);

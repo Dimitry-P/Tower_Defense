@@ -11,36 +11,36 @@ namespace TowerDefense
         public Destructible target = null;
         public Turret[] turrets;
 
+        public float timer = 0f;
+
         private void Awake()
         {
-            turrets = GetComponentsInChildren<Turret>();
-            Debug.Log($"Tower found turrets: {turrets.Length}");
+            turrets = GetComponentsInChildren<Turret>();   
         }
 
         public void InitTurretSpecificSettings(EVariousMech variousType, float towerRadius)
         {
-           
             foreach (var turret in turrets)
             {
-                
                 turret.InitTurretSpecificSettings(variousType, towerRadius);
             }
         }
-        
+
         private void Update()
         {
-           
+            timer += Time.deltaTime;
+
             if (target != null)
             {
-                
                 Vector2 targetVector = target.transform.position - transform.position;
                 Enemy enemy = target.GetComponent<Enemy>();
-                Debug.Log(enemy.enemyName);
+                
                 if (targetVector.magnitude <= Radius)
                 {
                     foreach (var turret in turrets)
                     {
                         turret.transform.up = targetVector;
+                        turret.Init(this);
                         turret.Fire();
                     }
                 }
@@ -54,8 +54,6 @@ namespace TowerDefense
                 }
             }
         }
-
-       
 
         private void OnDrawGizmosSelected()
         {

@@ -11,7 +11,12 @@ namespace Towers.std
     {
        
         public int _ammoUs;
-       
+        protected Tower tower;
+
+        internal virtual void Init(Tower owner)
+        {
+            tower = owner;
+        }
 
         public abstract void UseSpecificMechanic(TurretProperties turretProperties);
 
@@ -19,7 +24,12 @@ namespace Towers.std
         public abstract void TryApplyDamage(Destructible destructible);
 
 
-        //public abstract void TryCreateParticle(Transform target);
         
+        
+
+       
+
+        //public abstract void TryCreateParticle(Transform target);
+
     }
 }
