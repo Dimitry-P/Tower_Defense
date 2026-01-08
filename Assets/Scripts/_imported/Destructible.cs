@@ -81,7 +81,7 @@ namespace SpaceShooter
         {
             if (m_Indestructible)
                 return;
-
+            Debug.Log("DAMAGE;;;;;$$$$$$$$$$$$$$$$$$$$$$$$$$$: " + damage);
             Debug.Log("было: " + m_CurrentHitPoints);
 
             m_CurrentHitPoints -= damage;

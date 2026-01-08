@@ -71,7 +71,7 @@ namespace SpaceShooter
             _towerRadius = towerRadius;
         }
 
-        public Tower tow;
+        private Tower tow;
         public void Init(Tower tower)
         {
             tow = tower;

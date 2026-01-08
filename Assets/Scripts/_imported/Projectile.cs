@@ -42,21 +42,15 @@ namespace SpaceShooter
         //private Destructible theHitTarget;
         //public VariousTowerMechanics variousTowerMechanics;
 
-
         //private void Start()
         //{
         //    variousTowerMechanics = GetComponent<VariousTowerMechanics>();
         //}
 
-
-       
         private void Update()
         {
-          
             float stepLength = Time.deltaTime * m_Velocity;
             Vector2 step = transform.up * stepLength;
-
-       
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, stepLength);
 
@@ -73,18 +67,13 @@ namespace SpaceShooter
                 {
                     _variousMech?.TryApplyDamage(destructible);
                     
-
                     int hitLayer = hit.collider.transform.root.gameObject.layer;
 
                     if (hitLayer == LayerMask.NameToLayer("Enemy"))
                     {
                         OnProjectileLifeEnd(hit.collider, hit.point);
                     }
-
-
                 }
-
-             
 
                 // #Score
                 // добавляем очки за уничтожение
@@ -107,7 +96,7 @@ namespace SpaceShooter
                 Destroy(gameObject);
 
             transform.position += new Vector3(step.x, step.y, 0) * 0.5f; 
-            Debug.Log(transform.position +"444444444444444444444444444444444444444444444444444444444");
+            Debug.Log(transform.position +"44444");
         }
 
         private void OnProjectileLifeEnd(Collider2D collider, Vector2 pos)
@@ -117,11 +106,8 @@ namespace SpaceShooter
                 var impact = Instantiate(m_ImpactEffectPrefab.gameObject);
                 impact.transform.position = pos;
             }
-
             Destroy(this.gameObject);
         }
-
-
 
         private SpaceShip m_Parent;
 
@@ -158,8 +144,6 @@ namespace SpaceShooter
         //    m_Lifetime = projectileAsset.lifetime;
         //}
 
-
-       
         private Tower _ownerTower;
 
         public void Init(Tower tower)
@@ -198,9 +182,9 @@ namespace SpaceShooter
                     //    proj.GetComponent<VariousTowerMechanicsArcherTower>().UseSpecificMechanic(turretProperties);
                     //    _variousMech = GetComponent<>();
                     //    break;
-                    //case EVariousMech.AoE:
-                    //    _variousMech = GetComponent<VariousTowerMechanicsAoETower>();
-                    //    break;
+                    case EVariousMech.AoE:
+                        _variousMech = gameObject.AddComponent<VariousTowerMechanicsAoETower>();
+                        break;
                     //case EVariousMech.Ice:
                     //    _variousMech = GetComponent<VariousTowerMechanicsIceTower>();
                     //    break;
