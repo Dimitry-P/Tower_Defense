@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TowerDefense;
 using Towers;
 using Towers.std;
+using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -37,8 +38,9 @@ namespace SpaceShooter
 
         private float m_Timer;
         private EVariousMech _variousMechType; 
-        private float _towerRadius;
+        public float _towerRadius;
         private VariousMech _variousMech;
+      
         //private Destructible theHitTarget;
         //public VariousTowerMechanics variousTowerMechanics;
 
@@ -71,7 +73,7 @@ namespace SpaceShooter
 
                     if (hitLayer == LayerMask.NameToLayer("Enemy"))
                     {
-                        OnProjectileLifeEnd(hit.collider, hit.point);
+                         OnProjectileLifeEnd(hit.collider, hit.point);
                     }
                 }
 
@@ -95,8 +97,8 @@ namespace SpaceShooter
             if(m_Timer > m_Lifetime)
                 Destroy(gameObject);
 
-            transform.position += new Vector3(step.x, step.y, 0) * 0.5f; 
-            Debug.Log(transform.position +"44444");
+                transform.position += new Vector3(step.x, step.y, 0) * 0.5f;
+                Debug.Log(transform.position + "44444");
         }
 
         private void OnProjectileLifeEnd(Collider2D collider, Vector2 pos)
@@ -167,10 +169,9 @@ namespace SpaceShooter
                 switch (_variousMechType)
                 {
                     case EVariousMech.DoT_Poison:
-                        //_variousMech = new VariousTowerMechanicsPoison();
-                        // VariousTowerMechanicsPoison gmObj = GetComponent<VariousTowerMechanicsPoison>();
-                        // // ��� ����� �� �������� ������ ������ RETURN
-                        // //� �� �������� ��� ����� ��������� �����������?
+                        _variousMech = gameObject.AddComponent<VariousTowerMechanicsPoisonTower>();
+                        
+                       
                         break; 
                     case EVariousMech.Dps:
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsDPSTower>();
@@ -178,16 +179,17 @@ namespace SpaceShooter
                         
                         //  proj.GetComponent<VariousTowerMechanicsDPSTower>().UseSpecificMechanic(turretProperties);
                         break;
-                    //case EVariousMech.Archer:
-                    //    proj.GetComponent<VariousTowerMechanicsArcherTower>().UseSpecificMechanic(turretProperties);
-                    //    _variousMech = GetComponent<>();
-                    //    break;
+                    case EVariousMech.Archer:
+                        _variousMech = gameObject.AddComponent<VariousTowerMechanicsArcherTower>();
+                       
+
+                        break;
                     case EVariousMech.AoE:
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsAoETower>();
                         break;
-                    //case EVariousMech.Ice:
-                    //    _variousMech = GetComponent<VariousTowerMechanicsIceTower>();
-                    //    break;
+                    case EVariousMech.Ice:
+                        _variousMech = gameObject.AddComponent<VariousTowerMechanicsIceTower>();
+                        break;
                     //case EVariousMech.Single:
                     //    _variousMech = GetComponent<VariousTowerMechanicsSingleTower>();
                     //    break;

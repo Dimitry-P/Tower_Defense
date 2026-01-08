@@ -43,7 +43,6 @@ namespace SpaceShooter
         protected virtual void Start()
         {
             m_CurrentHitPoints = m_HitPoints;
-           
         }
        
         #region Безтеговая коллекция скриптов на сцене
@@ -104,11 +103,24 @@ namespace SpaceShooter
         /// </summary>
         /// 
 
-        public void PoisonAttack()
+        public void SetColorTemporary(Color color, float duration)
         {
-            
+            var sprite = GetComponentInChildren<SpriteRenderer>();
+            if (sprite == null) return;
+
+            sprite.color = color;
+
+            CancelInvoke(nameof(ResetColor));
+            Invoke(nameof(ResetColor), duration);
         }
-        
+
+        private void ResetColor()
+        {
+            var sprite = GetComponentInChildren<SpriteRenderer>();
+            if (sprite != null)
+                sprite.color = Color.white;
+        }
+
         protected virtual void OnDeath()
         {
             if(m_ExplosionPrefab != null)

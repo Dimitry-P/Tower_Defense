@@ -1,20 +1,29 @@
-﻿//using SpaceShooter;
-//using UnityEngine;
+﻿using SpaceShooter;
+using System.Threading;
+using UnityEngine;
+using UnityEngine.U2D;
 
-//namespace Towers.std
-//{
-//    public class VariousTowerMechanicsPoison : VariousMech
-//    {
+namespace Towers.std
+{
+    public class VariousTowerMechanicsPoisonTower : VariousMech
+    {
+        private int baseDamage;
 
-//        public override void TryApplyDamage(Destructible destructible)
-//        {
-//            Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//            destructible.PoisonAttack();
-//        }
+        private int enemyLayerMask;
 
-//        //public override void TryCreateParticle(Transform target)
-//        //{
-//        //    Object.Instantiate(_prefabParticle, target);
-//        //}
-//    }
-//}
+        private void Awake()
+        {
+            enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
+        }
+
+        public override void TryApplyDamage(Destructible destructible)
+        {
+            destructible.SetColorTemporary(Color.green, 7f);
+        }
+
+        public override void UseSpecificMechanic(TurretProperties turretProperties)
+        {
+            baseDamage = turretProperties.Damage;
+        }
+    }
+}

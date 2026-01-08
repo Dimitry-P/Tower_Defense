@@ -46,6 +46,13 @@ namespace SpaceShooter
         private Rigidbody2D m_Rigid;
         public Rigidbody2D Rigid => m_Rigid;
 
+        private bool isFrozen = false;
+        public bool IsFrozen
+        {
+            get { return isFrozen; }
+            set { isFrozen = value; }
+        }
+
         #region Public API
 
         /// <summary>
@@ -73,23 +80,43 @@ namespace SpaceShooter
             // либо неравномерные коллайдеры будут портить вращение
             // решается домножением торка на момент инерции
             m_Rigid.inertia = 1;
-
+            m_Animator = GetComponentInChildren<Animator>();
             //InitOffensive();
         }
 
+        private float timer = 7f;
         private void FixedUpdate()
         {
+            if (isFrozen)
+            {
+                timer -= Time.deltaTime;
+                if (timer <= 0f)
+                {
+                    isFrozen = false;
+                    timer = 10f;
+                }
+            }
             UpdateRigidbody();
             //UpdateEnergyRegen();
         }
 
         #endregion
-
+        private Animator m_Animator;
         /// <summary>
         /// Метод добавления сил кораблю для движения.
         /// </summary>
         private void UpdateRigidbody()
         {
+            if (isFrozen)
+            {
+                m_Rigid.velocity = Vector2.zero;
+                m_Rigid.angularVelocity = 0f;
+                if (m_Animator != null)
+                    m_Animator.speed = 0f;
+                return;
+            }else
+            if (m_Animator != null)
+                m_Animator.speed = 1f;
             Debug.Log(m_MaxLinearVelocity+ "00000000000000000000000000000000000000000000000000");
             Debug.Log(m_Rigid.velocity + "1111111111111111111111111111111111111111111111111111111111");
 

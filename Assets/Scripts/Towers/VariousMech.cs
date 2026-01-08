@@ -12,6 +12,7 @@ namespace Towers.std
        
         public int _ammoUs;
         protected Tower tower;
+        protected Projectile projectile;
 
         internal virtual void Init(Tower owner)
         {
@@ -23,11 +24,11 @@ namespace Towers.std
 
         public abstract void TryApplyDamage(Destructible destructible);
 
-
-        
-        
-
        
+
+
+
+
 
         //public abstract void TryCreateParticle(Transform target);
 

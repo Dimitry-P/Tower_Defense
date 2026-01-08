@@ -43,7 +43,6 @@ namespace SpaceShooter
         /// </summary>
         private SpaceShip m_Ship;
 
-       
 
         #region Unity events
 
@@ -66,7 +65,6 @@ namespace SpaceShooter
 
         public void InitTurretSpecificSettings(EVariousMech variousType, float towerRadius)
         {
-           
             _variousMechType = variousType;
             _towerRadius = towerRadius;
         }
@@ -77,14 +75,12 @@ namespace SpaceShooter
             tow = tower;
         }
 
-
-
+        private Projectile projectile;
         /// <summary>
         /// Метод стрельбы турелью. 
         /// </summary>
         public void Fire()
         {
-
             if (m_RefireTimer > 0)
                 return;
 
@@ -107,9 +103,10 @@ namespace SpaceShooter
 
 
             // инстанцируем прожектайл который уже сам полетит.
-
-            var projectile = Instantiate(m_TurretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+            projectile = Instantiate(m_TurretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+                
             projectile.transform.up = transform.up;
+
             projectile.Init(tow);
 
             projectile.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = m_TurretProperties.ProjectileSprite;
@@ -117,6 +114,7 @@ namespace SpaceShooter
             projectile.m_Velocity = m_TurretProperties.ProjectileSpeed;
 
             projectile.m_Damage = m_TurretProperties.Damage;
+           
             projectile.m_Lifetime = 5f;
 
             projectile.InitTurretSpecificSettings(_variousMechType, _towerRadius, m_TurretProperties);
@@ -136,7 +134,6 @@ namespace SpaceShooter
       
         public void AssignLoadout2(TowerAsset towerAsset)
         {
-          
             m_TurretProperties = towerAsset.turretProperties;
         }
 
@@ -154,9 +151,6 @@ namespace SpaceShooter
             m_TurretProperties = props;
             m_RefireTimer = 0;
         }
-
-
-
         #endregion
     }
 }

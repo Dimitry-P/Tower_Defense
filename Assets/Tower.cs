@@ -15,7 +15,7 @@ namespace TowerDefense
 
         private void Awake()
         {
-            turrets = GetComponentsInChildren<Turret>();   
+            turrets = GetComponentsInChildren<Turret>();
         }
 
         public void InitTurretSpecificSettings(EVariousMech variousType, float towerRadius)
@@ -33,9 +33,9 @@ namespace TowerDefense
             if (target != null)
             {
                 Vector2 targetVector = target.transform.position - transform.position;
-                Enemy enemy = target.GetComponent<Enemy>();
+                //Enemy enemy = target.GetComponent<Enemy>();
                 
-                if (targetVector.magnitude <= Radius)
+                if (targetVector.magnitude <= m_Radius)
                 {
                     foreach (var turret in turrets)
                     {
@@ -48,6 +48,7 @@ namespace TowerDefense
             else
             {
                 var enter = Physics2D.OverlapCircle(transform.position, m_Radius);
+
                 if (enter != null)
                 {
                     target = enter.GetComponentInParent<Destructible>();

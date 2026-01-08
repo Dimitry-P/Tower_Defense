@@ -29,7 +29,6 @@ namespace Towers.std
 
             foreach (Collider2D col in enemies)
             {
-                
                 Destructible destr = col.GetComponentInParent<Destructible>();
                 if (destr != null)
                 {

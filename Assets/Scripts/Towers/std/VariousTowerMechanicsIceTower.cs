@@ -1,49 +1,39 @@
-//using SpaceShooter;
-//using System.Collections;
-//using System.Collections.Generic;
-//using TowerDefense;
-//using UnityEngine;
+using SpaceShooter;
+using UnityEngine;
 
-//namespace Towers.std
-//{
-//    public class VariousTowerMechanicsIceTower : VariousMech
-//    {
-//        private bool isDead = false;
-//        //private void Start()
-//        //{
-//        //    turrets = GetComponentsInChildren<Turret>();
-//        //}
-//        public override void UseSpecificMechanic(TurretProperties turretProperties)
-//        {
-//            Debug.Log("111111111111111111111");
-//            //    target.EventOnDeath.AddListener(TargetWasHitWithPoison);
-//            //    if (target != null)
-//            //    {
-//            //        if (isDead == true)
-//            //        {
-//            //            isDead = false;
-//            //            target = null;
-//            //            return;
-//            //        }
-//            //        else
-//            //        {
-//            //            Vector2 targetVector = target.transform.position - transform.position;
-//            //            Enemy enemy = target.GetComponent<Enemy>();
-//            //            Debug.Log(enemy.enemyName);
-//            //            if (targetVector.magnitude <= towerRadius)
-//            //            {
-//            //                foreach (var turret in turrets)
-//            //                {
-//            //                    turret.transform.up = targetVector;
-//            //                    turret.Fire();
-//            //                }
-//            //            }
-//            //        }
-//            //    }
-//            //}
-//            //private void TargetWasHitWithPoison()
-//            //{
-//            //    isDead = true;
-//        }
-//    }
-//}
+namespace Towers.std
+{
+    public class VariousTowerMechanicsIceTower : VariousMech
+    {
+       
+        private int baseDamage;
+
+        private int enemyLayerMask;
+
+        private void Awake()
+        {
+            enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
+        }
+
+        public override void TryApplyDamage(Destructible destructible)
+        {
+            Collider2D[] enemies = Physics2D.OverlapCircleAll(destructible.transform.position, tower.Radius, enemyLayerMask);
+            foreach (Collider2D col in enemies)
+            {
+               
+                SpaceShip spaceShip = col.GetComponentInParent<SpaceShip>();
+                if (spaceShip != null)
+                {
+                   
+                    spaceShip.IsFrozen = true;
+                    
+                }
+            }
+            
+        }
+        public override void UseSpecificMechanic(TurretProperties turretProperties)
+        {
+            baseDamage = turretProperties.Damage;
+        }
+    }
+}
