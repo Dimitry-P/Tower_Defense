@@ -1,6 +1,9 @@
-using UnityEngine;
 using SpaceShooter;
+using System.Collections.Generic;
+using System.Linq;
 using Towers;
+using Towers.std;
+using UnityEngine;
 
 namespace TowerDefense
 {
@@ -26,12 +29,40 @@ namespace TowerDefense
             }
         }
 
+        private Destructible EnemyForSingleTower()
+        {
+            List<Destructible> allEnemies = Destructible.AllDestructibles.ToList();
+            Destructible best = null;
+            float maxProgress = -1f;
+            foreach (var e in allEnemies)
+            {
+                if (e.IsPoisoned) continue;
+                if (Vector2.Distance(transform.position, e.transform.position) > m_Radius) continue;
+                if (e.PathProgress > maxProgress)
+                {
+                    maxProgress = e.PathProgress;
+                    best = e;
+                }
+            }
+            Debug.Log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+            return best;
+            
+        }
+
+        public Projectile projectile;
+
         private void Update()
         {
             timer += Time.deltaTime;
-
+            
             if (target != null)
             {
+                if (target.IsPoisoned)
+                {
+                    target = null;
+                    return;
+                }
+               
                 Vector2 targetVector = target.transform.position - transform.position;
                 //Enemy enemy = target.GetComponent<Enemy>();
                 

@@ -10,13 +10,10 @@ namespace Towers.std
 {
     public class VariousTowerMechanicsDPSTower : VariousMech
     {
-       
         private int baseDamage;
         private int damage;
 
-
-
-
+     
 
         public override void TryApplyDamage(Destructible destructible)
         {
@@ -32,7 +29,6 @@ namespace Towers.std
                 return;
             }
                
-
             float time = tower.timer;
             int finalDamage;
 
@@ -50,15 +46,10 @@ namespace Towers.std
             destructible.ApplyDamage(finalDamage);
         }
 
-
-
-
         public override void UseSpecificMechanic(TurretProperties turretProperties)
         {
             baseDamage = turretProperties.AmmoUsage;
             Debug.Log("BaseDamage = " + baseDamage);
-
         }
-
     }
 }

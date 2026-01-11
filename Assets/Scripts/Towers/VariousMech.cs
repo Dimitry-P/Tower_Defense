@@ -19,15 +19,15 @@ namespace Towers.std
             tower = owner;
         }
 
+    
+
         public abstract void UseSpecificMechanic(TurretProperties turretProperties);
 
 
         public abstract void TryApplyDamage(Destructible destructible);
 
-       
 
-
-
+        public virtual bool LoseTargetAfterHit => false;
 
 
         //public abstract void TryCreateParticle(Transform target);

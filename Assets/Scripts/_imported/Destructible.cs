@@ -34,6 +34,9 @@ namespace SpaceShooter
         private int m_CurrentHitPoints;
         public int HitPoints => m_CurrentHitPoints;
 
+        // Прогресс по пути от 0 (старт) до 1 (конец)
+        public float PathProgress { get; set; }
+
         #endregion
 
         #region Unity events
@@ -81,11 +84,11 @@ namespace SpaceShooter
             if (m_Indestructible)
                 return;
             Debug.Log("DAMAGE;;;;;$$$$$$$$$$$$$$$$$$$$$$$$$$$: " + damage);
-            Debug.Log("было: " + m_CurrentHitPoints);
+            Debug.Log("было$$$$$$$$$$$$$: " + m_CurrentHitPoints);
 
             m_CurrentHitPoints -= damage;
 
-            Debug.Log("стало: " + m_CurrentHitPoints);
+            Debug.Log("стало$$$$$$$$$$$$$: " + m_CurrentHitPoints);
 
             if (m_CurrentHitPoints <= 0)
                 OnDeath();
@@ -119,7 +122,42 @@ namespace SpaceShooter
             var sprite = GetComponentInChildren<SpriteRenderer>();
             if (sprite != null)
                 sprite.color = Color.white;
+           
         }
+
+        private Coroutine poisonCoroutine;
+
+        public void ApplyPoison(int damagePerSecond, float duration)
+        {
+            if (poisonCoroutine != null)
+                StopCoroutine(poisonCoroutine);
+
+            poisonCoroutine = StartCoroutine(PoisonCoroutine(damagePerSecond, duration));
+            IsPoisoned = false;
+        }
+        private bool isPoinsoned;
+        public bool IsPoisoned
+        {
+            get { return isPoinsoned;  }
+            set { isPoinsoned = value; }
+        }
+
+
+        private IEnumerator PoisonCoroutine(int damage, float duration)
+        {
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                ApplyDamage(damage);
+                yield return new WaitForSeconds(1f);
+                elapsed += 1f;
+            }
+                poisonCoroutine = null;
+        }
+
+
+
 
         protected virtual void OnDeath()
         {

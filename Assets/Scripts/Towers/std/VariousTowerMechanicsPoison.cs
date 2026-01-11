@@ -1,5 +1,7 @@
 ﻿using SpaceShooter;
+using System.Collections;
 using System.Threading;
+using TowerDefense;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -16,9 +18,13 @@ namespace Towers.std
             enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
         }
 
+      
+
         public override void TryApplyDamage(Destructible destructible)
         {
             destructible.SetColorTemporary(Color.green, 7f);
+            destructible.ApplyPoison(2, 7f);
+            destructible.IsPoisoned = true; 
         }
 
         public override void UseSpecificMechanic(TurretProperties turretProperties)

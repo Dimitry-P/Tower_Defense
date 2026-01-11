@@ -7,15 +7,11 @@ namespace Towers.std
     {
         private float radiusOfDamage;
         private int baseDamage;
-        private Projectile projectile;
 
        
 
-        
-
         public override void TryApplyDamage(Destructible destructible)
         {
-            
             Debug.Log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"+ radiusOfDamage);
             if(destructible != null)
             {

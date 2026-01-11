@@ -15,6 +15,8 @@ namespace Towers.std
             enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
         }
 
+       
+
         public override void TryApplyDamage(Destructible destructible)
         {
             //Поиск всех враго в ращдиусе от точки попадания
@@ -24,9 +26,7 @@ namespace Towers.std
     radiusOfDamage,
     enemyLayerMask
 );
-            Debug.Log("Enemy layer index: " + LayerMask.NameToLayer("Enemy"));
-            Debug.Log("Enemy layer mask: " + enemyLayerMask);
-
+            
             foreach (Collider2D col in enemies)
             {
                 Destructible destr = col.GetComponentInParent<Destructible>();

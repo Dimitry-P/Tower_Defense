@@ -170,19 +170,12 @@ namespace SpaceShooter
                 {
                     case EVariousMech.DoT_Poison:
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsPoisonTower>();
-                        
-                       
                         break; 
                     case EVariousMech.Dps:
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsDPSTower>();
-                        
-                        
-                        //  proj.GetComponent<VariousTowerMechanicsDPSTower>().UseSpecificMechanic(turretProperties);
                         break;
                     case EVariousMech.Archer:
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsArcherTower>();
-                       
-
                         break;
                     case EVariousMech.AoE:
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsAoETower>();
@@ -190,15 +183,15 @@ namespace SpaceShooter
                     case EVariousMech.Ice:
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsIceTower>();
                         break;
-                    //case EVariousMech.Single:
-                    //    _variousMech = GetComponent<VariousTowerMechanicsSingleTower>();
-                    //    break;
-                    //case EVariousMech.SlowDown:
-                    //    _variousMech = GetComponent<VariousTowerMechanicsSlowDownTower>();
-                    //    break;
-                    //case EVariousMech.Boss:
-                    //    _variousMech = GetComponent<VariousTowerMechanicsBossTower>();
-                    //    break;
+                    case EVariousMech.Single:
+                        _variousMech = gameObject.AddComponent<VariousTowerMechanicsSingleTower>();
+                        break;
+                        //case EVariousMech.SlowDown:
+                        //    _variousMech = GetComponent<VariousTowerMechanicsSlowDownTower>();
+                        //    break;
+                        //case EVariousMech.Boss:
+                        //    _variousMech = GetComponent<VariousTowerMechanicsBossTower>();
+                        //    break;
                 }
                 _variousMech?.UseSpecificMechanic(turretProperties);
                 _variousMech?.Init(_ownerTower);
