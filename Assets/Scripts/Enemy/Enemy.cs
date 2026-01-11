@@ -20,6 +20,8 @@ namespace TowerDefense
 
         public void Use(EnemyAsset asset)//эта функция осущ-ет подцепление настроек для врагов.
         {
+            var destructible = gameObject.GetComponent<Destructible>();
+          
             var sr = transform.Find("Sprite").GetComponent<SpriteRenderer>();
               
             sr.color = asset.color;

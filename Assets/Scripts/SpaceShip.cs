@@ -34,6 +34,12 @@ namespace SpaceShooter
         /// Максимальная линейная скорость.
         /// </summary>
         [SerializeField] private float m_MaxLinearVelocity;
+        public float MaxLinearVelocity
+        {
+            get { return m_MaxLinearVelocity; }
+            set { m_MaxLinearVelocity = value; }
+        }
+
 
         /// <summary>
         /// Максимальная вращательная скорость. В градусах/сек
@@ -105,6 +111,7 @@ namespace SpaceShooter
         /// <summary>
         /// Метод добавления сил кораблю для движения.
         /// </summary>
+
         private void UpdateRigidbody()
         {
             if (isFrozen)

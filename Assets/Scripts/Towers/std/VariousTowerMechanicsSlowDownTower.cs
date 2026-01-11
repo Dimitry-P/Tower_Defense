@@ -1,49 +1,84 @@
-//using SpaceShooter;
-//using System.Collections;
-//using System.Collections.Generic;
-//using TowerDefense;
-//using UnityEngine;
+using SpaceShooter;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TowerDefense;
+using Unity.VisualScripting;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-//namespace Towers.std
-//{
-//    public class VariousTowerMechanicsSlowDownTower : VariousMech
-//    {
-//        private bool isDead = false;
-//        //private void Start()
-//        //{
-//        //    turrets = GetComponentsInChildren<Turret>();
-//        //}
-//        public override void UseSpecificMechanic(TurretProperties turretProperties)
-//        {
-//            Debug.Log("0000000000000000000000000");
-//            //    target.EventOnDeath.AddListener(TargetWasHitWithPoison);
-//            //    if (target != null)
-//            //    {
-//            //        if (isDead == true)
-//            //        {
-//            //            isDead = false;
-//            //            target = null;
-//            //            return;
-//            //        }
-//            //        else
-//            //        {
-//            //            Vector2 targetVector = target.transform.position - transform.position;
-//            //            Enemy enemy = target.GetComponent<Enemy>();
-//            //            Debug.Log(enemy.enemyName);
-//            //            if (targetVector.magnitude <= towerRadius)
-//            //            {
-//            //                foreach (var turret in turrets)
-//            //                {
-//            //                    turret.transform.up = targetVector;
-//            //                    turret.Fire();
-//            //                }
-//            //            }
-//            //        }
-//            //    }
-//            //}
-//            //private void TargetWasHitWithPoison()
-//            //{
-//            //    isDead = true;
-//        }
-//    }
-//}
+namespace Towers.std
+{
+    public class VariousTowerMechanicsSlowDownTower : VariousMech
+    {
+        private int baseDamage;
+
+        public float duration = 5f;     // на 2 секунды
+
+        public override void TryApplyDamage(Destructible destructible)
+        {
+            if (destructible == null) return;
+            if (destructible.IsPoisoned) return;
+            var ship = destructible.GetComponent<SpaceShip>();
+            //float initialSpeed = ship.MaxLinearVelocity;
+            //ship.MaxLinearVelocity *= 0.1f;
+            //StartCoroutine(RemoveAfterTime(ship, duration, destructible, initialSpeed));
+            //destructible.IsPoisoned = true;
+            StartCoroutine(SlowCoroutine(ship, duration, destructible));
+
+            destructible.IsPoisoned = true;
+        }
+
+        private IEnumerator SlowCoroutine(SpaceShip ship, float duration, Destructible destructible)
+        {
+            float originalSpeed = ship.MaxLinearVelocity;
+
+            // Замедляем лимит
+            ship.MaxLinearVelocity *= 0.1f;
+
+            yield return new WaitForSeconds(duration);
+
+            if (ship != null)
+            {
+                // Восстанавливаем лимит
+                ship.MaxLinearVelocity = originalSpeed;
+
+                // Принудительно разгоняем текущую скорость до лимита
+                if (ship.Rigid != null && ship.Rigid.velocity.magnitude > 0f)
+                {
+                    ship.Rigid.velocity = ship.Rigid.velocity.normalized * ship.MaxLinearVelocity;
+                }
+            }
+
+            if (destructible != null)
+                destructible.IsPoisoned = false;
+        }
+
+
+        //private IEnumerator SlowCoroutine(SpaceShip ship, float duration, Destructible destructible)
+        //{
+        //    float originalSpeed = ship.MaxLinearVelocity;
+        //    ship.MaxLinearVelocity *= 0.1f;
+
+        //    yield return new WaitForSeconds(duration);
+
+        //    if (ship != null)
+        //        ship.MaxLinearVelocity = originalSpeed;
+
+        //    if (destructible != null)
+        //        destructible.IsPoisoned = false;
+        //}
+
+        //private IEnumerator RemoveAfterTime(SpaceShip ship, float duration, Destructible destructible, float initialSpeed)
+        //{
+        //    yield return new WaitForSeconds(duration);
+        //    if (ship != null) ship.MaxLinearVelocity = initialSpeed;
+        //    destructible.IsPoisoned = false;
+        //}
+
+        public override void UseSpecificMechanic(TurretProperties turretProperties)
+        {
+           
+        }
+    }
+}

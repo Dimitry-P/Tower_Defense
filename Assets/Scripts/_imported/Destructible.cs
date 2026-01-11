@@ -41,13 +41,11 @@ namespace SpaceShooter
 
         #region Unity events
 
-        //public VariousTowerMechanics variousTowerMechanics;
-
         protected virtual void Start()
         {
             m_CurrentHitPoints = m_HitPoints;
         }
-       
+
         #region Безтеговая коллекция скриптов на сцене
 
         private static HashSet<Destructible> m_AllDestructibles;
@@ -138,8 +136,13 @@ namespace SpaceShooter
         private bool isPoinsoned;
         public bool IsPoisoned
         {
-            get { return isPoinsoned;  }
-            set { isPoinsoned = value; }
+            get {
+                return isPoinsoned;  
+                }
+            set {
+                Debug.Log("surprise");
+                isPoinsoned = value; 
+                }
         }
 
         private IEnumerator PoisonCoroutine(int damage, float duration)
