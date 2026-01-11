@@ -142,7 +142,6 @@ namespace SpaceShooter
             set { isPoinsoned = value; }
         }
 
-
         private IEnumerator PoisonCoroutine(int damage, float duration)
         {
             float elapsed = 0f;
@@ -155,9 +154,6 @@ namespace SpaceShooter
             }
                 poisonCoroutine = null;
         }
-
-
-
 
         protected virtual void OnDeath()
         {
@@ -173,7 +169,6 @@ namespace SpaceShooter
             {
                 Debug.Log("You are the winner");
             } 
-           
                 Destroy(gameObject);
 
             m_EventOnDeath?.Invoke();
@@ -205,8 +200,6 @@ namespace SpaceShooter
         /// Кол-во очков за уничтожение.
         /// </summary>
         [SerializeField] private int m_ScoreValue;
-
-       
 
         public int ScoreValue => m_ScoreValue;
 

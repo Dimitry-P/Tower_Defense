@@ -17,9 +17,9 @@ namespace Towers.std
         internal virtual void Init(Tower owner)
         {
             tower = owner;
+            tower.InitVariousMech(this);
         }
 
-    
 
         public abstract void UseSpecificMechanic(TurretProperties turretProperties);
 

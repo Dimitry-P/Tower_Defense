@@ -4,6 +4,7 @@ using System.Linq;
 using Towers;
 using Towers.std;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TowerDefense
 {
@@ -12,13 +13,22 @@ namespace TowerDefense
         private float m_Radius;
         public float Radius { get { return m_Radius; } set { m_Radius = value; } }
         public Destructible target = null;
+        public List<Destructible> allTargets = new List<Destructible>(); 
         public Turret[] turrets;
 
         public float timer = 0f;
-
+        public VariousMech _variousMech;
+        private bool isSingleTower;
         private void Awake()
         {
             turrets = GetComponentsInChildren<Turret>();
+            _variousMech = GetComponent<VariousMech>();
+        }
+
+        public void InitVariousMech(VariousMech mech)
+        {
+            _variousMech = mech;
+            isSingleTower = _variousMech.TryGetComponent<VariousTowerMechanicsSingleTower>(out _);
         }
 
         public void InitTurretSpecificSettings(EVariousMech variousType, float towerRadius)
@@ -29,12 +39,11 @@ namespace TowerDefense
             }
         }
 
-        private Destructible EnemyForSingleTower()
+        private Destructible EnemyForSingleTower(List<Destructible> allTargets)
         {
-            List<Destructible> allEnemies = Destructible.AllDestructibles.ToList();
             Destructible best = null;
             float maxProgress = -1f;
-            foreach (var e in allEnemies)
+            foreach (var e in allTargets)
             {
                 if (e.IsPoisoned) continue;
                 if (Vector2.Distance(transform.position, e.transform.position) > m_Radius) continue;
@@ -44,9 +53,7 @@ namespace TowerDefense
                     best = e;
                 }
             }
-            Debug.Log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
             return best;
-            
         }
 
         public Projectile projectile;
@@ -78,10 +85,25 @@ namespace TowerDefense
             }
             else
             {
-                var enter = Physics2D.OverlapCircle(transform.position, m_Radius);
-
-                if (enter != null)
+                if (isSingleTower)
                 {
+                    Collider2D[] enters = Physics2D.OverlapCircleAll(transform.position, m_Radius);
+                    if (enters != null)
+                    {
+                        allTargets.Clear();
+                        foreach (var destruct in enters)
+                        {
+                            var d = destruct.GetComponentInParent<Destructible>();
+                            if (d != null)
+                                allTargets.Add(d);
+                        }
+                    }
+                    target = EnemyForSingleTower(allTargets);
+                }
+                else
+                {
+                    var enter = Physics2D.OverlapCircle(transform.position, m_Radius);
+                    if(enter != null)
                     target = enter.GetComponentInParent<Destructible>();
                 }
             }
