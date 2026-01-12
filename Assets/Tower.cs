@@ -61,58 +61,58 @@ namespace TowerDefense
         private void Update()
         {
             timer += Time.deltaTime;
-            
+
             if (target != null)
             {
-                if (target.IsPoisoned)
-                {
-                    target = null;
-                    return;
-                }
-               
                 Vector2 targetVector = target.transform.position - transform.position;
-                //Enemy enemy = target.GetComponent<Enemy>();
-                
-                if (targetVector.magnitude <= m_Radius)
+
+                if (target.IsPoisoned || targetVector.magnitude > m_Radius)
                 {
+                    // Сбрасываем цель, если она помечена или вышла за радиус
+                    target = null;
+                }
+                else
+                {
+                    // Стреляем в текущую цель
                     foreach (var turret in turrets)
                     {
                         turret.transform.up = targetVector;
                         turret.Init(this);
                         turret.Fire();
                     }
+
+                    // Всё ок, не ищем новую цель
+                    return;
                 }
+            }
+
+            // --- Если target == null или был сброшен, ищем нового врага ---
+            if (isSingleTower)
+            {
+                Collider2D[] enters = Physics2D.OverlapCircleAll(transform.position, m_Radius);
+                allTargets.Clear();
+
+                if (enters != null)
+                {
+                    foreach (var destruct in enters)
+                    {
+                        var d = destruct.GetComponentInParent<Destructible>();
+                        if (d != null)
+                            allTargets.Add(d);
+                    }
+                }
+                target = EnemyForSingleTower(allTargets);
             }
             else
             {
-                if (isSingleTower)
-                {
-                    Collider2D[] enters = Physics2D.OverlapCircleAll(transform.position, m_Radius);
-                    if (enters != null)
-                    {
-                        allTargets.Clear();
-                        foreach (var destruct in enters)
-                        {
-                            var d = destruct.GetComponentInParent<Destructible>();
-                            if (d != null)
-                                allTargets.Add(d);
-                        }
-                    }
-                    target = EnemyForSingleTower(allTargets);
-                }
-                else
-                {
-                    var enter = Physics2D.OverlapCircle(transform.position, m_Radius);
-                    if(enter != null)
-                    target = enter.GetComponentInParent<Destructible>();
-                }
+                var enter = Physics2D.OverlapCircle(transform.position, m_Radius);
+                if(enter != null)target = enter.GetComponentInParent<Destructible>();
             }
         }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.cyan;
-
             Gizmos.DrawWireSphere(transform.position, m_Radius);
         }
     }

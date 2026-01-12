@@ -18,7 +18,6 @@ namespace SpaceShooter
         public SpaceShip ActiveShip => m_Ship;
 
         [SerializeField] private SpaceShip m_PlayerShipPrefab;
-        //private VariousTowerMechanics m_TowerMechanics;
 
         //[SerializeField] private CameraController m_CameraController;
         //[SerializeField] private MovementController m_MovementController;
@@ -26,10 +25,19 @@ namespace SpaceShooter
         private void Start()
         {
             if (m_Ship)
-            {
-                m_Ship.EventOnDeath.AddListener(OnShipDeath);
-            }
-            //m_TowerMechanics = GetComponent<VariousTowerMechanics>();
+                SubscribeToShip(m_Ship);
+        }
+
+        private void SubscribeToShip(SpaceShip ship)
+        {
+            ship.EventOnDeath.RemoveListener(OnShipDeath);
+            ship.EventOnDeath.AddListener(OnShipDeath);
+        }
+
+        private void OnDestroy()
+        {
+            if (m_Ship != null)
+                m_Ship.EventOnDeath.RemoveListener(OnShipDeath);
         }
 
         private void OnShipDeath()
@@ -39,20 +47,17 @@ namespace SpaceShooter
             if (m_NumLives > 0)
                 Respawn();
             else
+            {
                 LevelSequenceController.Instance.FinishCurrentLevel(false);
                 GameReset.ResetStatics();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            }
         }
 
         private void Respawn()
         {
             var newPlayerShip = Instantiate(m_PlayerShipPrefab.gameObject);
-
             m_Ship = newPlayerShip.GetComponent<SpaceShip>();
-
-            //m_CameraController.SetTarget(m_Ship.transform);
-            //m_MovementController.SetTargetShip(m_Ship);
-
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
         }
             
