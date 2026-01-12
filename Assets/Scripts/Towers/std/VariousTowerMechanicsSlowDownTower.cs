@@ -19,6 +19,7 @@ namespace Towers.std
         {
             if (destructible == null) return;
             if (destructible.IsPoisoned) return;
+
             var ship = destructible.GetComponent<SpaceShip>();
             //float initialSpeed = ship.MaxLinearVelocity;
             //ship.MaxLinearVelocity *= 0.1f;

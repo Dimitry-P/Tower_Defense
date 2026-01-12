@@ -41,6 +41,14 @@ namespace SpaceShooter
 
         #region Unity events
 
+        private bool m_isBoss;
+
+        public bool IsBoss 
+        {
+            get {  return m_isBoss; } 
+            set { m_isBoss = value; }
+        }
+
         protected virtual void Start()
         {
             m_CurrentHitPoints = m_HitPoints;
@@ -120,7 +128,6 @@ namespace SpaceShooter
             var sprite = GetComponentInChildren<SpriteRenderer>();
             if (sprite != null)
                 sprite.color = Color.white;
-           
         }
 
         private Coroutine poisonCoroutine;
@@ -136,13 +143,8 @@ namespace SpaceShooter
         private bool isPoinsoned;
         public bool IsPoisoned
         {
-            get {
-                return isPoinsoned;  
-                }
-            set {
-                Debug.Log("surprise");
-                isPoinsoned = value; 
-                }
+            get {return isPoinsoned;}
+            set {isPoinsoned = value;}
         }
 
         private IEnumerator PoisonCoroutine(int damage, float duration)

@@ -189,9 +189,9 @@ namespace SpaceShooter
                     case EVariousMech.SlowDown:
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsSlowDownTower>();
                         break;
-                        //case EVariousMech.Boss:
-                        //    _variousMech = GetComponent<VariousTowerMechanicsBossTower>();
-                        //    break;
+                    case EVariousMech.Boss:
+                        _variousMech = gameObject.AddComponent<VariousTowerMechanicsBossTower>();
+                        break;
                 }
                 _variousMech?.UseSpecificMechanic(turretProperties);
                 _variousMech?.Init(_ownerTower);

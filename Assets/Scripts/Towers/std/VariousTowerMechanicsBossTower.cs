@@ -1,49 +1,61 @@
-//using SpaceShooter;
-//using System.Collections;
-//using System.Collections.Generic;
-//using TowerDefense;
-//using UnityEngine;
+using System.Collections;
+using UnityEngine;
+using TowerDefense;
+using SpaceShooter;
 
-//namespace Towers.std
-//{
-//    public class VariousTowerMechanicsBossTower : VariousMech
-//    {
-//        private bool isDead = false;
-//        //private void Start()
-//        //{
-//        //    turrets = GetComponentsInChildren<Turret>();
-//        //}
-//        public override void UseSpecificMechanic(TurretProperties turretProperties)
-//        {
-//            Debug.Log("999999999999");
-//            //    target.EventOnDeath.AddListener(TargetWasHitWithPoison);
-//            //    if (target != null)
-//            //    {
-//            //        if (isDead == true)
-//            //        {
-//            //            isDead = false;
-//            //            target = null;
-//            //            return;
-//            //        }
-//            //        else
-//            //        {
-//            //            Vector2 targetVector = target.transform.position - transform.position;
-//            //            Enemy enemy = target.GetComponent<Enemy>();
-//            //            Debug.Log(enemy.enemyName);
-//            //            if (targetVector.magnitude <= towerRadius)
-//            //            {
-//            //                foreach (var turret in turrets)
-//            //                {
-//            //                    turret.transform.up = targetVector;
-//            //                    turret.Fire();
-//            //                }
-//            //            }
-//            //        }
-//            //    }
-//            //}
-//            //private void TargetWasHitWithPoison()
-//            //{
-//            //    isDead = true;
-//        }
-//    }
-//}
+namespace Towers.std
+{
+    public class VariousTowerMechanicsBossTower : VariousMech
+    {
+        [Header("Boss Tower Settings")]
+        public int baseDamage = 50;          // базовый урон обычному врагу
+        public int bossDamageMultiplier = 5; // урон дл€ босса
+
+        [Header("Visual Effect")]
+        public float scaleMultiplier = 1.5f;
+        public float scaleDuration = 2f;
+
+        public override void TryApplyDamage(Destructible destructible)
+        {
+            if (destructible == null) return;
+            if (destructible.IsPoisoned) return;
+            int damageToApply = baseDamage;
+            // ќпредел€ем, босс это или нет
+            if (destructible.IsBoss == true)
+            {
+                damageToApply *= bossDamageMultiplier;
+                destructible.ApplyDamage(damageToApply);
+                destructible.IsPoisoned = false;
+            }
+            else
+            {
+                destructible.ApplyDamage(damageToApply);
+                StartCoroutine(ScaleEnemyTemporary(destructible));
+                destructible.IsPoisoned = true;
+            }
+        }
+
+        private IEnumerator ScaleEnemyTemporary(Destructible destructible)
+        {
+            if (destructible == null) yield break;
+
+            var sprite = destructible.GetComponentInChildren<SpriteRenderer>();
+            if (sprite == null) yield break;
+
+            Transform visual = sprite.transform;
+
+            Vector3 originalScale = visual.localScale;
+            visual.localScale = originalScale * scaleMultiplier;
+
+            yield return new WaitForSeconds(scaleDuration);
+
+            if (visual != null)
+                visual.localScale = originalScale;
+        }
+
+        public override void UseSpecificMechanic(TurretProperties turretProperties)
+        {
+            // «десь можно добавить уникальную механику башни, например зар€д мощного выстрела
+        }
+    }
+}

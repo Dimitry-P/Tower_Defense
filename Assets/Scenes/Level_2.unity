@@ -773,7 +773,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394599046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f419c97acf028924dabcf92f13f78445, type: 3}
   m_Name: 
@@ -794,7 +794,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394599046}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f419c97acf028924dabcf92f13f78445, type: 3}
   m_Name: 
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394599046}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f419c97acf028924dabcf92f13f78445, type: 3}
   m_Name: 
@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Area: {fileID: 57249708}
   m_SpawnMode: 1
   m_NumSpawns: 1
-  m_RespawnTime: 20
+  m_RespawnTime: 9999
   m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
   m_path: {fileID: 1342231172}

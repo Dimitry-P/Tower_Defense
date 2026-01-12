@@ -16,6 +16,7 @@ namespace TowerDefense
 
         [Header("Игровые параметры")]
         public float moveSpeed;
+        public bool isBoss;
         public int hp;
         public int score = 1;
         public float radius = 0.19f;

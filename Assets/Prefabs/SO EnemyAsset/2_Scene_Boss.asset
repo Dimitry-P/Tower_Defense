@@ -18,7 +18,8 @@ MonoBehaviour:
   animations: {fileID: 9100000, guid: 3f394212458edbb4f8cf93bfebaf225f, type: 2}
   nameOfEnemy: boss
   moveSpeed: 0.5
-  hp: 30
+  isBoss: 1
+  hp: 666666
   score: 1
   radius: 0.2
   damage: 1
