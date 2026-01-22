@@ -11,6 +11,13 @@ namespace TowerDefense
         private int pathIndex;
         [SerializeField] private UnityEvent OnEndPath;
 
+        protected override void Update()
+        {
+            base.Update(); // это вызовет Update из AIController
+            Debug.Log(gameObject.name + " UPDATE");
+        }
+
+
         public void SetPath(Path newPath)
         {
             m_path = newPath;

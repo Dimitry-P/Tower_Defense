@@ -35,24 +35,27 @@ namespace Towers.std
             float originalSpeed = ship.MaxLinearVelocity;
 
             // Замедляем лимит
-            ship.MaxLinearVelocity *= 0.1f;
+            ship.MaxLinearVelocity /= 4f;
 
-            yield return new WaitForSeconds(duration);
-
-            if (ship != null)
+            try
             {
-                // Восстанавливаем лимит
-                ship.MaxLinearVelocity = originalSpeed;
-
-                // Принудительно разгоняем текущую скорость до лимита
-                if (ship.Rigid != null && ship.Rigid.velocity.magnitude > 0f)
-                {
-                    ship.Rigid.velocity = ship.Rigid.velocity.normalized * ship.MaxLinearVelocity;
-                }
+                yield return new WaitForSecondsRealtime(duration);
             }
+            finally
+            {
+                if (ship != null)
+                {
+                    ship.MaxLinearVelocity = originalSpeed;
 
-            if (destructible != null)
-                destructible.IsPoisoned = false;
+                    if (ship.Rigid != null && ship.Rigid.velocity.magnitude > 0f)
+                    {
+                        ship.Rigid.velocity =
+                            ship.Rigid.velocity.normalized * ship.MaxLinearVelocity;
+                    }
+                }
+                if (destructible != null)
+                    destructible.IsPoisoned = false;
+            }
         }
 
 

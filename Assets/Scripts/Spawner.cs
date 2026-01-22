@@ -45,25 +45,64 @@ namespace SpaceShooter
 
         public float m_Timer;
 
-        private void Start()
-        {
-            if(m_SpawnMode == SpawnMode.Start)
-            {
-                SpawnEntities();
-            }
-        }
+        private float bossTimer = 90f;
+
+        private bool bossSpawned = false;
+
+        //private void Start()
+        //{
+        //    if(m_SpawnMode == SpawnMode.Start)
+        //    {
+        //        SpawnEntities();
+        //    }
+        //}
+
+        //private void Update()
+        //{
+        //    if (m_Timer > 0)
+        //        m_Timer -= Time.deltaTime;
+
+        //    if(m_SpawnMode == SpawnMode.Loop && m_Timer <= 0)
+        //    {
+        //        SpawnEntities();
+        //        m_Timer = m_RespawnTime;
+        //    }
+        //}
 
         private void Update()
         {
-            if (m_Timer > 0)
+            // обычные враги
+            if (m_SpawnMode == SpawnMode.Loop)
+            {
                 m_Timer -= Time.deltaTime;
 
-            if(m_SpawnMode == SpawnMode.Loop && m_Timer <= 0)
+                if (m_Timer <= 0f)
+                {
+                    SpawnEntities();
+                    m_Timer = m_RespawnTime;
+                }
+            }
+
+            // босс
+            if (m_SpawnMode == SpawnMode.Start && !bossSpawned)
             {
-                SpawnEntities();
-                m_Timer = m_RespawnTime;
+                bossTimer -= Time.deltaTime;
+
+                if (bossTimer <= 0f)
+                {
+                    SpawnBoss();
+                    bossSpawned = true;
+                }
             }
         }
+
+        private void SpawnBoss()
+        {
+            // Твой код создания босса
+            SpawnEntities();
+            Debug.Log("BOSS SPAWNED");
+        }
+
 
         private void SpawnEntities()
         {

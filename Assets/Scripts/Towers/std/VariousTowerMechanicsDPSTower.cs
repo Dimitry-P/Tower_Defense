@@ -13,7 +13,11 @@ namespace Towers.std
         private int baseDamage;
         private int damage;
 
-     
+        //private void Start()
+        //{
+        //    ship.EventOnDeath.RemoveListener(OnShipDeath);
+        //    ship.EventOnDeath.AddListener(OnShipDeath);
+        //}
 
         public override void TryApplyDamage(Destructible destructible)
         {
@@ -30,18 +34,18 @@ namespace Towers.std
             }
                
             float time = tower.timer;
-            int finalDamage;
+            int finalDamage = 40;
 
-            if (time < 5f)
-                finalDamage = 1;
-            else if (time < 10f)
-                finalDamage = 5;
-            else if (time < 15f)
-                finalDamage = 10;
-            else if (time < 20f)
-                finalDamage = 20;
-            else
-                finalDamage = 30;
+            //if (time < 5f)
+            //    finalDamage = 1;
+            //else if (time < 10f)
+            //    finalDamage = 5;
+            //else if (time < 15f)
+            //    finalDamage = 10;
+            //else if (time < 20f)
+            //    finalDamage = 20;
+            //else
+            //    finalDamage = 30;
 
             destructible.ApplyDamage(finalDamage);
         }

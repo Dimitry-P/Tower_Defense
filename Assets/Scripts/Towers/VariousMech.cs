@@ -29,7 +29,6 @@ namespace Towers.std
 
         public virtual bool LoseTargetAfterHit => false;
 
-
         //public abstract void TryCreateParticle(Transform target);
 
     }

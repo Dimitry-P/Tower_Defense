@@ -193,8 +193,8 @@ namespace SpaceShooter
                         _variousMech = gameObject.AddComponent<VariousTowerMechanicsBossTower>();
                         break;
                 }
-                _variousMech?.UseSpecificMechanic(turretProperties);
                 _variousMech?.Init(_ownerTower);
+                _variousMech?.UseSpecificMechanic(turretProperties);
             }
         }
     }

@@ -8,11 +8,9 @@ namespace Towers.std
         private float radiusOfDamage;
         private int baseDamage;
 
-       
-
         public override void TryApplyDamage(Destructible destructible)
         {
-            Debug.Log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"+ radiusOfDamage);
+            Debug.Log(radiusOfDamage);
             if(destructible != null)
             {
                 destructible.ApplyDamage(baseDamage);

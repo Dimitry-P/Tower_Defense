@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
 using Towers;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -52,6 +53,8 @@ namespace SpaceShooter
         protected virtual void Start()
         {
             m_CurrentHitPoints = m_HitPoints;
+            transform.localScale = Vector3.zero;
+            transform.localScale = Vector3.one;
         }
 
         #region Безтеговая коллекция скриптов на сцене
@@ -89,6 +92,7 @@ namespace SpaceShooter
         {
             if (m_Indestructible)
                 return;
+            ShowDamage(damage);
             Debug.Log("DAMAGE;;;;;$$$$$$$$$$$$$$$$$$$$$$$$$$$: " + damage);
             Debug.Log("было$$$$$$$$$$$$$: " + m_CurrentHitPoints);
 
@@ -99,6 +103,45 @@ namespace SpaceShooter
             if (m_CurrentHitPoints <= 0)
                 OnDeath();
         }
+
+        public GameObject damagePopupPrefab;
+
+        private int damagePopupIndex = 0;
+        private float popupResetDelay = 0.25f;
+        private float popupTimer;
+
+        private void ShowDamage(int damage)
+        {
+            float xOffset = UnityEngine.Random.Range(-0.2f, 0.2f);
+            float yOffset = 1f + damagePopupIndex * 0.8f;
+
+            Vector3 spawnPos = transform.position + new Vector3(xOffset, yOffset, 0f);
+
+            GameObject popup = Instantiate(
+                damagePopupPrefab,
+                spawnPos,
+                Quaternion.identity
+            );
+
+            popup.GetComponent<DamagePopUp>().Setup(damage);
+
+            damagePopupIndex++;
+            popupTimer = popupResetDelay;
+        }
+
+        private void Update()
+        {
+            if (popupTimer > 0f)
+            {
+                popupTimer -= Time.deltaTime;
+                if (popupTimer <= 0f)
+                {
+                    damagePopupIndex = 0;
+                }
+            }
+        }
+
+
 
         public void AddHitPoints(float hp)
         {
@@ -204,16 +247,28 @@ namespace SpaceShooter
         /// <summary>
         /// Кол-во очков за уничтожение.
         /// </summary>
-        [SerializeField] private int m_ScoreValue;
+        private int m_ScoreValue;
 
-        public int ScoreValue => m_ScoreValue;
-
+        public int ScoreValue
+        {
+            get
+            {
+                 return m_ScoreValue;
+            } 
+            set 
+            {
+               
+            }
+        }
+            
         #endregion
 
         protected void Use(EnemyAsset asset)
         {
             m_HitPoints = asset.hp;
-            m_ScoreValue = asset.score;
+            if (asset.nameOfEnemy == "small")m_ScoreValue = 10;
+            if (asset.nameOfEnemy == "middle")m_ScoreValue = 20;
+            if (asset.nameOfEnemy == "boss")m_ScoreValue = 50;
         }
     }
 }

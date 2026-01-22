@@ -18,10 +18,9 @@ namespace TowerDefense
         public float moveSpeed;
         public bool isBoss;
         public int hp;
-        public int score = 1;
         public float radius = 0.19f;
         public int damage = 1;
-        public int gold = 1;
+        public int gold;
     }
 }
 //Я полностью расписал цепочку создания и появления в сцене разных врагов. Вот она: 

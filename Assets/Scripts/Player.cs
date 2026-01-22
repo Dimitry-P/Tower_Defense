@@ -76,22 +76,32 @@ namespace SpaceShooter
         {
             Score += num;
         }
+
         int smallEnemyCounter = 0;
         int middleEnemyCounter = 0;
         int bossEnemyCounter = 0;
         protected void TakeDamage(int m_damage, string enemyName)
         {
-            m_NumLives -= m_damage;
+            //m_NumLives -= m_damage;
+
             //if(m_NumLives <= 0)
             //{
             // LevelSequenceController.Instance.FinishCurrentLevel(false);
             //LevelSequenceController.Instance.RestartLevel();
             //}
-            if (enemyName == "small") smallEnemyCounter++;
-            if (enemyName == "middle") middleEnemyCounter++;
+            if (enemyName == "small" && smallEnemyCounter < 3)
+            {
+                smallEnemyCounter++;
+                m_NumLives--;
+            }
+            if (enemyName == "middle" && middleEnemyCounter < 1)
+            {
+                middleEnemyCounter++;
+                m_NumLives--;
+            }
             if (enemyName == "boss") bossEnemyCounter++;
-            Debug.Log(enemyName);
-            if (smallEnemyCounter >= 1 && middleEnemyCounter >= 1 || bossEnemyCounter >= 1)
+
+            if (m_NumLives == 0 || bossEnemyCounter >= 1)
             {
                 GameReset.ResetStatics();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);

@@ -43,12 +43,16 @@ namespace TowerDefense
                 m_LevelTime += Time.deltaTime;
                 CheckLevelConditions();
             }
-           
 
             if(TDPlayer.Instance.NumLives == 0)
             {
                 Lose();
             } 
+        }
+
+        private void OnEnable()
+        {
+            Time.timeScale = 1;
         }
 
         private void CheckLevelConditions()  // ПРОВЕРКА НА ЗАВЕРШЕНИЕ УРОВНЯ
@@ -72,7 +76,7 @@ namespace TowerDefense
         private void Lose()
         {
             LevelLost?.Invoke();
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
 
         private void Pass()
@@ -83,6 +87,7 @@ namespace TowerDefense
 
         public void LoadNextLevel()
         {
+            Time.timeScale = 1;
             if (HasNextLevel == true) //Если следующий уровень имеется, то:
                 SceneManager.LoadScene(m_LevelProperties.NextLevel.SceneName); //загружаем следющий уровень
             //Что делает m_LevelProperties.NextLevel.SceneName?

@@ -23,9 +23,9 @@ namespace TowerDefense
         private void LateUpdate()
         {
             transform.up = Vector2.up;
-            var xMotion = rig.velocity.x;
-            if (xMotion > 0.01f) sr.flipX = false;
-            else if (xMotion < -0.01f) sr.flipX = true;
+            //var xMotion = rig.velocity.x;
+            //if (xMotion > 0.1f) sr.flipX = false;
+            //else if (xMotion < -0.1f) sr.flipX = true;
         }
     }
 }

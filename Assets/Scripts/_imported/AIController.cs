@@ -90,7 +90,7 @@ namespace SpaceShooter
             InitActionTimers();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             UpdateActionTimers();
             UpdateAI();

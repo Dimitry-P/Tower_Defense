@@ -264,8 +264,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Nickname: 
   m_Indestructible: 0
-  m_HitPoints: 10
+  m_HitPoints: 0
   isDead: 0
+  damagePopupPrefab: {fileID: 4896496368464257124, guid: 1078ddab837f24e4792cea88ce4c2e4e, type: 3}
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -283,7 +284,6 @@ MonoBehaviour:
         m_CallState: 2
   m_ExplosionPrefab: {fileID: 0}
   m_TeamId: 0
-  m_ScoreValue: 1
   m_Mass: 1
   m_Thrust: 1000
   m_Mobility: 1000

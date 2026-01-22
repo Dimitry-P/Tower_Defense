@@ -55,7 +55,7 @@ namespace TowerDefense
             OnLifeUpdate -= act;
         }
 
-        [SerializeField] private int m_gold = 10;
+        [SerializeField] private int m_gold;
 
 
         public void ChangeGold(int change)
