@@ -28,6 +28,7 @@ namespace TowerDefense
             MonoSingleton<LevelResultController>.ResetInstance();
             OnGoldUpdate = null;
             OnLifeUpdate = null;
+            OnKilledEnemiesUpdate = null;
         }
 
         private static event Action<int> OnGoldUpdate;
@@ -36,32 +37,55 @@ namespace TowerDefense
             OnGoldUpdate += act;
             act(Instance.m_gold);
         }
-
         public static void GoldUpdateUnsubscribe(Action<int> act)
         {
             OnGoldUpdate -= act;
         }
-        
-        private static event Action<int> OnLifeUpdate;
 
+
+
+
+        private static event Action<int> OnKilledEnemiesUpdate;
+        public static void KilledEnemiesUpdateSubscribe(Action<int> act)
+        {
+            OnKilledEnemiesUpdate += act;
+            act(Instance.m_killed);
+        }
+        public static void KilledEnemiesUpdateUnSubscribe(Action<int> act)
+        {
+            OnKilledEnemiesUpdate -= act;
+        }
+
+
+
+
+        private static event Action<int> OnLifeUpdate;
         public static void LifeUpdateSubscribe(Action<int> act)
         {
             OnLifeUpdate += act;
             act(Player.Instance.NumLives);
         }
-
         public static void LifeUpdateUnsubscribe(Action<int> act)
         {
             OnLifeUpdate -= act;
         }
 
+
+
+
+
         [SerializeField] private int m_gold;
-
-
         public void ChangeGold(int change)
         {
             m_gold += change;
             OnGoldUpdate(m_gold);
+        }
+
+        [SerializeField] private int m_killed;
+        public void ChangeKilledCount(int change)
+        {
+            m_killed = change;
+            OnKilledEnemiesUpdate(m_killed);
         }
 
         public void ReduceLife(int change, string enemyName)
@@ -94,7 +118,6 @@ namespace TowerDefense
                 towerScript.InitTurretSpecificSettings(towerEnum, tower.Radius);
             }
                 
-       
             foreach (var turret in tower.GetComponentsInChildren<Turret>())
             {
                 turret.AssignLoadout2(towerAsset);

@@ -9,7 +9,6 @@ namespace Towers.std
 {
     public abstract class VariousMech : MonoBehaviour
     {
-       
         public int _ammoUs;
         protected Tower tower;
         protected Projectile projectile;
@@ -20,6 +19,10 @@ namespace Towers.std
             tower.InitVariousMech(this);
         }
 
+        public virtual void OnEnemyKilled()
+        {
+           
+        }
 
         public abstract void UseSpecificMechanic(TurretProperties turretProperties);
 
@@ -31,5 +34,9 @@ namespace Towers.std
 
         //public abstract void TryCreateParticle(Transform target);
 
+        public virtual void IncreaseDamage()
+        {
+            
+        }
     }
 }

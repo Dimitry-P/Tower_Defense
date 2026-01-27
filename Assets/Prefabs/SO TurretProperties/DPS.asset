@@ -20,5 +20,5 @@ MonoBehaviour:
   m_LaunchSFX: {fileID: 0}
   m_projectileSprite: {fileID: 21300000, guid: eb5f5805f2158774aa1d2e8b1dc11b8b, type: 3}
   m_projectileSpeed: 5
-  m_damage: 1
+  m_damage: 40
   m_timer: 0

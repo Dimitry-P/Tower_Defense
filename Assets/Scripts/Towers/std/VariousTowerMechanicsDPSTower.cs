@@ -12,12 +12,16 @@ namespace Towers.std
     {
         private int baseDamage;
         private int damage;
+       
+        private void OnEnable()
+        {
+            DPSGlobalManager.OnDpsUpgrade += IncreaseDamage;
+        }
 
-        //private void Start()
-        //{
-        //    ship.EventOnDeath.RemoveListener(OnShipDeath);
-        //    ship.EventOnDeath.AddListener(OnShipDeath);
-        //}
+        private void OnDisable()
+        {
+            DPSGlobalManager.OnDpsUpgrade -= IncreaseDamage;
+        }
 
         public override void TryApplyDamage(Destructible destructible)
         {
@@ -34,26 +38,26 @@ namespace Towers.std
             }
                
             float time = tower.timer;
-            int finalDamage = 40;
 
-            //if (time < 5f)
-            //    finalDamage = 1;
-            //else if (time < 10f)
-            //    finalDamage = 5;
-            //else if (time < 15f)
-            //    finalDamage = 10;
-            //else if (time < 20f)
-            //    finalDamage = 20;
-            //else
-            //    finalDamage = 30;
+            destructible.ApplyDamage(damage, this);
+        }
 
-            destructible.ApplyDamage(finalDamage);
+        public override void IncreaseDamage()
+        {
+             damage =
+     baseDamage += DPSGlobalManager.CurrentUpgrade * 10;
+
+        }
+
+        public override void OnEnemyKilled()
+        {
+            TDPlayer.Instance.ChangeKilledCount(DPSGlobalManager.TotalKillsByDPSTowers);
         }
 
         public override void UseSpecificMechanic(TurretProperties turretProperties)
         {
-            baseDamage = turretProperties.AmmoUsage;
-            Debug.Log("BaseDamage = " + baseDamage);
+            baseDamage = turretProperties.Damage;
+            damage = baseDamage + DPSGlobalManager.CurrentUpgrade * 10;
         }
     }
 }

@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
 using Towers;
+using Towers.std;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
+using static Unity.VisualScripting.Member;
 
 namespace SpaceShooter
 {
@@ -43,6 +45,8 @@ namespace SpaceShooter
         #region Unity events
 
         private bool m_isBoss;
+
+        private VariousMech lastDamageSource;
 
         public bool IsBoss 
         {
@@ -101,8 +105,30 @@ namespace SpaceShooter
             Debug.Log("стало$$$$$$$$$$$$$: " + m_CurrentHitPoints);
 
             if (m_CurrentHitPoints <= 0)
+            {
                 OnDeath();
+            }  
         }
+
+        //  Новый ApplyDamage — с источником урона - для башни DPS
+        public void ApplyDamage(int damage, VariousMech source)
+        {
+            if (m_Indestructible)
+                return;
+
+            lastDamageSource = source;
+
+            ShowDamage(damage);
+            m_CurrentHitPoints -= damage;
+
+            if (m_CurrentHitPoints <= 0)
+            {
+                lastDamageSource?.OnEnemyKilled();
+                DPSGlobalManager.RegisterKill();
+                OnDeath();
+            }
+        }
+
 
         public GameObject damagePopupPrefab;
 
