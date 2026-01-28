@@ -28,7 +28,8 @@ namespace TowerDefense
             MonoSingleton<LevelResultController>.ResetInstance();
             OnGoldUpdate = null;
             OnLifeUpdate = null;
-            OnKilledEnemiesUpdate = null;
+            OnDPSKilledEnemiesUpdate = null;
+            TotalEnemiesKilledUpdate = null;
         }
 
         private static event Action<int> OnGoldUpdate;
@@ -45,15 +46,15 @@ namespace TowerDefense
 
 
 
-        private static event Action<int> OnKilledEnemiesUpdate;
-        public static void KilledEnemiesUpdateSubscribe(Action<int> act)
+        private static event Action<int> OnDPSKilledEnemiesUpdate;
+        public static void DPSKilledEnemiesUpdateSubscribe(Action<int> act)
         {
-            OnKilledEnemiesUpdate += act;
-            act(Instance.m_killed);
+            OnDPSKilledEnemiesUpdate += act;
+            act(Instance.m_DPSkilled);
         }
-        public static void KilledEnemiesUpdateUnSubscribe(Action<int> act)
+        public static void DPSKilledEnemiesUpdateUnSubscribe(Action<int> act)
         {
-            OnKilledEnemiesUpdate -= act;
+            OnDPSKilledEnemiesUpdate -= act;
         }
 
 
@@ -73,6 +74,19 @@ namespace TowerDefense
 
 
 
+        private static event Action<int> TotalEnemiesKilledUpdate;
+        public static void TotalKilledEnemiesUpdateSubscribe(Action<int> act)
+        {
+            TotalEnemiesKilledUpdate += act;
+            act(Instance.m_Totalkilled);
+        }
+        public static void TotalKilledEnemiesUpdateUnSubscribe(Action<int> act)
+        {
+            TotalEnemiesKilledUpdate -= act;
+        }
+        
+
+
 
         [SerializeField] private int m_gold;
         public void ChangeGold(int change)
@@ -81,17 +95,24 @@ namespace TowerDefense
             OnGoldUpdate(m_gold);
         }
 
-        [SerializeField] private int m_killed;
+        [SerializeField] private int m_DPSkilled;
         public void ChangeKilledCount(int change)
         {
-            m_killed = change;
-            OnKilledEnemiesUpdate(m_killed);
+            m_DPSkilled = change;
+            OnDPSKilledEnemiesUpdate(m_DPSkilled);
         }
 
         public void ReduceLife(int change, string enemyName)
         {
             TakeDamage(change, enemyName);
             OnLifeUpdate(Player.Instance.NumLives);
+        }
+
+        [SerializeField] private int m_Totalkilled;
+        public void ChangeTotalKilledCount(int change)
+        {
+            m_Totalkilled = change;
+            TotalEnemiesKilledUpdate(m_Totalkilled);
         }
 
         // TODO: ����� � �� ��� ������ �� ��������� ����������
@@ -114,7 +135,6 @@ namespace TowerDefense
             
             if (towerScript != null)
             {
-                
                 towerScript.InitTurretSpecificSettings(towerEnum, tower.Radius);
             }
                 

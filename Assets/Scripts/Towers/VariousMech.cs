@@ -21,7 +21,7 @@ namespace Towers.std
 
         public virtual void OnEnemyKilled()
         {
-           
+            TDPlayer.Instance.ChangeTotalKilledCount(DPSGlobalManager.TotalKilledByAllTowers);
         }
 
         public abstract void UseSpecificMechanic(TurretProperties turretProperties);
@@ -34,7 +34,7 @@ namespace Towers.std
 
         //public abstract void TryCreateParticle(Transform target);
 
-        public virtual void IncreaseDamage()
+        public virtual void IncreaseDamage(int CurrentUpgrade)
         {
             
         }

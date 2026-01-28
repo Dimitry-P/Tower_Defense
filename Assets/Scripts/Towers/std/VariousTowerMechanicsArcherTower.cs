@@ -1,4 +1,5 @@
 using SpaceShooter;
+using TowerDefense;
 using UnityEngine;
 
 namespace Towers.std
@@ -13,9 +14,10 @@ namespace Towers.std
             Debug.Log(radiusOfDamage);
             if(destructible != null)
             {
-                destructible.ApplyDamage(baseDamage);
+                destructible.ApplyDamage(baseDamage, this);
             }
         }
+
         public override void UseSpecificMechanic(TurretProperties turretProperties)
         {
             baseDamage = turretProperties.Damage;

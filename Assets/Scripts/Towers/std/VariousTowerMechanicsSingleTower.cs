@@ -23,7 +23,7 @@ namespace Towers.std
         {
             if (destructible == null) return;
 
-            destructible.ApplyDamage(baseDamage);
+            destructible.ApplyDamage(baseDamage, this);
         }
 
         public override void UseSpecificMechanic(TurretProperties turretProperties)

@@ -92,23 +92,7 @@ namespace SpaceShooter
         /// Применение дамага к объекту.
         /// </summary>
         /// <param name="damage"></param>
-        public void ApplyDamage(int damage)
-        {
-            if (m_Indestructible)
-                return;
-            ShowDamage(damage);
-            Debug.Log("DAMAGE;;;;;$$$$$$$$$$$$$$$$$$$$$$$$$$$: " + damage);
-            Debug.Log("было$$$$$$$$$$$$$: " + m_CurrentHitPoints);
-
-            m_CurrentHitPoints -= damage;
-
-            Debug.Log("стало$$$$$$$$$$$$$: " + m_CurrentHitPoints);
-
-            if (m_CurrentHitPoints <= 0)
-            {
-                OnDeath();
-            }  
-        }
+      
 
         //  Новый ApplyDamage — с источником урона - для башни DPS
         public void ApplyDamage(int damage, VariousMech source)
@@ -123,8 +107,8 @@ namespace SpaceShooter
 
             if (m_CurrentHitPoints <= 0)
             {
+                DPSGlobalManager.RegisterKill(lastDamageSource);
                 lastDamageSource?.OnEnemyKilled();
-                DPSGlobalManager.RegisterKill();
                 OnDeath();
             }
         }
@@ -201,12 +185,12 @@ namespace SpaceShooter
 
         private Coroutine poisonCoroutine;
 
-        public void ApplyPoison(int damagePerSecond, float duration)
+        public void ApplyPoison(int damagePerSecond, float duration, VariousMech source)
         {
             if (poisonCoroutine != null)
                 StopCoroutine(poisonCoroutine);
 
-            poisonCoroutine = StartCoroutine(PoisonCoroutine(damagePerSecond, duration));
+            poisonCoroutine = StartCoroutine(PoisonCoroutine(damagePerSecond, duration, source));
             IsPoisoned = false;
         }
         private bool isPoinsoned;
@@ -216,13 +200,13 @@ namespace SpaceShooter
             set {isPoinsoned = value;}
         }
 
-        private IEnumerator PoisonCoroutine(int damage, float duration)
+        private IEnumerator PoisonCoroutine(int damage, float duration, VariousMech source)
         {
             float elapsed = 0f;
 
             while (elapsed < duration)
             {
-                ApplyDamage(damage);
+                ApplyDamage(damage, source);
                 yield return new WaitForSeconds(1f);
                 elapsed += 1f;
             }

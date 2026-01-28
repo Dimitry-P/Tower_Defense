@@ -2,11 +2,17 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using SpaceShooter;
+using Towers.std;
 
 namespace TowerDefense
 {
     public class LevelBoundaryLimiter : MonoBehaviour
     {
+        private VariousMech source;
+        private void Start()
+        {
+            source = GetComponent<VariousMech>();
+        }
         /// <summary>
         /// Ограничитель позиции. Работает в связке со скриптом LevelBoundary если таковой имеется на сцене
         /// </summary>
@@ -50,7 +56,7 @@ namespace TowerDefense
                 }
                 if (LevelBoundary.Instance.LimitMode == LevelBoundary.Mode.Death)
                 {
-                    GetComponent<Destructible>().ApplyDamage(999);
+                    GetComponent<Destructible>().ApplyDamage(999, source);
                     return;
                 }
                 transform.position = pos;

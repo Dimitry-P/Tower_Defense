@@ -1,4 +1,5 @@
 using SpaceShooter;
+using TowerDefense;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -33,7 +34,7 @@ namespace Towers.std
                 {
                     Vector2 targetVector = destr.transform.position - transform.position;
                     if (targetVector.magnitude > m_Radius)continue;
-                    destr.ApplyDamage(baseDamage);
+                    destr.ApplyDamage(baseDamage, this);
                 }
             }
         }

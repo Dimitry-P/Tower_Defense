@@ -8,12 +8,13 @@ namespace Towers.std
     public class VariousTowerMechanicsBossTower : VariousMech
     {
         [Header("Boss Tower Settings")]
-        public int baseDamage = 50;          // базовый урон обычному врагу
+        public int baseDamage;          // базовый урон обычному врагу
         public int bossDamageMultiplier = 5; // урон для босса
 
         [Header("Visual Effect")]
         public float scaleMultiplier = 1.5f;
         public float scaleDuration = 2f;
+        private float m_Radius;
 
         public override void TryApplyDamage(Destructible destructible)
         {
@@ -24,12 +25,12 @@ namespace Towers.std
             if (destructible.IsBoss == true)
             {
                 damageToApply *= bossDamageMultiplier;
-                destructible.ApplyDamage(damageToApply);
+                destructible.ApplyDamage(damageToApply, this);
                 destructible.IsPoisoned = false;
             }
             else
             {
-                destructible.ApplyDamage(damageToApply);
+                destructible.ApplyDamage(damageToApply, this);
                 StartCoroutine(ScaleEnemyTemporary(destructible));
                 destructible.IsPoisoned = true;
             }
@@ -53,9 +54,15 @@ namespace Towers.std
                 visual.localScale = originalScale;
         }
 
+        public override void OnEnemyKilled()
+        {
+            base.OnEnemyKilled();
+        }
+
         public override void UseSpecificMechanic(TurretProperties turretProperties)
         {
-            // Здесь можно добавить уникальную механику башни, например заряд мощного выстрела
+            baseDamage = turretProperties.Damage;
+            m_Radius = tower.Radius;
         }
     }
 }

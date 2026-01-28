@@ -15,12 +15,12 @@ namespace Towers.std
        
         private void OnEnable()
         {
-            DPSGlobalManager.OnDpsUpgrade += IncreaseDamage;
+            DPSGlobalManager.OnKillsChanged += IncreaseDamage;
         }
 
         private void OnDisable()
         {
-            DPSGlobalManager.OnDpsUpgrade -= IncreaseDamage;
+            DPSGlobalManager.OnKillsChanged -= IncreaseDamage;
         }
 
         public override void TryApplyDamage(Destructible destructible)
@@ -42,16 +42,16 @@ namespace Towers.std
             destructible.ApplyDamage(damage, this);
         }
 
-        public override void IncreaseDamage()
+        public override void IncreaseDamage(int CurrentUpgrade)
         {
              damage =
      baseDamage += DPSGlobalManager.CurrentUpgrade * 10;
-
         }
 
         public override void OnEnemyKilled()
         {
-            TDPlayer.Instance.ChangeKilledCount(DPSGlobalManager.TotalKillsByDPSTowers);
+            TDPlayer.Instance.ChangeKilledCount(DPSGlobalManager.KillsByDPSTowers);
+            base.OnEnemyKilled();
         }
 
         public override void UseSpecificMechanic(TurretProperties turretProperties)

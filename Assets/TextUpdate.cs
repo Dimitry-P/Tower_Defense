@@ -9,7 +9,8 @@ namespace TowerDefense
         {
             Gold,
             Life,
-            Killed
+            DPSKilled,
+            TotalKills
         }
         public UpdateSource source = UpdateSource.Life;
         private Text m_text;
@@ -26,8 +27,11 @@ namespace TowerDefense
                 case UpdateSource.Life:
                     TDPlayer.LifeUpdateSubscribe(UpdateText);
                     break;
-                case UpdateSource.Killed:
-                    TDPlayer.KilledEnemiesUpdateSubscribe(UpdateText);
+                case UpdateSource.DPSKilled:
+                    TDPlayer.DPSKilledEnemiesUpdateSubscribe(UpdateText);
+                    break;
+                case UpdateSource.TotalKills:
+                    TDPlayer.TotalKilledEnemiesUpdateSubscribe(UpdateText);
                     break;
             }
         }
@@ -39,12 +43,14 @@ namespace TowerDefense
                 case UpdateSource.Gold:
                     TDPlayer.GoldUpdateUnsubscribe(UpdateText);
                     break;
-
                 case UpdateSource.Life:
                     TDPlayer.LifeUpdateUnsubscribe(UpdateText);
                     break;
-                case UpdateSource.Killed:
-                    TDPlayer.KilledEnemiesUpdateUnSubscribe(UpdateText);
+                case UpdateSource.DPSKilled:
+                    TDPlayer.DPSKilledEnemiesUpdateUnSubscribe(UpdateText);
+                    break;
+                case UpdateSource.TotalKills:
+                    TDPlayer.TotalKilledEnemiesUpdateUnSubscribe(UpdateText);
                     break;
             }
         }
