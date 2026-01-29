@@ -124,8 +124,6 @@ namespace SpaceShooter
             }else
             if (m_Animator != null)
                 m_Animator.speed = 1f;
-            Debug.Log(m_MaxLinearVelocity+ "00000000000000000000000000000000000000000000000000");
-            Debug.Log(m_Rigid.velocity + "1111111111111111111111111111111111111111111111111111111111");
 
             // прибавляем толкающую силу
             m_Rigid.AddForce(m_Thrust * ThrustControl * transform.up * Time.fixedDeltaTime, ForceMode2D.Force);

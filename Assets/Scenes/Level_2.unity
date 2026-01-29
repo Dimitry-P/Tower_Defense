@@ -1447,7 +1447,7 @@ MonoBehaviour:
   m_Ship: {fileID: 0}
   m_PlayerShipPrefab: {fileID: 0}
   m_gold: 2500
-  m_killed: 0
+  m_DPSkilled: 0
   m_Totalkilled: 0
   m_towerPrefab: {fileID: 2985568735566343919, guid: 5842b617235527b469abd486d0575766, type: 3}
 --- !u!114 &649427584

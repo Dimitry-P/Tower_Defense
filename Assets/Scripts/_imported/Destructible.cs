@@ -7,6 +7,7 @@ using Towers.std;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 using static Unity.VisualScripting.Member;
@@ -226,10 +227,19 @@ namespace SpaceShooter
             if (nm == "boss")
             {
                 Debug.Log("You are the winner");
+                GameOver();
+                return;
             } 
                 Destroy(gameObject);
 
             m_EventOnDeath?.Invoke();
+        }
+
+        private void GameOver()
+        {
+            Destroy(gameObject);
+            GameReset.ResetStatics();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
 
         [SerializeField] private UnityEvent m_EventOnDeath;
