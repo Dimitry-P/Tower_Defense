@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cecce1ba669c8b40af673f44fe830db, type: 3}
   m_Name: DoT_tower
   m_EditorClassIdentifier: 
-  goldCost: 70
+  goldCost: 60
   sprite: {fileID: 21300000, guid: d3a2b321ea594a748b31367e1f65e376, type: 3}
   GUISprite: {fileID: 21300000, guid: 872b686bca0b0ad47b6f21c2b8c59d22, type: 3}
   turretProperties: {fileID: 11400000, guid: b40543a6542f7fc4f892567f81e2f5b4, type: 2}
-  radius: 4
+  radius: 1
   type: 1

@@ -788,6 +788,8 @@ MonoBehaviour:
   m_path: {fileID: 57767494}
   m_EnemyAssets:
   - {fileID: 11400000, guid: 5424c0b979d16e94781f191f33d06c26, type: 2}
+  spawnPoint: {fileID: 1924377179}
+  baseTransform: {fileID: 1657230661}
 --- !u!114 &394599051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,7 +797,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394599046}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f419c97acf028924dabcf92f13f78445, type: 3}
   m_Name: 
@@ -809,6 +811,8 @@ MonoBehaviour:
   m_path: {fileID: 57767494}
   m_EnemyAssets:
   - {fileID: 11400000, guid: 726cd6620c9930a47b9e788371877ee5, type: 2}
+  spawnPoint: {fileID: 1924377179}
+  baseTransform: {fileID: 1657230661}
 --- !u!114 &394599052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,7 +820,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394599046}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f419c97acf028924dabcf92f13f78445, type: 3}
   m_Name: 
@@ -830,6 +834,8 @@ MonoBehaviour:
   m_path: {fileID: 1342231172}
   m_EnemyAssets:
   - {fileID: 11400000, guid: d821523b6e40f3e49ae2b554f8ee19d4, type: 2}
+  spawnPoint: {fileID: 57249707}
+  baseTransform: {fileID: 1657230661}
 --- !u!1 &405756843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1452,7 @@ MonoBehaviour:
   m_NumLives: 4
   m_Ship: {fileID: 0}
   m_PlayerShipPrefab: {fileID: 0}
-  m_gold: 100
+  m_gold: 175
   m_DPSkilled: 0
   m_Totalkilled: 0
   m_towerPrefab: {fileID: 2985568735566343919, guid: 5842b617235527b469abd486d0575766, type: 3}

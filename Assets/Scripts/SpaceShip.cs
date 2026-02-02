@@ -59,6 +59,11 @@ namespace SpaceShooter
             set { isFrozen = value; }
         }
 
+        [SerializeField] private Transform targetPoint; // база игрока
+
+        private float startDistance;
+
+
         #region Public API
 
         /// <summary>
@@ -87,7 +92,16 @@ namespace SpaceShooter
             // решается домножением торка на момент инерции
             m_Rigid.inertia = 1;
             m_Animator = GetComponentInChildren<Animator>();
+            // ВАЖНО
+            if (targetPoint != null)
+                startDistance = Vector2.Distance(transform.position, targetPoint.position);
             //InitOffensive();
+        }
+
+        public void SetTargetPoint(Transform target)
+        {
+            targetPoint = target;
+            startDistance = Vector2.Distance(transform.position, targetPoint.position);
         }
 
         private float timer = 7f;
@@ -104,6 +118,13 @@ namespace SpaceShooter
             }
             UpdateRigidbody();
             //UpdateEnergyRegen();
+
+            // ВОТ ОНО
+            if (targetPoint != null && startDistance > 0f)
+            {
+                float currentDistance = Vector2.Distance(transform.position, targetPoint.position);
+                PathProgress = Mathf.Clamp01(1f - currentDistance / startDistance);
+            }
         }
 
         #endregion

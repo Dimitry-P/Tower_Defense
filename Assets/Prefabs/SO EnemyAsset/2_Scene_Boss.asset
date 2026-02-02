@@ -17,9 +17,9 @@ MonoBehaviour:
   spriteScale: {x: 0.2, y: 0.2}
   animations: {fileID: 9100000, guid: 3f394212458edbb4f8cf93bfebaf225f, type: 2}
   nameOfEnemy: boss
-  moveSpeed: 0.8
+  moveSpeed: 0.3
   isBoss: 1
-  hp: 1500
+  hp: 180
   radius: 1
   damage: 10
   gold: 100

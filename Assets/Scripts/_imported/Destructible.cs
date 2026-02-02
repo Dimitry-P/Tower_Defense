@@ -78,7 +78,11 @@ namespace SpaceShooter
         private void OnDestroy()
         {
             _hitByTowers.Clear();
+            IsDestroyed = true;
         }
+
+        public bool IsDestroyed { get; private set; }
+
 
         protected virtual void Start()
         {

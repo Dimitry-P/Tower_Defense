@@ -43,10 +43,13 @@ namespace TowerDefense
 
         private Destructible EnemyForSingleTower(List<Destructible> allTargets)
         {
+            Debug.Log("Check targets: " + allTargets.Count);
             Destructible best = null;
             float maxProgress = -1f;
             foreach (var e in allTargets)
             {
+                float dist = Vector3.Distance(transform.position, e.transform.position);
+                Debug.Log($"Enemy dist={dist}, progress={e.PathProgress}");
                 //if (e.IsPoisoned && _variousMech) continue;
                 if (Vector2.Distance(transform.position, e.transform.position) > m_Radius) continue;
                 if (e.PathProgress > maxProgress)
@@ -55,6 +58,7 @@ namespace TowerDefense
                     best = e;
                 }
             }
+            Debug.Log("Selected target: " + best);
             return best;
         }
 
@@ -101,8 +105,12 @@ namespace TowerDefense
                             allTargets.Add(dest);
                         }
                     }
-
-                    target = EnemyForSingleTower(allTargets);
+                    // <-- Вставляем новый код выбора цели -->
+                    Destructible bestTarget = EnemyForSingleTower(allTargets);
+                    if (bestTarget != null)
+                    {
+                        target = bestTarget;
+                    }
                 }
                 else
                 {
@@ -122,6 +130,8 @@ namespace TowerDefense
             if (target != null)
             {
                 Vector2 direction = (target.transform.position - transform.position).normalized;
+
+                Debug.Log($"[Tower] Shooting at enemy: {target.name}, progress={target.PathProgress}, dist={Vector2.Distance(transform.position, target.transform.position)}");
 
                 foreach (var turret in turrets)
                 {

@@ -17,7 +17,6 @@ namespace TowerDefense
             Debug.Log(gameObject.name + " UPDATE");
         }
 
-
         public void SetPath(Path newPath)
         {
             m_path = newPath;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace SpaceShooter
 {
@@ -349,6 +350,13 @@ namespace SpaceShooter
 
             foreach (var v in Destructible.AllDestructibles)
             {
+                if (v == null) continue;
+
+                var d = v.GetComponent<Destructible>();
+                if (d == null) continue;
+
+                if (d.IsDestroyed) continue; // если есть такой флаг
+
                 if (v.GetComponent<SpaceShip>() == m_SpaceShip)
                     continue;
 
