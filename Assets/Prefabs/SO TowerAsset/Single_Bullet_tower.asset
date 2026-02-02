@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cecce1ba669c8b40af673f44fe830db, type: 3}
   m_Name: Single_Bullet_tower
   m_EditorClassIdentifier: 
-  goldCost: 15
+  goldCost: 35
   sprite: {fileID: 21300000, guid: f431b3794f997df47b641996756709da, type: 3}
   GUISprite: {fileID: 21300000, guid: 872b686bca0b0ad47b6f21c2b8c59d22, type: 3}
   turretProperties: {fileID: 11400000, guid: 7de524bdcd51c8442bcfe328cbc060e1, type: 2}
-  radius: 9
+  radius: 3.5
   type: 6

@@ -43,6 +43,8 @@ namespace SpaceShooter
         /// </summary>
         private SpaceShip m_Ship;
 
+        
+
 
         #region Unity events
 
@@ -69,7 +71,7 @@ namespace SpaceShooter
             _towerRadius = towerRadius;
         }
 
-        private Tower tow;
+        public Tower tow;
         public void Init(Tower tower)
         {
             tow = tower;
@@ -85,7 +87,10 @@ namespace SpaceShooter
                 return;
 
             if (m_TurretProperties == null)
+            {
                 return;
+            }
+               
 
 
             if (m_Ship)
@@ -104,7 +109,7 @@ namespace SpaceShooter
 
             // инстанцируем прожектайл который уже сам полетит.
             projectile = Instantiate(m_TurretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
-                
+
             projectile.transform.up = transform.up;
 
             projectile.Init(tow);

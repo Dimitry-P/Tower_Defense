@@ -12,6 +12,7 @@ using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 using static Unity.VisualScripting.Member;
 
+
 namespace SpaceShooter
 {
     /// <summary>
@@ -47,12 +48,36 @@ namespace SpaceShooter
 
         private bool m_isBoss;
 
-        private VariousMech lastDamageSource;
+        public VariousMech lastDamageSource;
 
         public bool IsBoss 
         {
             get {  return m_isBoss; } 
             set { m_isBoss = value; }
+        }
+
+        private void Awake()
+        {
+            isPoinsoned = false;
+        }
+
+        public VariousMech PoisonSource;
+
+        // Новое поле — множество башен, которые уже попали в этого врага
+        private HashSet<Tower> _hitByTowers = new HashSet<Tower>();
+
+        // Методы для работы с этим множеством
+        public bool WasAlreadyHitBy(Tower tower) => _hitByTowers.Contains(tower);
+
+        public void RegisterHitFromTower(Tower tower)
+        {
+            _hitByTowers.Add(tower);
+        }
+
+        // Желательно очищать при смерти/удалении, но не обязательно
+        private void OnDestroy()
+        {
+            _hitByTowers.Clear();
         }
 
         protected virtual void Start()
@@ -76,10 +101,10 @@ namespace SpaceShooter
             m_AllDestructibles.Add(this);
         }
 
-        protected virtual void OnDestroy()
-        {
-            m_AllDestructibles.Remove(this);
-        }
+        //protected virtual void OnDestroy()
+        //{
+        //    m_AllDestructibles.Remove(this);
+        //}
 
         #endregion 
 
@@ -152,8 +177,6 @@ namespace SpaceShooter
             }
         }
 
-
-
         public void AddHitPoints(float hp)
         {
             m_CurrentHitPoints = (int)Mathf.Clamp(m_CurrentHitPoints + hp, 0, m_HitPoints);
@@ -216,7 +239,7 @@ namespace SpaceShooter
 
         protected virtual void OnDeath()
         {
-            if(m_ExplosionPrefab != null)
+            if (m_ExplosionPrefab != null)
             {
                 var explosion = Instantiate(m_ExplosionPrefab.gameObject);
                 explosion.transform.position = transform.position;

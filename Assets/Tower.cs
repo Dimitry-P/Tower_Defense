@@ -4,7 +4,9 @@ using System.Linq;
 using Towers;
 using Towers.std;
 using UnityEngine;
+using static SpaceShooter.Destructible;
 using static UnityEngine.GraphicsBuffer;
+
 
 namespace TowerDefense
 {
@@ -45,7 +47,7 @@ namespace TowerDefense
             float maxProgress = -1f;
             foreach (var e in allTargets)
             {
-                if (e.IsPoisoned) continue;
+                //if (e.IsPoisoned && _variousMech) continue;
                 if (Vector2.Distance(transform.position, e.transform.position) > m_Radius) continue;
                 if (e.PathProgress > maxProgress)
                 {
@@ -58,6 +60,13 @@ namespace TowerDefense
 
         public Projectile projectile;
 
+        public VariousMech thisTowerHitEnemy;
+
+        public void WasHitByThisTower(VariousMech d)
+        {
+            thisTowerHitEnemy = d;
+        }
+
         private void Update()
         {
             timer += Time.deltaTime;
@@ -66,47 +75,60 @@ namespace TowerDefense
             {
                 Vector2 targetVector = target.transform.position - transform.position;
 
-                if (target.IsPoisoned || targetVector.magnitude > m_Radius)
+                //Основная логика не выбирать врага, которого эта башня уже била.
+                if (targetVector.magnitude > m_Radius ||
+                    target.WasAlreadyHitBy(this))     // ключевое условие)
                 {
-                    // Сбрасываем цель, если она помечена или вышла за радиус
+                    // Сбрасываем цель
                     target = null;
+                }
+            }
+
+            // 2. Если цели нет ищем новую
+            if (target == null)
+            {
+                // --- Если target == null или был сброшен, ищем нового врага ---
+                if (isSingleTower)
+                {
+                    Collider2D[] enters = Physics2D.OverlapCircleAll(transform.position, m_Radius);
+                    allTargets.Clear();
+
+                    foreach (var col in enters)
+                    {
+                        var dest = col.GetComponentInParent<Destructible>();
+                        if (dest != null && !dest.WasAlreadyHitBy(this))  // не берём тех, кого уже били
+                        {
+                            allTargets.Add(dest);
+                        }
+                    }
+
+                    target = EnemyForSingleTower(allTargets);
                 }
                 else
                 {
-                    // Стреляем в текущую цель
-                    foreach (var turret in turrets)
+                    var enter = Physics2D.OverlapCircle(transform.position, m_Radius);
+                    if (enter != null)
                     {
-                        turret.transform.up = targetVector;
-                        turret.Init(this);
-                        turret.Fire();
+                        var candidate = enter.GetComponentInParent<Destructible>();
+                        if (candidate != null && !candidate.WasAlreadyHitBy(this))
+                        {
+                            target = candidate;
+                        }
                     }
-
-                    // Всё ок, не ищем новую цель
-                    return;
                 }
             }
 
-            // --- Если target == null или был сброшен, ищем нового врага ---
-            if (isSingleTower)
+            // 3. Если цель найдена поворачиваем и стреляем
+            if (target != null)
             {
-                Collider2D[] enters = Physics2D.OverlapCircleAll(transform.position, m_Radius);
-                allTargets.Clear();
+                Vector2 direction = (target.transform.position - transform.position).normalized;
 
-                if (enters != null)
+                foreach (var turret in turrets)
                 {
-                    foreach (var destruct in enters)
-                    {
-                        var d = destruct.GetComponentInParent<Destructible>();
-                        if (d != null)
-                            allTargets.Add(d);
-                    }
+                    turret.transform.up = direction;
+                    turret.Init(this);
+                    turret.Fire();               // здесь или внутри Turret должна быть логика попадания
                 }
-                target = EnemyForSingleTower(allTargets);
-            }
-            else
-            {
-                var enter = Physics2D.OverlapCircle(transform.position, m_Radius);
-                if(enter != null)target = enter.GetComponentInParent<Destructible>();
             }
         }
 

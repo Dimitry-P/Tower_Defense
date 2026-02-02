@@ -39,8 +39,11 @@ namespace SpaceShooter
         private float m_Timer;
         private EVariousMech _variousMechType; 
         public float _towerRadius;
-        private VariousMech _variousMech;
-      
+        public VariousMech _variousMech;
+
+        public Turret turret;
+       
+
         //private Destructible theHitTarget;
         //public VariousTowerMechanics variousTowerMechanics;
 
@@ -65,10 +68,14 @@ namespace SpaceShooter
           " | layer: " + hit.collider.gameObject.layer);
                 var destructible = hit.collider.transform.root.GetComponent<Destructible>();
 
-                if (destructible != null && destructible.gameObject != m_Parent.gameObject)
+                if (destructible != null && destructible.gameObject != m_Parent?.gameObject)
                 {
+                    // здесь наносим урон / эффект
                     _variousMech?.TryApplyDamage(destructible);
-                    
+
+                    // добавляем ЭТУ строку — регистрируем попадание от конкретной башни
+                    destructible.RegisterHitFromTower(_ownerTower);
+
                     int hitLayer = hit.collider.transform.root.gameObject.layer;
 
                     if (hitLayer == LayerMask.NameToLayer("Enemy"))
@@ -152,8 +159,6 @@ namespace SpaceShooter
         {
             _ownerTower = tower;
         }
-
-        public Turret turret;
 
         public void InitTurretSpecificSettings(EVariousMech variousType, float towerRadius, TurretProperties turretProperties)
         {

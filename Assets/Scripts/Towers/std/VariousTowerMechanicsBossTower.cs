@@ -1,7 +1,8 @@
-using System.Collections;
-using UnityEngine;
-using TowerDefense;
 using SpaceShooter;
+using System.Collections;
+using TowerDefense;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Towers.std
 {
@@ -13,13 +14,13 @@ namespace Towers.std
 
         [Header("Visual Effect")]
         public float scaleMultiplier = 1.5f;
-        public float scaleDuration = 2f;
+        public float scaleDuration = 20f;
         private float m_Radius;
 
         public override void TryApplyDamage(Destructible destructible)
         {
             if (destructible == null) return;
-            if (destructible.IsPoisoned) return;
+            if (destructible.IsPoisoned == true) return;
             int damageToApply = baseDamage;
             // Определяем, босс это или нет
             if (destructible.IsBoss == true)
@@ -33,6 +34,7 @@ namespace Towers.std
                 destructible.ApplyDamage(damageToApply, this);
                 StartCoroutine(ScaleEnemyTemporary(destructible));
                 destructible.IsPoisoned = true;
+                destructible.PoisonSource = this;
             }
         }
 

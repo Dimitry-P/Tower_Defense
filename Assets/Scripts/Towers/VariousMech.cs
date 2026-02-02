@@ -11,6 +11,7 @@ namespace Towers.std
     {
         public int _ammoUs;
         protected Tower tower;
+        protected Turret turret;
         protected Projectile projectile;
 
         internal virtual void Init(Tower owner)
