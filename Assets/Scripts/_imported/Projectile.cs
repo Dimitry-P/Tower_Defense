@@ -42,7 +42,8 @@ namespace SpaceShooter
         public VariousMech _variousMech;
 
         public Turret turret;
-       
+
+        private bool hasHit = false;
 
         //private Destructible theHitTarget;
         //public VariousTowerMechanics variousTowerMechanics;
@@ -64,6 +65,9 @@ namespace SpaceShooter
             // disable queries start in collider
             if (hit)
             {
+                if (hasHit) return;
+                hasHit = true;
+                Debug.Log($"HIT frame={Time.frameCount} collider={hit.collider.name}");
                 Debug.Log("ПУЛЯ СТОЛКНУЛАСЬ С: " + hit.collider.gameObject.name +
           " | layer: " + hit.collider.gameObject.layer);
                 var destructible = hit.collider.transform.root.GetComponent<Destructible>();
@@ -97,15 +101,19 @@ namespace SpaceShooter
                             Player.Instance.AddScore(destructible.ScoreValue);
                         }
                     }
-                }
+                return; // ВАЖНО: прерываем Update
+            }
 
             m_Timer += Time.deltaTime;
 
             if(m_Timer > m_Lifetime)
+            {
                 Destroy(gameObject);
-
+            }
+            if (!hasHit)
+            {
                 transform.position += new Vector3(step.x, step.y, 0) * 0.5f;
-                Debug.Log(transform.position + "44444");
+            }
         }
 
         private void OnProjectileLifeEnd(Collider2D collider, Vector2 pos)

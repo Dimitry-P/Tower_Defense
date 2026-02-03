@@ -107,6 +107,18 @@ namespace SpaceShooter
         private float timer = 7f;
         private void FixedUpdate()
         {
+            if (SpeedMultiplier < 1f)
+            {
+                slowTimer += Time.fixedDeltaTime;
+
+                if (slowTimer >= slowDuration)
+                {
+                    SpeedMultiplier = 1f;
+                    slowTimer = 0f;
+                    slowDuration = 0f;
+                }
+            }
+
             if (isFrozen)
             {
                 timer -= Time.deltaTime;
@@ -133,6 +145,17 @@ namespace SpaceShooter
         /// Метод добавления сил кораблю для движения.
         /// </summary>
 
+        public float SpeedMultiplier { get; private set; } = 1f;
+        private float slowTimer = 0f;
+        private float slowDuration = 0f;
+
+        public void SetSpeedMultiplier(float value, float duration)
+        {
+            SpeedMultiplier = Mathf.Clamp(value, 0f, 1f);
+            slowDuration = duration;
+            slowTimer = 0f;
+        }
+       
         private void UpdateRigidbody()
         {
             if (isFrozen)
@@ -147,7 +170,7 @@ namespace SpaceShooter
                 m_Animator.speed = 1f;
 
             // прибавляем толкающую силу
-            m_Rigid.AddForce(m_Thrust * ThrustControl * transform.up * Time.fixedDeltaTime, ForceMode2D.Force);
+            m_Rigid.AddForce(m_Thrust * ThrustControl * SpeedMultiplier * transform.up * Time.fixedDeltaTime, ForceMode2D.Force);
 
             // линейное вязкое трение -V * C
             m_Rigid.AddForce(-m_Rigid.velocity * (m_Thrust / m_MaxLinearVelocity) * Time.fixedDeltaTime, ForceMode2D.Force);

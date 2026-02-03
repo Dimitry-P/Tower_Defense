@@ -135,6 +135,9 @@ MonoBehaviour:
   m_Lifetime: 88
   m_Damage: 3
   m_ImpactEffectPrefab: {fileID: 0}
+  _towerRadius: 0
+  _variousMech: {fileID: 0}
+  turret: {fileID: 0}
 --- !u!50 &8601925977732547634
 Rigidbody2D:
   serializedVersion: 4

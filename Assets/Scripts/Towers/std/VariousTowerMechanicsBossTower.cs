@@ -22,20 +22,11 @@ namespace Towers.std
             if (destructible == null) return;
             if (destructible.IsPoisoned == true) return;
             int damageToApply = baseDamage;
-            // Определяем, босс это или нет
-            if (destructible.IsBoss == true)
-            {
-                damageToApply *= bossDamageMultiplier;
-                destructible.ApplyDamage(damageToApply, this);
-                destructible.IsPoisoned = false;
-            }
-            else
-            {
-                destructible.ApplyDamage(damageToApply, this);
-                StartCoroutine(ScaleEnemyTemporary(destructible));
-                destructible.IsPoisoned = true;
-                destructible.PoisonSource = this;
-            }
+           
+            destructible.ApplyDamage(damageToApply, this);
+            StartCoroutine(ScaleEnemyTemporary(destructible));
+            destructible.IsPoisoned = true;
+            destructible.PoisonSource = this;
         }
 
         private IEnumerator ScaleEnemyTemporary(Destructible destructible)

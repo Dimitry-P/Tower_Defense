@@ -4,6 +4,15 @@ using UnityEngine.UI;
 using System;
 using Unity.VisualScripting;
 
+//Ведь по сути что у меня происходит в коде: когда игрок кликает мышкой по сцене,
+//вызывается метод TryBuild, который создает башню (для башни есть префаб),
+//а в скрипте башни в Awake уже имеется массив public Turret[] turrets,
+//который фактически состоит из одного элемента Turret.
+//При создании башни мы здесь же в скрипте Tower проходимся по массиву turrets,
+//для элемента которого вызываем метод из скрипта Turret,
+//и в этом методе я задаю для переменной _variousMechType тип конкретной башни (по enum),
+//и дальше уже при стрельбе этот тип башни (перем. _variousMechType) передаётся в скрипт Projectile. 
+
 namespace TowerDefense
 {
     public class TowerBuyControl : MonoBehaviour

@@ -143,7 +143,6 @@ namespace SpaceShooter
             }
         }
 
-
         public GameObject damagePopupPrefab;
 
         private int damagePopupIndex = 0;

@@ -17,46 +17,31 @@ namespace Towers.std
 
         public override void TryApplyDamage(Destructible destructible)
         {
+            Debug.Log("Enemy goes slower");
             if (destructible == null) return;
-            if (destructible.IsPoisoned) return;
-
+            
             var ship = destructible.GetComponent<SpaceShip>();
             //float initialSpeed = ship.MaxLinearVelocity;
             //ship.MaxLinearVelocity *= 0.1f;
             //StartCoroutine(RemoveAfterTime(ship, duration, destructible, initialSpeed));
             //destructible.IsPoisoned = true;
-            StartCoroutine(SlowCoroutine(ship, duration, destructible));
+            if (ship == null) return;
+
+            ship.SetSpeedMultiplier(0.3f, duration);
 
             destructible.IsPoisoned = true;
+            destructible.ApplyDamage(baseDamage, this);
         }
 
-        private IEnumerator SlowCoroutine(SpaceShip ship, float duration, Destructible destructible)
-        {
-            float originalSpeed = ship.MaxLinearVelocity;
+        //private IEnumerator SlowCoroutine(SpaceShip ship, float duration)
+        //{
+        //    ship.SetSpeedMultiplier(0.3f, 5f);
 
-            // Замедляем лимит
-            ship.MaxLinearVelocity /= 4f;
+        //    yield return new WaitForSeconds(duration);
 
-            try
-            {
-                yield return new WaitForSecondsRealtime(duration);
-            }
-            finally
-            {
-                if (ship != null)
-                {
-                    ship.MaxLinearVelocity = originalSpeed;
-
-                    if (ship.Rigid != null && ship.Rigid.velocity.magnitude > 0f)
-                    {
-                        ship.Rigid.velocity =
-                            ship.Rigid.velocity.normalized * ship.MaxLinearVelocity;
-                    }
-                }
-                if (destructible != null)
-                    destructible.IsPoisoned = false;
-            }
-        }
+        //    //if (ship != null)
+        //    //    ship.SetSpeedMultiplier(1f);
+        //}
 
 
         //private IEnumerator SlowCoroutine(SpaceShip ship, float duration, Destructible destructible)
@@ -82,7 +67,7 @@ namespace Towers.std
 
         public override void UseSpecificMechanic(TurretProperties turretProperties)
         {
-           
+            baseDamage = turretProperties.Damage;
         }
     }
 }
