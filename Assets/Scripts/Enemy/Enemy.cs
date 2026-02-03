@@ -1,4 +1,4 @@
-using SpaceShooter;
+п»їusing SpaceShooter;
 using System;
 using TowerDefense;
 using UnityEditor;
@@ -18,7 +18,7 @@ namespace TowerDefense
         public string enemyName;
        
 
-        public void Use(EnemyAsset asset)//эта функция осущ-ет подцепление настроек для врагов.
+        public void Use(EnemyAsset asset)//СЌС‚Р° С„СѓРЅРєС†РёСЏ РѕСЃСѓС‰-РµС‚ РїРѕРґС†РµРїР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РґР»СЏ РІСЂР°РіРѕРІ.
         {
            
             var destructible = gameObject.GetComponent<Destructible>();
@@ -32,9 +32,9 @@ namespace TowerDefense
             
             sr.sprite = asset.sprite;
 
-            //Для того, чтобы можно было переключать ассеты в инспекторе префаба, нужно
-            //закомментить передачу анимации:
-            //Анимация перекрывает спрайт, поэтому тут мы её не передаём
+            //Р”Р»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ РїРµСЂРµРєР»СЋС‡Р°С‚СЊ Р°СЃСЃРµС‚С‹ РІ РёРЅСЃРїРµРєС‚РѕСЂРµ РїСЂРµС„Р°Р±Р°, РЅСѓР¶РЅРѕ
+            //Р·Р°РєРѕРјРјРµРЅС‚РёС‚СЊ РїРµСЂРµРґР°С‡Сѓ Р°РЅРёРјР°С†РёРё:
+            //РђРЅРёРјР°С†РёСЏ РїРµСЂРµРєСЂС‹РІР°РµС‚ СЃРїСЂР°Р№С‚, РїРѕСЌС‚РѕРјСѓ С‚СѓС‚ РјС‹ РµС‘ РЅРµ РїРµСЂРµРґР°С‘Рј
             sr.GetComponent<Animator>().runtimeAnimatorController = asset.animations;
 
             GetComponent<SpaceShip>().Use(asset);
@@ -53,11 +53,11 @@ namespace TowerDefense
         public void GivePlayerGold()
         {
             TDPlayer.Instance.ChangeGold(m_gold);
-            //(Player.Instance as TDPlayer).ChangeGold(m_gold);//достань игрока, представь его в виде класса TDPlayer и измени на нём золото.
-            //Т.е. когда запускаем сцену, TDPlayer сохраняется в Player.Instance, но Player.Instance - это переменная типа Player,
-            //поэтому просто так достать нельзя, когда он достаётся, он забывает, что он - TDPlayer. 
-            //но мы ему напоминаем, что он - TDPlayer вот этой строкой: Player.Instance as TDPlayer.
-            //после чего мы меняем на нём золото.
+            //(Player.Instance as TDPlayer).ChangeGold(m_gold);//РґРѕСЃС‚Р°РЅСЊ РёРіСЂРѕРєР°, РїСЂРµРґСЃС‚Р°РІСЊ РµРіРѕ РІ РІРёРґРµ РєР»Р°СЃСЃР° TDPlayer Рё РёР·РјРµРЅРё РЅР° РЅС‘Рј Р·РѕР»РѕС‚Рѕ.
+            //Рў.Рµ. РєРѕРіРґР° Р·Р°РїСѓСЃРєР°РµРј СЃС†РµРЅСѓ, TDPlayer СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ Player.Instance, РЅРѕ Player.Instance - СЌС‚Рѕ РїРµСЂРµРјРµРЅРЅР°СЏ С‚РёРїР° Player,
+            //РїРѕСЌС‚РѕРјСѓ РїСЂРѕСЃС‚Рѕ С‚Р°Рє РґРѕСЃС‚Р°С‚СЊ РЅРµР»СЊР·СЏ, РєРѕРіРґР° РѕРЅ РґРѕСЃС‚Р°С‘С‚СЃСЏ, РѕРЅ Р·Р°Р±С‹РІР°РµС‚, С‡С‚Рѕ РѕРЅ - TDPlayer. 
+            //РЅРѕ РјС‹ РµРјСѓ РЅР°РїРѕРјРёРЅР°РµРј, С‡С‚Рѕ РѕРЅ - TDPlayer РІРѕС‚ СЌС‚РѕР№ СЃС‚СЂРѕРєРѕР№: Player.Instance as TDPlayer.
+            //РїРѕСЃР»Рµ С‡РµРіРѕ РјС‹ РјРµРЅСЏРµРј РЅР° РЅС‘Рј Р·РѕР»РѕС‚Рѕ.
         }
     }
     [CustomEditor(typeof(Enemy))]

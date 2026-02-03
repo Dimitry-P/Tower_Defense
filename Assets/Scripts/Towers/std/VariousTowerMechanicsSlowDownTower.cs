@@ -1,4 +1,4 @@
-using SpaceShooter;
+п»їusing SpaceShooter;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace Towers.std
     {
         private int baseDamage;
 
-        public float duration = 5f;     // на 2 секунды
+        public float duration = 5f;     // РЅР° 2 СЃРµРєСѓРЅРґС‹
 
         public override void TryApplyDamage(Destructible destructible)
         {

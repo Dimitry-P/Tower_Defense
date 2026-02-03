@@ -1,4 +1,4 @@
-using SpaceShooter;
+п»їusing SpaceShooter;
 using System.Collections;
 using TowerDefense;
 using UnityEngine;
@@ -9,8 +9,8 @@ namespace Towers.std
     public class VariousTowerMechanicsBossTower : VariousMech
     {
         [Header("Boss Tower Settings")]
-        public int baseDamage;          // базовый урон обычному врагу
-        public int bossDamageMultiplier = 5; // урон для босса
+        public int baseDamage;          // Р±Р°Р·РѕРІС‹Р№ СѓСЂРѕРЅ РѕР±С‹С‡РЅРѕРјСѓ РІСЂР°РіСѓ
+        public int bossDamageMultiplier = 5; // СѓСЂРѕРЅ РґР»СЏ Р±РѕСЃСЃР°
 
         [Header("Visual Effect")]
         public float scaleMultiplier = 1.5f;

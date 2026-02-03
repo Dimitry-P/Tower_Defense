@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using SpaceShooter;
@@ -14,7 +14,7 @@ namespace TowerDefense
             source = GetComponent<VariousMech>();
         }
         /// <summary>
-        /// Ограничитель позиции. Работает в связке со скриптом LevelBoundary если таковой имеется на сцене
+        /// РћРіСЂР°РЅРёС‡РёС‚РµР»СЊ РїРѕР·РёС†РёРё. Р Р°Р±РѕС‚Р°РµС‚ РІ СЃРІСЏР·РєРµ СЃРѕ СЃРєСЂРёРїС‚РѕРј LevelBoundary РµСЃР»Рё С‚Р°РєРѕРІРѕР№ РёРјРµРµС‚СЃСЏ РЅР° СЃС†РµРЅРµ
         /// </summary>
         /// 
         private void Update()
@@ -24,7 +24,7 @@ namespace TowerDefense
             var size = LevelBoundary.Instance.SizeForLBLimiter;
 
             Vector3 pos = transform.position;
-            Debug.Log("Позиция: " + transform.position + " / Размеры ограничителя: " + size);
+            Debug.Log("РџРѕР·РёС†РёСЏ: " + transform.position + " / Р Р°Р·РјРµСЂС‹ РѕРіСЂР°РЅРёС‡РёС‚РµР»СЏ: " + size);
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             float length = transform.GetChild(0).GetComponent<SpriteRenderer>().bounds.size.y;
 
@@ -36,21 +36,21 @@ namespace TowerDefense
             {
                 if (LevelBoundary.Instance.LimitMode == LevelBoundary.Mode.Limit)
                 {
-                    // Ограничиваем по X
+                    // РћРіСЂР°РЅРёС‡РёРІР°РµРј РїРѕ X
                     if (Mathf.Abs(pos.x) > size.x / 2f)
                         pos.x = Mathf.Sign(pos.x) * size.x / 2f;
 
-                    // Ограничиваем по Y
+                    // РћРіСЂР°РЅРёС‡РёРІР°РµРј РїРѕ Y
                     if (Mathf.Abs(pos.y) > size.y / 2f)
                         pos.y = Mathf.Sign(pos.y) * size.y / 2f;
                 }
                 if (LevelBoundary.Instance.LimitMode == LevelBoundary.Mode.Teleport)
                 {
-                    // Телепортируем по X
+                    // РўРµР»РµРїРѕСЂС‚РёСЂСѓРµРј РїРѕ X
                     if (Mathf.Abs(pos.x) > size.x / 2f)
                         pos.x = -pos.x;
 
-                    // Телепортируем по Y
+                    // РўРµР»РµРїРѕСЂС‚РёСЂСѓРµРј РїРѕ Y
                     if (Mathf.Abs(pos.y) > size.y / 2f)
                         pos.y = -pos.y;
                 }

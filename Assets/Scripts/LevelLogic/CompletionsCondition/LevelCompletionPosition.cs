@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
 using UnityEditor;
@@ -32,9 +32,9 @@ namespace TowerDefense
             Handles.color = GizmoColor;
             Handles.DrawSolidDisc(transform.position, transform.forward, m_Radius);
         }
-        //        Этот метод вызывается только в редакторе, когда ты выделяешь объект с этим скриптом.
-        //        Рисует плоский зелёный круг в сцене для наглядности.
-        //        transform.forward — нормаль к плоскости круга (в 2D обычно это z-ось).
+        //        Р­С‚РѕС‚ РјРµС‚РѕРґ РІС‹Р·С‹РІР°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ РІ СЂРµРґР°РєС‚РѕСЂРµ, РєРѕРіРґР° С‚С‹ РІС‹РґРµР»СЏРµС€СЊ РѕР±СЉРµРєС‚ СЃ СЌС‚РёРј СЃРєСЂРёРїС‚РѕРј.
+        //        Р РёСЃСѓРµС‚ РїР»РѕСЃРєРёР№ Р·РµР»С‘РЅС‹Р№ РєСЂСѓРі РІ СЃС†РµРЅРµ РґР»СЏ РЅР°РіР»СЏРґРЅРѕСЃС‚Рё.
+        //        transform.forward вЂ” РЅРѕСЂРјР°Р»СЊ Рє РїР»РѕСЃРєРѕСЃС‚Рё РєСЂСѓРіР° (РІ 2D РѕР±С‹С‡РЅРѕ СЌС‚Рѕ z-РѕСЃСЊ).
 #endif
     }
 }

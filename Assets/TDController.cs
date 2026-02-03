@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.Events;
 using SpaceShooter;
 
@@ -13,7 +13,7 @@ namespace TowerDefense
 
         protected override void Update()
         {
-            base.Update(); // это вызовет Update из AIController
+            base.Update(); // СЌС‚Рѕ РІС‹Р·РѕРІРµС‚ Update РёР· AIController
             Debug.Log(gameObject.name + " UPDATE");
         }
 

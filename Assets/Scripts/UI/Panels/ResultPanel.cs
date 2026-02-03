@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
@@ -31,8 +31,8 @@ namespace TowerDefense
         private Transform child;
 
 
-        //Задача у ResultPanel включаться, когда мы прошли уровень или проиграли.
-        //Для этого в Старте подписываюсь на 2 события: 
+        //Р—Р°РґР°С‡Р° Сѓ ResultPanel РІРєР»СЋС‡Р°С‚СЊСЃСЏ, РєРѕРіРґР° РјС‹ РїСЂРѕС€Р»Рё СѓСЂРѕРІРµРЅСЊ РёР»Рё РїСЂРѕРёРіСЂР°Р»Рё.
+        //Р”Р»СЏ СЌС‚РѕРіРѕ РІ РЎС‚Р°СЂС‚Рµ РїРѕРґРїРёСЃС‹РІР°СЋСЃСЊ РЅР° 2 СЃРѕР±С‹С‚РёСЏ: 
         private void Start()
         {
             gameObject.SetActive(false);
@@ -41,11 +41,11 @@ namespace TowerDefense
             if (root != null)
             {
                 child = root.transform.GetChild(3);
-                Debug.Log("Первый ребёнок: " + child.name);
+                Debug.Log("РџРµСЂРІС‹Р№ СЂРµР±С‘РЅРѕРє: " + child.name);
             }
             else
             {
-                Debug.LogError("Переменная root не назначена!");
+                Debug.LogError("РџРµСЂРµРјРµРЅРЅР°СЏ root РЅРµ РЅР°Р·РЅР°С‡РµРЅР°!");
             }
         }
 
@@ -57,7 +57,7 @@ namespace TowerDefense
 
         private void OnLevelPassed()
         {
-           gameObject.SetActive(true);// Нам нужно включить наш объект
+           gameObject.SetActive(true);// РќР°Рј РЅСѓР¶РЅРѕ РІРєР»СЋС‡РёС‚СЊ РЅР°С€ РѕР±СЉРµРєС‚
             m_LevelPassed = true;
             FillLevelStatistics();
 
