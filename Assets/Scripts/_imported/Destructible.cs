@@ -291,7 +291,7 @@ namespace SpaceShooter
         #region Score
 
         /// <summary>
-        /// Кол-во очков за уничтожение.
+        /// Кол-во очков за уничтожение. Также проверяю настройку UTF-8
         /// </summary>
         private int m_ScoreValue;
 
