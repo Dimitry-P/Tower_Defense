@@ -1,0 +1,24 @@
+# Всегда считать текстовые файлы текстом
+* text=auto
+
+# C# и Unity
+*.cs     text working-tree-encoding=UTF-8 eol=LF
+*.shader text working-tree-encoding=UTF-8 eol=LF
+*.cginc  text working-tree-encoding=UTF-8 eol=LF
+*.asmdef text working-tree-encoding=UTF-8 eol=LF
+
+# Конфиги
+*.editorconfig text working-tree-encoding=UTF-8 eol=LF
+*.md          text working-tree-encoding=UTF-8 eol=LF
+*.json        text working-tree-encoding=UTF-8 eol=LF
+*.yml         text working-tree-encoding=UTF-8 eol=LF
+
+# Unity meta
+*.meta text eol=LF
+
+# Бинарники — НЕ трогать
+*.png binary
+*.jpg binary
+*.wav binary
+*.mp3 binary
+*.fbx binary
