@@ -25,6 +25,7 @@ namespace Towers.std
                 if (spaceShip != null)
                 {
                     spaceShip.IsFrozen = true;
+                    return;
                 }
             }
         }

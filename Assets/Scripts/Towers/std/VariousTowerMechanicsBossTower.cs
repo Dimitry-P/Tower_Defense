@@ -20,7 +20,7 @@ namespace Towers.std
         public override void TryApplyDamage(Destructible destructible)
         {
             if (destructible == null) return;
-            if (destructible.IsPoisoned == true) return;
+            //if (destructible.IsPoisoned == true) return;
             int damageToApply = baseDamage;
            
             destructible.ApplyDamage(damageToApply, this);
