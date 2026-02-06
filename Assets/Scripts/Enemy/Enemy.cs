@@ -1,6 +1,7 @@
 ﻿using SpaceShooter;
 using System;
 using TowerDefense;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
@@ -24,6 +25,11 @@ namespace TowerDefense
             var destructible = gameObject.GetComponent<Destructible>();
 
             destructible.IsBoss = asset.isBoss;
+
+            if(destructible.IsBoss == true)
+            {
+                destructible.AddComponent<BossSpeedAura>();
+            }
 
             var sr = transform.Find("Sprite").GetComponent<SpriteRenderer>();
               

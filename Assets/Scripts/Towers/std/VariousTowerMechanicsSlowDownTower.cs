@@ -27,7 +27,7 @@ namespace Towers.std
             //destructible.IsPoisoned = true;
             if (ship == null) return;
 
-            ship.SetSpeedMultiplier(0.3f, duration);
+            ship.ApplySlow(0.3f, duration);
 
             destructible.IsPoisoned = true;
             destructible.ApplyDamage(baseDamage, this);

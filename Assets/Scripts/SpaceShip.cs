@@ -60,6 +60,8 @@ namespace SpaceShooter
             set { isFrozen = value; }
         }
 
+        public bool FreezeImmune;
+
         [SerializeField] private Transform targetPoint; // база игрока
 
         private float startDistance;
@@ -78,6 +80,14 @@ namespace SpaceShooter
         public float TorqueControl { get; set; }
 
         #endregion
+
+        private Animator m_Animator;
+
+        private AIController controller;
+        private void Awake()
+        {
+            controller = GetComponent<AIController>();
+        }
 
         #region Unity events
 
@@ -106,17 +116,15 @@ namespace SpaceShooter
         }
 
         private float timer = 7f;
+
         private void FixedUpdate()
         {
-            if (SpeedMultiplier < 1f)
+            if (slowTimer > 0f)
             {
-                slowTimer += Time.fixedDeltaTime;
-
-                if (slowTimer >= slowDuration)
+                slowTimer -= Time.fixedDeltaTime;
+                if (slowTimer <= 0f)
                 {
-                    SpeedMultiplier = 1f;
-                    slowTimer = 0f;
-                    slowDuration = 0f;
+                    slowMultiplier = 1f;
                 }
             }
 
@@ -140,25 +148,11 @@ namespace SpaceShooter
             }
         }
 
-        #endregion
-        private Animator m_Animator;
-        /// <summary>
-        /// Метод добавления сил кораблю для движения.
-        /// </summary>
-
-        public float SpeedMultiplier { get; private set; } = 1f;
-        private float slowTimer = 0f;
-        private float slowDuration = 0f;
-
-        public void SetSpeedMultiplier(float value, float duration)
-        {
-            SpeedMultiplier = Mathf.Clamp(value, 0f, 1f);
-            slowDuration = duration;
-            slowTimer = 0f;
-        }
-       
         private void UpdateRigidbody()
         {
+            if (controller == null)
+                return; // ← КРИТИЧЕСКИ ВАЖНО
+
             if (isFrozen)
             {
                 m_Rigid.velocity = Vector2.zero;
@@ -166,23 +160,69 @@ namespace SpaceShooter
                 if (m_Animator != null)
                     m_Animator.speed = 0f;
                 return;
-            }else
+            }
+            else
             if (m_Animator != null)
                 m_Animator.speed = 1f;
+            Vector2 dir = (controller.PatrolPoint.transform.position - transform.position).normalized;
 
-            // прибавляем толкающую силу
-            m_Rigid.AddForce(m_Thrust * ThrustControl * SpeedMultiplier * transform.up * Time.fixedDeltaTime, ForceMode2D.Force);
+            m_Rigid.velocity = dir * m_MaxLinearVelocity * SpeedMultiplier;
 
-            // линейное вязкое трение -V * C
-            m_Rigid.AddForce(-m_Rigid.velocity * (m_Thrust / m_MaxLinearVelocity) * Time.fixedDeltaTime, ForceMode2D.Force);
-
-
-            // добавляем вращение
-            m_Rigid.AddTorque(m_Mobility * TorqueControl * Time.fixedDeltaTime, ForceMode2D.Force);
-
-            // вязкое вращательное трение
-            m_Rigid.AddTorque(-m_Rigid.angularVelocity * (m_Mobility / m_MaxAngularVelocity) * Time.fixedDeltaTime, ForceMode2D.Force);
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
+            m_Rigid.MoveRotation(angle);
         }
+
+        #endregion
+
+
+
+
+
+        //НАМ НУЖНА КОМПОЗИЦИЯ ЭФФЕКТОВ:
+        // временное замедление (ice tower)
+        private float slowMultiplier = 1f;
+        private float slowTimer = 0f;
+
+        // базовый множитель (на будущее)
+        [SerializeField]
+        private float baseSpeedMultiplier = 1f;
+
+        // постоянные ауры
+        private readonly HashSet<float> speedAuras = new HashSet<float>();
+
+        public float SpeedMultiplier
+        {
+            get
+            {
+                float auraMul = 1f;
+                foreach (var m in speedAuras)
+                    auraMul *= m;
+
+                return baseSpeedMultiplier * slowMultiplier * auraMul;
+            }
+        }
+
+        //ПРАВИЛЬНОЕ ЗАМЕДЛЕНИЕ(SlowDown Tower)
+        public void ApplySlow(float multiplier, float duration)
+        {
+            slowMultiplier = Mathf.Clamp(multiplier, 0f, 1f);
+            slowTimer = duration;
+        }
+
+        public void AddSpeedAura(float multiplier)
+        {
+            speedAuras.Add(multiplier);
+        }
+
+        public void RemoveSpeedAura(float multiplier)
+        {
+            speedAuras.Remove(multiplier);
+        }
+
+
+
+
+      
 
         //#region Offensive
 
@@ -268,8 +308,6 @@ namespace SpaceShooter
              return true;
         }
 
-
-
         /// <summary>
         /// TODO: заменить временный метод-заглушку
         /// Используется ИИ
@@ -285,7 +323,6 @@ namespace SpaceShooter
             base.Use(asset);
         }
 
-       
         //#endregion
 
         //public void AssignWeapon(TurretProperties props)

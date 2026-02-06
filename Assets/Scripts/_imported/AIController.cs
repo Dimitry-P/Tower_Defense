@@ -47,6 +47,8 @@ namespace SpaceShooter
         /// </summary>
         [SerializeField] private AIPointPatrol m_PatrolPoint;
 
+        public AIPointPatrol PatrolPoint => m_PatrolPoint;
+
         /// <summary>
         /// Время рандомизации выбора новой точки движения.
         /// Задает значение таймера ActionTimerType.RandomizeDirection

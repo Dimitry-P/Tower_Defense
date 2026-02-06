@@ -22,7 +22,7 @@ namespace Towers.std
             foreach (Collider2D col in enemies)
             {
                 SpaceShip spaceShip = col.GetComponentInParent<SpaceShip>();
-                if (spaceShip != null)
+                if (spaceShip != null && spaceShip.FreezeImmune == false)
                 {
                     spaceShip.IsFrozen = true;
                     return;
