@@ -12,13 +12,6 @@ namespace Towers.std
     {
         private int baseDamage;
 
-        private int enemyLayerMask;
-
-        private void Awake()
-        {
-            enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
-        }
-
         public override void TryApplyDamage(Destructible destructible)
         {
             if (destructible == null) return;

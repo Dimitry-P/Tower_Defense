@@ -784,10 +784,10 @@ MonoBehaviour:
   m_NumSpawns: 1
   m_RespawnTime: 10
   m_Timer: 0
-  m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
+  m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc3e67f13ff91194688673535811ddde, type: 3}
   m_path: {fileID: 57767494}
   m_EnemyAssets:
-  - {fileID: 11400000, guid: 5424c0b979d16e94781f191f33d06c26, type: 2}
+  - {fileID: 11400000, guid: dcf7ecfdcb6fa1d488549b3120dfc381, type: 2}
   spawnPoint: {fileID: 1924377179}
   baseTransform: {fileID: 1657230661}
 --- !u!114 &394599051
@@ -807,10 +807,10 @@ MonoBehaviour:
   m_NumSpawns: 1
   m_RespawnTime: 3
   m_Timer: 0
-  m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
+  m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc3e67f13ff91194688673535811ddde, type: 3}
   m_path: {fileID: 57767494}
   m_EnemyAssets:
-  - {fileID: 11400000, guid: 726cd6620c9930a47b9e788371877ee5, type: 2}
+  - {fileID: 11400000, guid: ed27fa59b2a5ee04d8f3e909ac8be965, type: 2}
   spawnPoint: {fileID: 1924377179}
   baseTransform: {fileID: 1657230661}
 --- !u!114 &394599052
@@ -830,10 +830,10 @@ MonoBehaviour:
   m_NumSpawns: 1
   m_RespawnTime: 9999
   m_Timer: 0
-  m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
+  m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc3e67f13ff91194688673535811ddde, type: 3}
   m_path: {fileID: 1342231172}
   m_EnemyAssets:
-  - {fileID: 11400000, guid: d821523b6e40f3e49ae2b554f8ee19d4, type: 2}
+  - {fileID: 11400000, guid: 9ed792225a3075842822249a3eed0c90, type: 2}
   spawnPoint: {fileID: 57249707}
   baseTransform: {fileID: 1657230661}
 --- !u!1 &405756843
@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_NumLives: 4
   m_Ship: {fileID: 0}
   m_PlayerShipPrefab: {fileID: 0}
-  m_gold: 175
+  m_gold: 1750
   m_DPSkilled: 0
   m_Totalkilled: 0
   m_towerPrefab: {fileID: 2985568735566343919, guid: 5842b617235527b469abd486d0575766, type: 3}
@@ -1573,7 +1573,7 @@ PrefabInstance:
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: m_ta
       value: 
-      objectReference: {fileID: 11400000, guid: 9a1368f7fe550494db1224e99084db45, type: 2}
+      objectReference: {fileID: 11400000, guid: e6b8e969cc9803c4497ade4e3836d8fa, type: 2}
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: buildSite
       value: 
@@ -1882,7 +1882,7 @@ PrefabInstance:
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: m_ta
       value: 
-      objectReference: {fileID: 11400000, guid: 067980a0f051c6745a83b99a8a2d335a, type: 2}
+      objectReference: {fileID: 11400000, guid: 34d8a7822cefe994386986a4dfd8bf88, type: 2}
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: buildSite
       value: 
@@ -2136,7 +2136,7 @@ PrefabInstance:
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: m_ta
       value: 
-      objectReference: {fileID: 11400000, guid: af7d51b73573f4f47bc8c51cc4bf5c24, type: 2}
+      objectReference: {fileID: 11400000, guid: 7815b4997c57f4c4a9ecd5866c19b1ca, type: 2}
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: buildSite
       value: 
@@ -2383,7 +2383,7 @@ PrefabInstance:
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: m_ta
       value: 
-      objectReference: {fileID: 11400000, guid: 6409791a3283fae48948b16f74edc94a, type: 2}
+      objectReference: {fileID: 11400000, guid: af9a0ee3a15e96b40996210ef1a8317f, type: 2}
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: buildSite
       value: 
@@ -2581,7 +2581,7 @@ PrefabInstance:
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: m_ta
       value: 
-      objectReference: {fileID: 11400000, guid: b51fd1064a5513048b5f69faf06714a1, type: 2}
+      objectReference: {fileID: 11400000, guid: 06b467640459cac48ad286374ceb3688, type: 2}
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: buildSite
       value: 
@@ -3522,7 +3522,7 @@ PrefabInstance:
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: m_ta
       value: 
-      objectReference: {fileID: 11400000, guid: 5de078d755b590c4b87fe0ac6f28e291, type: 2}
+      objectReference: {fileID: 11400000, guid: 8ffe8d6fe7ef8044484869fb8d9e5bb6, type: 2}
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: buildSite
       value: 
@@ -5058,7 +5058,7 @@ PrefabInstance:
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: m_ta
       value: 
-      objectReference: {fileID: 11400000, guid: 547d6eb169af3c8478bd81c06bba6741, type: 2}
+      objectReference: {fileID: 11400000, guid: 26b4e1da8d49ef04c90afb970490339d, type: 2}
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: buildSite
       value: 
@@ -5443,6 +5443,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 290518760}
     m_Modifications:
+    - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+      propertyPath: m_ta
+      value: 
+      objectReference: {fileID: 11400000, guid: f3b122b5089c39c45b79da26f22f333e, type: 2}
     - target: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
       propertyPath: buildSite
       value: 

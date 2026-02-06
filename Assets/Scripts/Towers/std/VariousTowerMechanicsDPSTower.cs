@@ -25,19 +25,9 @@ namespace Towers.std
 
         public override void TryApplyDamage(Destructible destructible)
         {
-            if (destructible == null)
-            {
-                Debug.Log("destructible   null");
-                return;
-            }
-               
-            if (tower == null)
-            {
-                Debug.Log("tower   null");
-                return;
-            }
-               
-            float time = tower.timer;
+            if (destructible == null) return;
+
+            if (tower == null) return;
 
             destructible.ApplyDamage(damage, this);
         }

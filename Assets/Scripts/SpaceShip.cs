@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaceShooter;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
@@ -294,3 +295,29 @@ namespace SpaceShooter
         //}
     }
 }
+
+
+
+//using SpaceShooter;
+//using System.Collections;
+//using System.Collections.Generic;
+//using TowerDefense;
+//using UnityEngine;
+//using Towers;
+
+//public class TowerSpawner : MonoBehaviour
+//{
+//    [SerializeField] private Projectile projectile;
+//    [SerializeField] private TowerAsset towerAsset;
+//    private void Start()
+//    {
+//        Use();
+//    }
+
+
+//    private void Use()
+//    {
+//        var e = Instantiate(projectile);
+//        e.Use(towerAsset);
+//    }
+//}
