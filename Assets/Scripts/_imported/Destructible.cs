@@ -122,7 +122,12 @@ namespace SpaceShooter
         /// Применение дамага к объекту.
         /// </summary>
         /// <param name="damage"></param>
+
       
+
+        private float timer = 7f;
+
+
 
         //  Новый ApplyDamage — с источником урона - для башни DPS
         public void ApplyDamage(int damage, VariousMech source)

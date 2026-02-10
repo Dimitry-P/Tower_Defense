@@ -16,6 +16,7 @@ namespace TowerDefense
     {
         [SerializeField] private int m_damage;
         [SerializeField] private int m_gold;
+        [SerializeField] private AuraGizmos m_auraGizmos;
         public string enemyName;
        
 
@@ -28,8 +29,11 @@ namespace TowerDefense
 
             if(destructible.IsBoss == true)
             {
-                destructible.AddComponent<BossSpeedAura>();
+                var speedAura = destructible.AddComponent<BossSpeedAura>();
+                m_auraGizmos.Init();
+                speedAura.Init(m_auraGizmos.AuraCollider);
             }
+            if(destructible.IsBoss == false) m_auraGizmos.Disabled();
 
             var sr = transform.Find("Sprite").GetComponent<SpriteRenderer>();
               

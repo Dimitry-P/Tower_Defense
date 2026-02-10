@@ -18,15 +18,11 @@ namespace Towers.std
 
         public override void TryApplyDamage(Destructible destructible)
         {
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(destructible.transform.position, m_Radius, enemyLayerMask);
-            foreach (Collider2D col in enemies)
+            if (destructible.IsBoss == true) return;
+            var spaceShip = destructible.GetComponent<SpaceShip>();
+            if (spaceShip == null) return;
             {
-                SpaceShip spaceShip = col.GetComponentInParent<SpaceShip>();
-                if (spaceShip != null && spaceShip.FreezeImmune == false)
-                {
-                    spaceShip.IsFrozen = true;
-                    return;
-                }
+                spaceShip.Freeze(5f);
             }
         }
         public override void UseSpecificMechanic(TurretProperties turretProperties)

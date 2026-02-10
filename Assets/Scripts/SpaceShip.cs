@@ -53,14 +53,7 @@ namespace SpaceShooter
         private Rigidbody2D m_Rigid;
         public Rigidbody2D Rigid => m_Rigid;
 
-        private bool isFrozen = false;
-        public bool IsFrozen
-        {
-            get { return isFrozen; }
-            set { isFrozen = value; }
-        }
-
-        public bool FreezeImmune;
+       
 
         [SerializeField] private Transform targetPoint; // база игрока
 
@@ -82,6 +75,18 @@ namespace SpaceShooter
         #endregion
 
         private Animator m_Animator;
+
+        public bool FreezeImmune { get; set; }
+        private bool isFrozen;
+        private float freezeTimer;
+
+        public void Freeze(float duration)
+        {
+            if (FreezeImmune) return;
+
+            isFrozen = true;
+            freezeTimer = duration;
+        }
 
         private AIController controller;
         private void Awake()
@@ -115,10 +120,17 @@ namespace SpaceShooter
             startDistance = Vector2.Distance(transform.position, targetPoint.position);
         }
 
-        private float timer = 7f;
+       
 
         private void FixedUpdate()
         {
+            if (isFrozen)
+            {
+                freezeTimer -= Time.fixedDeltaTime;
+                if (freezeTimer <= 0f)
+                    isFrozen = false;
+            }
+
             if (slowTimer > 0f)
             {
                 slowTimer -= Time.fixedDeltaTime;
@@ -128,15 +140,7 @@ namespace SpaceShooter
                 }
             }
 
-            if (isFrozen)
-            {
-                timer -= Time.deltaTime;
-                if (timer <= 0f)
-                {
-                    isFrozen = false;
-                    timer = 10f;
-                }
-            }
+          
             UpdateRigidbody();
             //UpdateEnergyRegen();
 
@@ -161,7 +165,7 @@ namespace SpaceShooter
                     m_Animator.speed = 0f;
                 return;
             }
-            else
+           
             if (m_Animator != null)
                 m_Animator.speed = 1f;
             Vector2 dir = (controller.PatrolPoint.transform.position - transform.position).normalized;
