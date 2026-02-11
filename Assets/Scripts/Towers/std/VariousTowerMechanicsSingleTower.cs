@@ -14,6 +14,7 @@ namespace Towers.std
 
         public override void TryApplyDamage(Destructible destructible)
         {
+            if (destructible.IsBoss == true) return;
             if (destructible == null) return;
 
             destructible.ApplyDamage(baseDamage, this);

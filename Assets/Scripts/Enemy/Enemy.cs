@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -28,13 +29,14 @@ namespace TowerDefense
 
             destructible.IsBoss = asset.isBoss;
 
-            if(destructible.IsBoss == true)
+            if(destructible.IsBoss == true &&  SceneManager.GetActiveScene().name == "Level_2")
             {
                 var speedAura = destructible.AddComponent<BossSpeedAura>();
                 m_auraGizmos.Init();
                 speedAura.Init(m_auraGizmos.AuraCollider);
             }
-            if(destructible.IsBoss == false) m_auraGizmos.Disabled();
+            if(destructible.IsBoss == false || destructible.IsBoss == true &&
+                SceneManager.GetActiveScene().name == "Level_1") m_auraGizmos.Disabled();
 
             var sr = transform.Find("Sprite").GetComponent<SpriteRenderer>();
               

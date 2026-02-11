@@ -19,6 +19,6 @@ MonoBehaviour:
   m_AmmoUsage: 3
   m_LaunchSFX: {fileID: 0}
   m_projectileSprite: {fileID: 21300000, guid: 19c698e749a02864d821a7616ed0f7de, type: 3}
-  m_projectileSpeed: 18
+  m_projectileSpeed: 10
   m_damage: 15
   m_timer: 0

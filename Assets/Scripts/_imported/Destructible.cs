@@ -269,8 +269,16 @@ namespace SpaceShooter
         private void GameOver()
         {
             Destroy(gameObject);
-            GameReset.ResetStatics();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            if (SceneManager.GetActiveScene().name == "Level_1")
+            {
+                GameReset.ResetStatics();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
+            }
+            if (SceneManager.GetActiveScene().name == "Level_2")
+            {
+                Player.Instance.victoryPanel.SetActive(true);
+                Time.timeScale = 0f;
+            }
         }
 
         [SerializeField] private UnityEvent m_EventOnDeath;

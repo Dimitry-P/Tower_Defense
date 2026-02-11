@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: level_03
   m_EditorClassIdentifier: 
   m_Title: Third Battle
-  m_SceneName: level_3
+  m_SceneName: level_2
   m_PreviewImage: {fileID: 21300000, guid: 3f966ac3dc8aa434eb9500df2906340c, type: 3}
   m_NextLevel: {fileID: 0}

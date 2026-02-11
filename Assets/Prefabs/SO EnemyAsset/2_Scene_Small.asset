@@ -19,7 +19,7 @@ MonoBehaviour:
   nameOfEnemy: small
   moveSpeed: 2
   isBoss: 0
-  hp: 8
+  hp: 30
   radius: 0.4
   damage: 1
   gold: 5

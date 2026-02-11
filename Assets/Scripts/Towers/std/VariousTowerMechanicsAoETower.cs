@@ -19,6 +19,7 @@ namespace Towers.std
 
         public override void TryApplyDamage(Destructible destructible)
         {
+            if (destructible.IsBoss == true) return;
             //Поиск всех врагов в радиусе от точки попадания
             Debug.Log("Enemy layer mask: " + enemyLayerMask);
             Collider2D[] enemies = Physics2D.OverlapCircleAll(

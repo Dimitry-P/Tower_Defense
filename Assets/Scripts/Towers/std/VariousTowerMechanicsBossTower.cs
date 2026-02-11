@@ -25,8 +25,8 @@ namespace Towers.std
            
             destructible.ApplyDamage(damageToApply, this);
             StartCoroutine(ScaleEnemyTemporary(destructible));
-            destructible.IsPoisoned = true;
-            destructible.PoisonSource = this;
+            //destructible.IsPoisoned = true;
+            //destructible.PoisonSource = this;
         }
 
         private IEnumerator ScaleEnemyTemporary(Destructible destructible)

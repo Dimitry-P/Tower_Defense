@@ -43,9 +43,6 @@ namespace TowerDefense
             OnGoldUpdate -= act;
         }
 
-
-
-
         private static event Action<int> OnDPSKilledEnemiesUpdate;
         public static void DPSKilledEnemiesUpdateSubscribe(Action<int> act)
         {

@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -294,17 +293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b0ec4e9b2161e459a603b220a3b887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1644734355 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6623642466243736601, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
-  m_PrefabInstance: {fileID: 4389246684779840873}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b0ec4e9b2161e459a603b220a3b887, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1961828234 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7549341166706554970, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
@@ -328,9 +316,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuGUI
       objectReference: {fileID: 0}
+    - target: {fileID: 682830681411429599, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1759024915408470511, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_Name
-      value: Level_3_Button
+      value: Level_2_Button
       objectReference: {fileID: 0}
     - target: {fileID: 1941989315612805890, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -346,7 +338,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1941989315612805890, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -83.33333
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975160261862755805, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
+      propertyPath: m_Text
+      value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471127570210662044, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
+      propertyPath: m_Text
+      value: Level 2
       objectReference: {fileID: 0}
     - target: {fileID: 2584673091930111422, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -370,7 +370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2584673091930111422, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TowerDefence.LevelSelectionButton, Assembly-CSharp
+      value: TowerDefense.LevelSelectionButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2584673091930111422, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -398,12 +398,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3341232110060887457, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TowerDefence.LevelSelectionButton, Assembly-CSharp
+      value: TowerDefense.LevelSelectionButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3341232110060887457, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4265508896602770335, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
+      propertyPath: m_Name
+      value: Level_1_Button
+      objectReference: {fileID: 0}
     - target: {fileID: 5670553433778072498, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -418,27 +422,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5670553433778072498, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 5827188686672976895, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7004069101836160062, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7029597729999854683, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7029597729999854683, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7029597729999854683, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7029597729999854683, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -16.666666
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8952154259854749129, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -451,7 +459,7 @@ PrefabInstance:
     - target: {fileID: 8952154259854749129, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1644734355}
+      objectReference: {fileID: 0}
     - target: {fileID: 8952154259854749129, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -509,7 +517,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2425533936201305154, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1271ff0d81367974fa4a8f3845b2d0f5, type: 3}

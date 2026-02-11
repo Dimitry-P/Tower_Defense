@@ -22,6 +22,7 @@ namespace Towers.std
 
         public override void TryApplyDamage(Destructible destructible)
         {
+            if (destructible.IsBoss == true) return;
             destructible.SetColorTemporary(Color.green, 7f);
             destructible.ApplyPoison(2, 7f, this);
             destructible.IsPoisoned = true; 

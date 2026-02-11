@@ -21,6 +21,8 @@ namespace SpaceShooter
 
         //[SerializeField] private CameraController m_CameraController;
         //[SerializeField] private MovementController m_MovementController;
+        [SerializeField] private GameObject loosePanel;
+        public GameObject victoryPanel;
 
         private void Start()
         {
@@ -89,31 +91,58 @@ namespace SpaceShooter
             // LevelSequenceController.Instance.FinishCurrentLevel(false);
             //LevelSequenceController.Instance.RestartLevel();
             //}
-            if (enemyName == "small")
+            if (SceneManager.GetActiveScene().name == "Level_1")
             {
-                smallEnemyCounter++;
-                if (smallEnemyCounter == 6)
+                if (enemyName == "small" && smallEnemyCounter < 3)
                 {
+                    smallEnemyCounter++;
                     m_NumLives--;
-                    smallEnemyCounter = 0;
+                }
+                if (enemyName == "middle" && middleEnemyCounter < 1)
+                {
+                    middleEnemyCounter++;
+                    m_NumLives--;
+                }
+                if (enemyName == "boss") bossEnemyCounter++;
+            }
+
+                if (SceneManager.GetActiveScene().name == "Level_2")
+            {
+                if (enemyName == "small")
+                {
+                    smallEnemyCounter++;
+                    if (smallEnemyCounter == 6)
+                    {
+                        m_NumLives--;
+                        smallEnemyCounter = 0;
+                    }
+                }
+                if (enemyName == "middle")
+                {
+                    middleEnemyCounter++;
+                    if (middleEnemyCounter == 3)
+                    {
+                        m_NumLives--;
+                        middleEnemyCounter = 0;
+                    }
                 }
             }
-            if (enemyName == "middle")
-            {
-                middleEnemyCounter++;
-                if (middleEnemyCounter == 3)
-                {
-                    m_NumLives--;
-                    middleEnemyCounter = 0;
-                }
-            }
+           
            
             if (enemyName == "boss") bossEnemyCounter++;
 
             if (m_NumLives == 0 || bossEnemyCounter >= 1)
             {
-                GameReset.ResetStatics();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+                if (SceneManager.GetActiveScene().name == "Level_2")
+                {
+                    loosePanel.SetActive(true);
+                    Time.timeScale = 0f;
+                }
+                else
+                {
+                    GameReset.ResetStatics();
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+                }
             }
         }
         #endregion
