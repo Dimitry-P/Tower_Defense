@@ -1,11 +1,7 @@
 ﻿using SpaceShooter;
-using System;
 using TowerDefense;
 using Towers.std;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.XR;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace SpaceShooter
 {
@@ -20,9 +16,9 @@ namespace SpaceShooter
 
         protected override GameObject GenerateSpawnedEntity()
         {
-            // Логируем сразу перед спавном
-            Debug.Log($"spawnPoint={spawnPoint}, baseTransform={baseTransform}");
-            var e = Instantiate(m_EnemyPrefab, spawnPoint.position, Quaternion.identity);
+            Vector2 offset2D = UnityEngine.Random.insideUnitCircle * 0.9f;
+            Vector3 offset = new Vector3(offset2D.x, offset2D.y, 0f);
+            var e = Instantiate(m_EnemyPrefab, spawnPoint.position + offset, Quaternion.identity);
             e.GetComponent<SpaceShip>().SetTargetPoint(baseTransform);
             e.Use(m_EnemyAssets[UnityEngine.Random.Range(0, m_EnemyAssets.Length)]);
             e.GetComponent<TDController>().SetPath(m_path);

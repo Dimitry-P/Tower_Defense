@@ -8,7 +8,7 @@ namespace SpaceShooter
     //[RequireComponent(typeof(CircleCollider2D))]
     public class BossSpeedAura : MonoBehaviour
     {
-        public float speedMultiplier = 2f;
+        public float speedMultiplier = 5f;
         private CircleCollider2D _auraCollider;
 
         public void Init(CircleCollider2D auraCollider)

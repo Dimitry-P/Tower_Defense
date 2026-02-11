@@ -15,9 +15,10 @@ namespace TowerDefense
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private int m_damage;
-        [SerializeField] private int m_gold;
+        public int m_gold;
         [SerializeField] private AuraGizmos m_auraGizmos;
         public string enemyName;
+        public Projectile projectile;
        
 
         public void Use(EnemyAsset asset)//эта функция осущ-ет подцепление настроек для врагов.
@@ -52,7 +53,7 @@ namespace TowerDefense
             GetComponentInChildren<CircleCollider2D>().radius = asset.radius;
 
             m_damage = asset.damage;
-            m_gold = asset.gold;
+            //m_gold = projectile.m_Damage;
             enemyName = asset.nameOfEnemy;
         }
 

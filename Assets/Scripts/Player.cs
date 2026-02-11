@@ -89,16 +89,25 @@ namespace SpaceShooter
             // LevelSequenceController.Instance.FinishCurrentLevel(false);
             //LevelSequenceController.Instance.RestartLevel();
             //}
-            if (enemyName == "small" && smallEnemyCounter < 3)
+            if (enemyName == "small")
             {
                 smallEnemyCounter++;
-                m_NumLives--;
+                if (smallEnemyCounter == 6)
+                {
+                    m_NumLives--;
+                    smallEnemyCounter = 0;
+                }
             }
-            if (enemyName == "middle" && middleEnemyCounter < 1)
+            if (enemyName == "middle")
             {
                 middleEnemyCounter++;
-                m_NumLives--;
+                if (middleEnemyCounter == 3)
+                {
+                    m_NumLives--;
+                    middleEnemyCounter = 0;
+                }
             }
+           
             if (enemyName == "boss") bossEnemyCounter++;
 
             if (m_NumLives == 0 || bossEnemyCounter >= 1)

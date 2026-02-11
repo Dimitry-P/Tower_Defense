@@ -16,10 +16,10 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   spriteScale: {x: 0.05, y: 0.05}
   animations: {fileID: 9100000, guid: d0b193a44be58314488cdc559175d348, type: 2}
-  nameOfEnemy: 
+  nameOfEnemy: small
   moveSpeed: 1.4
   isBoss: 0
   hp: 30
   radius: 0.19
-  damage: 1
-  gold: 1
+  damage: 0
+  gold: 0

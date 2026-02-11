@@ -74,6 +74,7 @@ namespace SpaceShooter
 
                 if (destructible != null && destructible.gameObject != m_Parent?.gameObject)
                 {
+                    destructible.GetComponent<Enemy>().m_gold = m_Damage;
                     // здесь наносим урон / эффект
                     _variousMech?.TryApplyDamage(destructible);
 

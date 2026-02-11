@@ -498,15 +498,8 @@ MonoBehaviour:
   - {fileID: 993142230}
   - {fileID: 405756845}
   - {fileID: 378339734}
+  - {fileID: 2120845251}
   - {fileID: 2126800176}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1508115220}
 --- !u!1 &78755892
 GameObject:
@@ -736,8 +729,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 394599048}
-  - component: {fileID: 394599050}
   - component: {fileID: 394599051}
+  - component: {fileID: 394599050}
   - component: {fileID: 394599052}
   m_Layer: 0
   m_Name: EnemyCamp
@@ -781,13 +774,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Area: {fileID: 1924377180}
   m_SpawnMode: 1
-  m_NumSpawns: 1
+  m_NumSpawns: 3
   m_RespawnTime: 10
   m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc3e67f13ff91194688673535811ddde, type: 3}
   m_path: {fileID: 57767494}
   m_EnemyAssets:
-  - {fileID: 11400000, guid: dcf7ecfdcb6fa1d488549b3120dfc381, type: 2}
+  - {fileID: 11400000, guid: 1a5fe6e0fb06cc4459d94689237fa309, type: 2}
   spawnPoint: {fileID: 1924377179}
   baseTransform: {fileID: 1657230661}
 --- !u!114 &394599051
@@ -804,13 +797,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Area: {fileID: 1924377180}
   m_SpawnMode: 1
-  m_NumSpawns: 1
+  m_NumSpawns: 6
   m_RespawnTime: 3
   m_Timer: 0
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc3e67f13ff91194688673535811ddde, type: 3}
   m_path: {fileID: 57767494}
   m_EnemyAssets:
-  - {fileID: 11400000, guid: ed27fa59b2a5ee04d8f3e909ac8be965, type: 2}
+  - {fileID: 11400000, guid: b0803595a09207949b154381fd34bc15, type: 2}
   spawnPoint: {fileID: 1924377179}
   baseTransform: {fileID: 1657230661}
 --- !u!114 &394599052
@@ -833,7 +826,7 @@ MonoBehaviour:
   m_EnemyPrefab: {fileID: 4410295530882854954, guid: cc3e67f13ff91194688673535811ddde, type: 3}
   m_path: {fileID: 1342231172}
   m_EnemyAssets:
-  - {fileID: 11400000, guid: 9ed792225a3075842822249a3eed0c90, type: 2}
+  - {fileID: 11400000, guid: 4f131a99008708e4f9abfa7f81d5b240, type: 2}
   spawnPoint: {fileID: 57249707}
   baseTransform: {fileID: 1657230661}
 --- !u!1 &405756843
@@ -1082,7 +1075,7 @@ GameObject:
   - component: {fileID: 570496439}
   - component: {fileID: 570496440}
   m_Layer: 0
-  m_Name: Boss (2)
+  m_Name: Boss (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1290,10 +1283,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
-  m_NumLives: 4
+  m_NumLives: 20
   m_Ship: {fileID: 0}
   m_PlayerShipPrefab: {fileID: 0}
-  m_gold: 1750
+  m_gold: 200
   m_DPSkilled: 0
   m_Totalkilled: 0
   m_towerPrefab: {fileID: 2985568735566343919, guid: 5842b617235527b469abd486d0575766, type: 3}
@@ -2131,7 +2124,7 @@ GameObject:
   - component: {fileID: 1021392383}
   - component: {fileID: 1021392384}
   m_Layer: 0
-  m_Name: Boss (3)
+  m_Name: Boss (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2817,6 +2810,7 @@ Transform:
   - {fileID: 993142229}
   - {fileID: 405756844}
   - {fileID: 378339733}
+  - {fileID: 2120845250}
   - {fileID: 2126800175}
   - {fileID: 1508115221}
   m_Father: {fileID: 394599048}
@@ -2987,6 +2981,7 @@ MonoBehaviour:
   points:
   - {fileID: 1356754611}
   - {fileID: 1373839626}
+  - {fileID: 1021392384}
   - {fileID: 570496440}
 --- !u!1 &1356754609
 GameObject:
@@ -4994,6 +4989,51 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &2120845249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2120845250}
+  - component: {fileID: 2120845251}
+  m_Layer: 0
+  m_Name: Point (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2120845250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120845249}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.67, y: 12.1, z: 0.93571186}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1201232059}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2120845251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120845249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cbc1c48caee21c428635923ebc73708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Radius: 0.3
 --- !u!1 &2126800174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,7 +5045,7 @@ GameObject:
   - component: {fileID: 2126800175}
   - component: {fileID: 2126800176}
   m_Layer: 0
-  m_Name: Point (5)
+  m_Name: Point (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5020,7 +5060,7 @@ Transform:
   m_GameObject: {fileID: 2126800174}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.04, y: 11.81, z: 0.93571186}
+  m_LocalPosition: {x: 19.34, y: 10.36, z: 0.93571186}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

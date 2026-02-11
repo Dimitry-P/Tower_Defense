@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cecce1ba669c8b40af673f44fe830db, type: 3}
   m_Name: Ice_tower
   m_EditorClassIdentifier: 
-  goldCost: 70
+  goldCost: 80
   sprite: {fileID: 21300000, guid: eeaae66557312a54a946f53e4feade84, type: 3}
   GUISprite: {fileID: 21300000, guid: 872b686bca0b0ad47b6f21c2b8c59d22, type: 3}
   turretProperties: {fileID: 11400000, guid: d7d5dfa3d323c40429d57fbc4080306c, type: 2}

@@ -45,7 +45,7 @@ namespace SpaceShooter
 
         public float m_Timer;
 
-        private float bossTimer = 3f;
+        private float bossTimer = 25f;
 
         private bool bossSpawned = false;
 

@@ -473,6 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_damage: 1
-  m_gold: 1
+  m_gold: 0
   m_auraGizmos: {fileID: 2473790740497961568}
   enemyName: middle
+  projectile: {fileID: 0}
